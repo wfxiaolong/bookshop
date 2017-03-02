@@ -1,0 +1,44 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">个人信息</div>
+</ion-header-bar>
+<ion-content class="page page-user" has-bouncing="true" overflow-scroll="false">
+    <div class="list">
+        <div class="mtb-15">
+            <a class="item ptb-50" ng-click="changeAvatar()">
+                <span class="f-26">头像</span>
+                <i class="item-note c-3 f-34 ion-chevron-right"></i>
+                <img ng-src="{{avatar}}" alt="" class="info-avatar">
+            </a>
+            <a class="item" ng-href="#/editName/{{nickname}}">
+                <span class="f-26">用户名</span>
+                <i class="item-note c-3 f-34 ion-chevron-right"></i>
+                <span class="item-note c-9 f-26 mr-30 mw-65p text-overflow">
+                    {{nickname}}
+                </span>
+            </a>
+            <a class="item" ui-sref="address">
+                <span class="f-26">我的地址</span>
+                <i class="item-note c-3 f-34 ion-chevron-right"></i>
+                <span class="item-note c-9 f-26 mr-30 mw-65p text-overflow">
+                    {{address}}
+                </span>
+            </a>
+        </div>
+        <div class="mtb-15">
+            <a class="item" ui-sref="editPhone({phone:{{'phone'}}})">
+                <span class="f-26">绑定手机</span>
+                <i class="item-note c-3 f-34 ion-chevron-right"></i>
+                <span class="item-note c-9 f-26 mr-30 mw-65p text-overflow">
+                    {{phone | hidePhone}}
+                </span>
+            </a>
+            <a class="item" ui-sref="editPassword">
+                <span class="f-26">修改密码</span>
+                <i class="item-note c-3 f-34 ion-chevron-right"></i>
+                <span class="item-note c-9 f-26 mr-30 mw-65p text-overflow">
+                </span>
+            </a>
+        </div>
+    </div>
+</ion-content>

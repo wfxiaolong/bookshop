@@ -1,0 +1,15 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">用户反馈</div>
+</ion-header-bar>
+<ion-content class="page-user page" has-bouncing="true" overflow-scroll="false">
+    <div class="container">
+        <textarea rows="10" class="feedback-wrap f-26" maxlength="200" placeholder="长度在10个字以上" ng-model="feedback.content" ></textarea>
+        <div class="item ptb-10" ng-show="noLogin">
+            <input type="text" maxlength="11" class="edit-input" placeholder="请输入手机号码（可选）" ng-model="feedback.phone">
+        </div>
+    </div>
+    <div class="text-center mt-30">
+        <button class="button btn-main" ng-click="submitFeedback()">提交</button>
+    </div>
+</ion-content>

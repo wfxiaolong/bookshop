@@ -1,0 +1,27 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">发表评价</div>
+</ion-header-bar>
+<ion-content class="page-user page-order" has-bouncing="true" overflow-scroll="false">
+    <div class="page ptb-20">
+        <div class="item bd-lr-none ptb-20 f-28">
+            <p>评分：</p>
+            <div class="star-wrap">
+                <div class="star-full star-{{stars || 0}}"></div>
+                <div class="star-click" ng-click="changeStar(1)"></div> 
+                <div class="star-click" ng-click="changeStar(2)"></div> 
+                <div class="star-click" ng-click="changeStar(3)"></div> 
+                <div class="star-click" ng-click="changeStar(4)"></div> 
+                <div class="star-click" ng-click="changeStar(5)"></div> 
+            </div>
+        </div>
+    </div>
+    <div class="item bd-lr-none ptb-20 f-28">
+        <p>评价内容：</p>
+        <textarea rows="10" class="feedback-wrap  f-26" ng-model="input.comment"></textarea>
+        <div class="text-center mt-30">
+            <button class="button btn-main" ng-click="commitComment()">提交</button>
+        </div>
+        <div class="ptb-50"></div>
+    </div>
+</ion-content>

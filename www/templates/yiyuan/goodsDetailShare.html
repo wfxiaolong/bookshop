@@ -1,0 +1,8 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">宝贝详情</div>
+</ion-header-bar>
+<ion-content class="page page-user" has-bouncing="true" overflow-scroll="true" scroll="true" ng-class="hideBar ? 'top-0' : 'has-header'">
+<iframe id="iframe" ng-src='{{myURL}}' style="width: 100%;height: 100%;"></iframe>
+
+</ion-content>

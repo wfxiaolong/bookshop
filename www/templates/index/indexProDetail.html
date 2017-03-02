@@ -1,0 +1,146 @@
+<div class="pro-detail-top justify {{isIOSApp ? 'mt-30' : ''}}">
+    <div class="top-icon" ng-click="goBack()"><i class="ion-chevron-left"></i></div>
+    <div class="clearfix">
+        <div class="fl top-icon mr-30 {{isCollect ? 'c-red' : ''}}" ng-click="collect()"><i class="ion-android-favorite{{isCollect ? '' : '-outline'}}" style="font-size: 20px;"></i></div>
+        <div class="fl top-icon" ng-click="jumpCart()"><i class="iconfont icon-cart"></i></div>
+    </div>
+</div>
+<ion-content class="page page-index" has-bouncing="true" overflow-scroll="false">
+    <div style="height:20px;background:#fff" ng-if="isIOSApp"></div>
+    <ion-slide-box class="swiper">
+        <ion-slide ng-repeat="v in good.pics">
+            <img ng-src="{{::v}}" alt="">
+        </ion-slide>
+    </ion-slide-box>
+    <div class="item bd-lr-none ptb-20">
+        <div class="pro-desc">
+            <div class="flex1">
+                <p class="f-34" style="white-space:initial">{{::good.name}}</p>
+                <p class="f-24 c-9" style="white-space:initial">{{::good.abstract}}</p>
+            </div>
+            <div class="share" ng-click="sharePopShow()">
+                <p class="text-center"><i class="iconfont icon-share"></i></p>
+                <p class="f-24">分享</p>
+            </div>
+        </div>
+        <p class="f-34 c-red mt-10">&yen;{{good.stock[0].price}}</p>
+        <div class="f-24 c-9 justify">
+            <span>快递：{{good.express_fee}}元</span>
+            <span>月销量 {{good.sales}}笔</span>
+            <!-- <span>广东·深圳</span> -->
+        </div>
+    </div>
+    <a class="item ptb-20 bd-lr-none mtb-15" ng-if="good.coupon.length != 0">
+        <span class="f-34 c-6">购买送优惠券：</span>
+        <p class="f-26 c-6" ng-repeat="v in good.coupon" >{{v.name}}</p>
+    </a>
+    <a class="item ptb-20 bd-lr-none mtb-15" ng-click="popShow('standardPop')">
+        <span class="f-34 c-6" ng-show="!nowStandard">选择型号：</span>
+        <span class="f-26 c-6" ng-show="nowStandard">已选择：{{nowStandard.model}} x {{goodNum}}</span>
+        <i class="item-note c-3 f-34 ion-chevron-right"></i>
+    </a>
+    <div class="item ptb-20 bd-lr-none mtb-15">
+        <div class="f-34">用户评价
+            <a class="item fr" href="tel:0755-83585093" style="border:none; padding: 0;">
+                <span class="f-26" style="padding-right: 10px;">客服热线</span>
+                <span class="item-note c-main f-26 mw-65p text-overflow">
+                    0755-83585093
+                </span>
+            </a>
+        </div>
+        <div class="f-26 c-6 b-bot-dotted ptb-20">
+            综合评价
+            <div class="star-wrap">
+                <div class="star-full star-{{averageStar}}"></div>
+            </div>
+        </div>
+        <div class="user-comment b-bot-dotted ptb-10" ng-repeat="v in commentList">
+            <div class="justify">
+                <div class="star-wrap star-wrap-small">
+                    <div class="star-full star-{{v.star}}"></div>
+                </div>
+                <p class="f-24 c-6">{{v.nickname}}<span class="mr-30"></span>{{v.time * 1000 | date:"yyyy-MM-dd"}}</p>
+            </div>
+            <p class="f-24 c-9" style="white-space: normal;">{{v.content}}</p>
+            <p class="f-24 c-9" ng-if="v.reply_status == 1">商家回复：{{v.reply}}</p>
+        </div>
+        <p class="text-center f-24 c-9 mt-10" ui-sref="userComments({goodId:good.id})">查看更多</p>
+    </div>
+    <div class="item ptb-20 bd-lr-none text-center">
+        商品详情
+    </div>
+    <div class="rich-text c-9" style="background:#fff;padding:10px;" ng-bind-html="good.content | trustHtml">
+    </div>
+    <div class="has-bot-bar"></div>
+</ion-content>
+<div class="bar bar-footer" style="padding: 0;height: 5rem;">
+    <div class="row text-center f-34" style="padding: 0;">
+        <div class="col index-bg-red" style="background-color: #ff6000;" ng-click="addCart()">加入购物车</div>
+        <div class="col index-bg-red" ng-click="buyNow()">立即购买</div>
+    </div>
+</div>
+<div class="pop-up-wrap" ng-show="standardPop">
+    <div class="bg" ng-click="popHide('standardPop',true)"></div>
+    <div class="public-pop-up p-0">
+        <div class="cart-list-item b-bot-dotted" style="padding:0.5rem 1rem;">
+            <img ng-src="{{good.cover}}" alt="" class="img-left">
+            <div class="text-wrap">
+                <p class="f-34 clearfix text-overflow">
+                    {{good.name}}
+                </p>
+                <p class="f-24 c-9 text-overflow-3">{{good.abstract}}</p>
+                <p class="c-red f-34">&yen;{{nowStandard.price || ''}}</p>
+                <p class="f-28 c-9">库存：{{nowStandard.stock || ''}}</p>
+            </div>
+        </div>
+        <div class="more-list container " style="border: none;">
+            <p class="f-28">型号</p>
+            <div class="classify {{standard == $index  ? 'active' : ''}}" ng-repeat="v in good.stock" ng-click="chooseStandard(v,$index)" style="width: initial;">
+                <span>{{v.model}}</span>
+            </div>
+        </div>
+        <div class="b-bot-dotted"></div>
+        <div class="clearfix container ptb-50" style="font-size: 0;">
+            <span class="f-28" style="vertical-align: super;">购买数量：</span>
+            <div class="add-btn" ng-click="validate('reduce')">-</div>
+            <!-- <div class="num">{{goodNum || 1}}</div> -->
+            <input class="num" type="number" style="vertical-align: top;display: inline-block;height: 3rem;line-height: 3rem;border: 1px solid #e8e8e8;width: 5rem;text-align: center;font-size: 15px;" ng-model="input.goodNum" ng-change="numCtrl()">
+            <div class="add-btn" ng-click="validate('add')">+</div>
+        </div>
+        <div class="row text-center f-34" style="padding: 0;">
+            <div class="col index-bg-red" style="background-color: #ff6000;" ng-click="addCart()">加入购物车</div>
+            <div class="col index-bg-red" ng-click="buyNow()">立即购买</div>
+        </div>
+    </div>
+</div>
+<!-- <div class="bar bar-footer discover-footer" style="background:rgba(0,0,0,0.4);height:5.5rem;padding:0 10px;">
+    <img src="img/icon.png" style="width: 45px;height:45px" class="mr-30">
+    <div class="c-white" style="-webkit-box-flex: 1;-webkit-flex: 1;flex:1">
+        <p class="m-0">VR数码前线</p>
+        <p class="m-0 f-24">下载APP，开启全球首家C2M数码商城购物之旅</p>
+    </div>
+    <a href="http://weiyaxunda.com/?ct=index&ac=share">
+        <button class="button btn-main f-28">立刻下载</button>
+    </a>
+</div> -->
+<div class="pop-up-wrap" ng-show="webSharePop">
+    <div class="bg" ng-click="popHide('webSharePop')">
+        <p class="c-white text-right" style="padding:10px">点击右上角
+            <br />分享至朋友圈
+            <br />或微信好友</p>
+    </div>
+</div>
+<div class="pop-up-wrap" ng-show="sharePop">
+    <div class="bg" ng-click="popHide('sharePop')"></div>
+    <div class="share-pop-up">
+        <div class="title text-center">
+            分享
+        </div>
+        <div class="img-share">
+            <img src="img/share-wechat.png" alt="" ng-click="shareWechat('wx')">
+            <img src="img/share-moment.png" alt="" ng-click="shareWechat('wx_circle')">
+            <img src="img/share-qzone.png" alt="" ng-click="shareWechat('qzone')">
+            <img src="img/share-qq.png" alt="" ng-click="shareWechat('qq')">
+        </div>
+    </div>
+</div>

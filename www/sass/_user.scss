@@ -1,0 +1,326 @@
+@charset "utf-8";
+.page-user {
+    .mw-65p {
+        max-width: 65%;
+    }
+    .disabled {
+        background-color: #f5f5f5;
+    }
+    .item-icon-left {
+        border-left: none;
+        border-right: none;
+        font-size: rem(26);
+        .icon {
+            color: $mainColor;
+            font-size: 25px;
+        }
+        .avatar {
+            position: absolute;
+            left: size(20);
+            top: 50%;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            width: size(100);
+            height: size(100);
+            border-radius: 50%;
+        }
+    }
+    .info-avatar {
+        position: absolute;
+        right: size(60);
+        top: 50%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        width: size(100);
+        height: size(100);
+        border-radius: 50%;
+    }
+    .unread {
+        position: relative;
+        &:after {
+            content: '';
+            background-color: #ff5f5f;
+            width: size(15);
+            height: size(15);
+            border-radius: 50%;
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            font-size: 20px;
+        }
+    }
+    .edit-input {
+        font-size: rem(26);
+        background-color: transparent !important;
+        width: 100%;
+        height: 25px;
+    }
+    .address-list {
+        margin-top: size(20);
+        border-top: 1px solid $borderColor;
+    }
+    .address-item {
+        padding: size(15) size(20);
+        font-size: rem(28);
+        background-color: #fff;
+        border-bottom: 1px solid $borderColor;
+        .icon-check {
+            vertical-align: middle;
+            font-size: 20px;
+        }
+    }
+    .address-input-wrap {
+        @include disFlex();
+        @include flexAlignCenter();
+        margin-top: size(30);
+        font-size: rem(34);
+        overflow: hidden;
+        .label {
+            width: size(180);
+        }
+        .input {
+            border: 1px solid #ccc;
+            @include flex1();
+            background-color: transparent;
+            padding: 0 size(10);
+            .select {
+                width: 30%;
+            }
+        }
+    }
+    .send-check-code {
+        position: absolute;
+        right: size(20);
+        top: 50%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        border-radius: size(90);
+        font-size: rem(26);
+    }
+    .item-avatar-user {
+        border-left: none;
+        border-right: none;
+        height: 88px;
+        padding-left: 85px;
+        padding-top: 23px;
+        img {
+            max-width: size(90);
+            max-height: size(90);
+            width: size(90);
+            width: size(90);
+        }
+        .cancel-follow {
+            position: absolute;
+            right: size(20);
+            top: 50%;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            font-size: rem(26);
+            color: $mainColor;
+            padding: size(20);
+        }
+    }
+    .discover-list-item-user {
+        background-color: #fff;
+        border-top: 1px solid $borderColor;
+        padding: size(5) size(20);
+        margin: size(10) 0;
+    }
+    .speak-top {
+        height: size(80);
+        border-top: 1px solid $mainColor;
+        border-bottom: 1px solid $mainColor;
+        background-color: #fff;
+        font-size: rem(36);
+        line-height: size(80);
+        @include disFlex();
+        color: $mainColor;
+        .speak-top-item {
+            @include flex1();
+            height: 100%;
+            text-align: center;
+        }
+        .active {
+            background-color: $mainColor;
+            color: #fff;
+        }
+    }
+    .coupon-disabled {
+        @include opacity(0.6);
+    }
+    .message-item {
+        white-space: initial;
+        padding: size(10) size(20);
+        border-left: none;
+        border-right: none;
+    }
+    .community-table {
+        width: 100%;
+        text-align: center;
+        th,
+        td {
+            border: 1px solid $borderColor;
+            padding: size(5) size(10);
+        }
+        th {
+            font-size: rem(28);
+        }
+        td {
+            font-size: rem(24);
+            color: #666;
+        }
+    }
+    .about-us-wrap {
+        width: 100%;
+        border-top: 1px solid $borderColor;
+        font-size: rem(26);
+        color: #666;
+        padding: size(10) size(20);
+    }
+    .feedback-wrap {
+        width: 100%;
+        border: 1px solid $borderColor;
+        margin: size(20) 0;
+        background-color: #fff;
+        padding: size(10);
+    }
+    .qq-icon {
+        width: size(90);
+        height: size(90);
+    }
+    .balance {
+        vertical-align: super;
+        color: #ff6000;
+        font-size: rem(36);
+        display: inline-block;
+        min-width: size(250);
+        text-align: left;
+    }
+    .btn-charge {
+        background-color: #ff6000;
+        width: size(140);
+        margin-left: size(30);
+    }
+    .balance-table {
+        width: 100%;
+        text-align: center;
+        font-size: rem(34);
+        color: #999;
+        tr {
+            @include disFlex();
+            @include flexAlignCenter();
+            margin-top: size(10);
+        }
+        td {
+            width: 33.333%;
+        }
+        p {
+            margin: 0;
+        }
+    }
+    .yiyuan-record-top {
+        height: size(100);
+        @include disFlex();
+        background-color: #fff;
+        .top-item {
+            @include flex1();
+            height: 100%;
+            line-height: size(100);
+            text-align: center;
+        }
+        .button-clear-me {
+            background-color: transparent;
+            border: none;
+            font-size: rem(26);
+            width: 100%;
+        }
+        .bd-lr {
+            border-right: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+        }
+        .active {
+            border-bottom: 2px solid $mainColor;
+            button {
+                color: $mainColor;
+            }
+        }
+    }
+    .yiyuan-item {
+        @include disFlex();
+        padding: size(20);
+        background-color: #fff;
+        .img-wrap {
+            width: size(160);
+            height: size(160);
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .main-wrap {
+            margin-left: size(20);
+            @include flex1();
+            p {
+                margin-bottom: 0;
+            }
+        }
+        .result {
+            background-color: #ececec;
+            padding: size(10);
+        }
+    }
+    .yiyuan-result {
+        background-color: #fff;
+        padding: size(20);
+        padding-top: 0;
+        .main {
+            background-color: #eaeaea;
+            padding: size(15);
+            position: relative;
+        }
+        .btn-status {
+            position: absolute;
+            right: size(15);
+            top: size(15);
+            background-color: #e34c31;
+            color: #fff;
+            font-size: rem(26);
+            padding: size(6) size(15);
+            border-radius: 5px;
+        }
+    }
+    .yiyuan-share {
+        .bg-white {
+            padding: size(20);
+            background-color: #fff;
+        }
+        .bg-gray {
+            background-color: #f5f5f5;
+            padding: size(20);
+        }
+        .share-img {
+            display: inline-block;
+            width: size(160);
+            height: size(120);
+            line-height: size(90);
+            vertical-align: top;
+            margin-right: size(20);
+            margin-bottom: size(20);
+        }
+        .add-img {
+            border: 3px dotted #e4e4e4;
+            text-align: center;
+            color: #e4e4e4;
+            font-size: 60px;
+            font-weight: bold;
+            background-color: #fff;
+        }
+        input,
+        textarea {
+            width: 100%;
+            padding: 0 size(20);
+        }
+    }
+}

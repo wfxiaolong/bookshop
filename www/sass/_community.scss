@@ -1,0 +1,81 @@
+@charset "utf-8";
+.page-community {
+    font-family: "黑体";
+    .w-25p {
+        width: 25%;
+    }
+    .module-list {
+        white-space: normal;
+        font-size: 0;
+        .list-item {
+            display: inline-block;
+            padding: 0 size(20);
+            margin-bottom: size(10);
+            text-align: center;
+            img {
+                border-radius: 50%;
+                width: size(70);
+                height: size(70);
+            }
+        }
+    }
+    .hot-info-recommend {
+        padding-left: size(220);
+        > img {
+            width: size(180);
+            height: size(150);
+            max-width: size(180);
+            max-height: size(150);
+        }
+        .text {
+            white-space: normal;
+            @include multiTextOverflow(3);
+            min-height: 60px;
+        }
+    }
+    .post-classify {
+        @include disFlex();
+        height: size(80);
+        .classify-item {
+            @include flex1();
+            height: size(80);
+            line-height: size(80);
+            text-align: center;
+            font-size: rem(30);
+            border-right: 1px solid $borderColor;
+        }
+        .active {
+            color: $mainColor;
+            border-bottom: 2px solid $mainColor;
+        }
+    }
+    .community-input {
+        width: 100%;
+        padding: size(10) size(10);
+        border: 1px solid $borderColor;
+        line-height: normal;
+    }
+    .floor-host {
+        background-color: $mainColor;
+        color: #fff;
+        font-size: rem(26);
+        border-radius: 6px;
+        padding: size(3);
+        margin-left: size(10);
+    }
+    .like-num {
+        position: absolute;
+        top: 0;
+        right: size(20);
+        font-size: rem(22);
+        color: #999;
+        text-align: right;
+    }
+    .community-icon {
+        background: $mainColor;
+        color: #fff;
+        padding: 3px 12px;
+        border-radius: 5px;
+        font-size: 28px;
+    }
+}

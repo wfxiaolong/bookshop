@@ -1,0 +1,22 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBackCustom()"></button>
+    <div class="title">维修中心</div>
+</ion-header-bar>
+<ion-content class="page page-user page-repair" has-bouncing="true" overflow-scroll="false">
+    <ion-slide-box class="swiper" auto-play="true">
+        <ion-slide ng-repeat="v in repairBanner" ng-if="!(v.url_type == 4 && !showDuobao)">
+            <a href="{{v.url}}" ng-click="jumpOtherUrl(v,$event)" ng-if="v.url_type == 0">
+                <img ng-src="{{v.pic}}" alt="{{v.title}}">
+            </a>
+            <img ng-src="{{v.pic}}" alt="{{v.title}}" ng-click="jumpInfo(v)" ng-if="v.url_type != 0">
+        </ion-slide>
+    </ion-slide-box>
+    <a class="item ptb-20 mtb-15 bd-lr-none" ui-sref="repairApplies">
+        <span class="f-26">我的维修申请</span>
+        <i class="item-note c-3 f-34 ion-chevron-right"></i>
+    </a>
+    <a class="item ptb-20 mtb-15 bd-lr-none" ui-sref="repairClassify">
+        <span class="f-26">申请维修</span>
+        <i class="item-note c-3 f-34 ion-chevron-right"></i>
+    </a>
+</ion-content>

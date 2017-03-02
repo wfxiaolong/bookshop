@@ -1,0 +1,27 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">用户评论</div>
+</ion-header-bar>
+<ion-content class="page-index" has-bouncing="true" overflow-scroll="false">
+    <div style="padding:10px">
+        <div class="f-26 c-6 b-bot-dotted ptb-20">
+            综合评价
+            <div class="star-wrap">
+                <div class="star-full star-{{averageStar}}"></div>
+            </div>
+        </div>
+        <div class="user-comment b-bot-dotted ptb-10" ng-repeat="v in commentList">
+            <div class="justify">
+                <div class="star-wrap star-wrap-small">
+                    <div class="star-full star-{{v.star}}"></div>
+                </div>
+                <p class="f-24 c-6">{{v.nickname}}<span class="mr-30"></span>{{v.time * 1000 | date:"yyyy-MM-dd"}}</p>
+            </div>
+            <p class="f-24 c-9 m-0" style="white-space: normal;">{{v.content}}</p>
+            <p class="f-24 c-9" ng-if="v.reply_status == 1">商家回复：{{v.reply}}</p>
+        </div>
+    </div>
+    <div class="text-center mt-30 f-30 c-9" ng-if="noData">没有更多评论啦~</div>
+    <ion-infinite-scroll ng-if="!noData" on-infinite="loadMore()" distance="1%">
+    </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,73 @@
+@charset "utf-8";
+.page-login {
+    padding: size(30);
+    padding-bottom: 0;
+    .input-wrap {
+        height: size(90);
+        border: 1px solid $borderColor;
+        border-radius: size(90);
+        @include disFlex();
+        @include flexAlignCenter();
+        font-size: rem(26);
+        padding: 0 size(30);
+        .label {
+            width: size(120);
+            color: #333;
+        }
+        .input {
+            font-size: rem(26);
+            @include flex1();
+            background: none;
+        }
+    }
+    .forgetPass {
+        font-size: rem(24);
+        text-decoration: underline;
+    }
+    .btn-login {
+        width: 100%;
+        height: size(90);
+        border-radius: size(90);
+        background-color: $mainColor;
+        font-size: rem(36);
+        color: #fff;
+    }
+    .quick-login {
+        @include disFlex();
+        @include flexAlignCenter();
+        @include flexPackCenter();
+        font-size: rem(26);
+        .line {
+            height: 1px;
+            background-color: $borderColor;
+            width: size(170);
+            margin: 0 size(20);
+        }
+    }
+    .icon-wrap {
+      display: inline-block;
+      text-align: center;
+    }
+    .icon {
+      height: size(90); 
+      width: size(90); 
+      background-color: #3692fd;
+      line-height: size(90); 
+      text-align: center;
+      border-radius: 50%;
+      color: #fff;
+      i {
+        font-size: rem(60);
+      }
+    }
+    .check-code {
+        background-color: $mainColor;
+        color: #fff;
+        height: 100%;
+        line-height: size(90); 
+        border-radius: 0 size(90) size(90) 0;
+        text-align: center;
+        margin-right: size(-30);
+        width: size(180);
+    }
+}

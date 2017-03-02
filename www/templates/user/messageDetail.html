@@ -1,0 +1,13 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">消息详情</div>
+</ion-header-bar>
+<ion-content class="page page-user" has-bouncing="true" overflow-scroll="false">
+    <div class="page" style="height: 12px;"></div>
+    <div class="about-us-wrap">
+        <div class="f-34">{{message.title}}</div>
+        <div class="mt-20"></div>
+        <img ng-src="{{message.pic}}" style="max-width: 100%;" alt="">
+        <div class="rich-text mt-20" ng-bind-html="message.content | trustHtml"></div>
+    </div>
+</ion-content>

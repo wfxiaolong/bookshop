@@ -1,0 +1,25 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">查看用户</div>
+    <button class="button button-clear" ng-click="report()">举报</button>
+</ion-header-bar>
+<ion-content class="page page-user" has-bouncing="true" overflow-scroll="false">
+    <div class="item mtb-15 text-center">
+        <img ng-src="{{user.user_img}}" style="border-radius: 50%;width: 6rem;height: 6rem;">
+        <div class="f-34 medal-{{user.level | getMedal}} medal-big mt-10">{{user.nickname}}</div>
+        <button class="button btn-main mt-20 c-white" ng-click="followClick()" ng-hide="followBtnHide">{{user.is_concern == 1 ? '取消关注' : '关注ta'}}</button>
+    </div>
+    <div class="discover-list-item discover-list-item-user" ng-repeat="v in articles" ui-sref="postDetail({postId:{{v.id}}})">
+        <div class="img-wrap">
+            <img ng-src="{{v.cover}}" alt="">
+        </div>
+        <div class="text-wrap">
+            <p class="f-30 text-overflow">{{v.title}}</p>
+            <p class="text-main">{{v.content}}</p>
+            <p class="clearfix f-22 c-9"><span class="fl">{{v.time * 1000 | date:"yyyy-MM-dd"}}</span></p>
+        </div>
+    </div>
+    <div class="text-center mt-30 f-30 c-9" ng-if="noData">已加载全部</div>
+    <ion-infinite-scroll  ng-if="!noData" on-infinite="loadMore()" distance="1%">
+    </ion-infinite-scroll>
+</ion-content>

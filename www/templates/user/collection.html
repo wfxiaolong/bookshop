@@ -1,0 +1,75 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">我的收藏</div>
+</ion-header-bar>
+<ion-content class="page page-user" has-bouncing="true" overflow-scroll="false">
+    <div class="speak-top mtb-15">
+        <div class="speak-top-item {{(type || 1) == 1 ? 'active' : ''}}" ng-click="changeType(1)">
+            帖子
+        </div>
+        <div class="speak-top-item {{type == 2 ? 'active' : ''}}" ng-click="changeType(2)">
+            商品
+        </div>
+    </div>
+    <!-- 帖子 -->
+    <div ng-show="(type || 1) == 1">
+        <!-- <div class="discover-list-item discover-list-item-user" ng-repeat="v in articles" ng-click="jumpDetail(v)">
+            <div class="img-wrap">
+                <img ng-src="{{v.cover}}" alt="">
+            </div>
+            <div class="text-wrap">
+                <p class="f-30 text-overflow">{{v.title}}</p>
+                <p class="text-main" ng-bind-html="v.content | trustHtml"></p>
+                <p class="clearfix f-22 c-9"><span class="fl">{{v.time * 1000 | date: "yyyy-MM-dd"}}</span></p>
+            </div>
+        </div> -->
+        <ion-list can-swipe="true">
+            <ion-item class="discover-list-item discover-list-item-user p-0" ng-repeat="v in articles" ng-click="jumpDetail(v)">
+                <div class="img-wrap">
+                    <img ng-src="{{v.cover}}" alt="">
+                </div>
+                <div class="text-wrap">
+                    <p class="f-30 text-overflow">{{v.title}}</p>
+                    <p class="text-main" style="white-space: normal;" ng-bind-html="v.content | trustHtml"></p>
+                    <p class="clearfix f-22 c-9"><span class="fl">{{v.time * 1000 | date: "yyyy-MM-dd"}}</span></p>
+                </div>
+                <ion-option-button class="button-assertive" ng-click="cancelLike(v,$index,1)">取消收藏</ion-option-button>
+            </ion-item>
+        </ion-list>
+    </div>
+    <!-- 商品 -->
+    <div ng-show="type == 2">
+        <ion-list can-swipe="true">
+            <ion-item class="discover-list-item discover-list-item-user p-0" ng-repeat="v in goods" ui-sref="indexProDetail({goodId:v.id})">
+                <div class="img-wrap">
+                    <img ng-src="{{v.cover}}" alt="">
+                </div>
+                <div class="text-wrap">
+                    <p class="f-34 text-overflow">{{v.name}}</p>
+                    <p class="text-main">{{v.abstract}}</p>
+                    <p class="clearfix f-24 c-6">
+                        <span class="fl c-red f-28">&yen;{{v.price}}</span>
+                        <span class="fr">月销量：{{v.sales}}笔</span>
+                    </p>
+                </div>
+                <ion-option-button class="button-assertive" ng-click="cancelLike(v,$index,2)">取消收藏</ion-option-button>
+            </ion-item>
+        </ion-list>
+        <!-- <div class="discover-list-item discover-list-item-user" ng-repeat="v in goods">
+            <div class="img-wrap">
+                <img ng-src="{{v.cover}}" alt="">
+            </div>
+            <div class="text-wrap">
+                <p class="f-34 text-overflow">{{v.name}}</p>
+                <p class="text-main">{{v.abstract}}</p>
+                <p class="clearfix f-24 c-6">
+                    <span class="fl c-red f-28">&yen;{{v.price}}</span>
+                    <span class="fr">月销量：{{v.sales}}笔</span>
+                </p>
+            </div>
+        </div> -->
+    </div>
+    <div class="text-center mt-30 f-30 c-9" ng-if="noData">已加载全部</div>
+    <ion-infinite-scroll ng-if="!noData" on-infinite="loadMore()" distance="1%">
+    </ion-infinite-scroll>
+</ion-content>

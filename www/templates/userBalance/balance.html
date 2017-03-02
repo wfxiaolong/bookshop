@@ -1,0 +1,37 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ui-sref="tab.user"></button>
+    <div class="title">余额</div>
+    <a class="button button-clear" ng-href="#/balanceSetting/{{purseStatus}}">设置</a>
+</ion-header-bar>
+<ion-content class="page-user page" has-bouncing="true" overflow-scroll="false">
+    <div class="item bd-lr-none mt-20 text-center">
+        <div>
+            <img src="img/balance.png" style="width: 30px;" alt="">
+            <span class="balance"><b>余额&nbsp;&yen;&nbsp;{{balance}}</b></span>
+            <button class="button btn-main btn-charge" ui-sref="balanceCharge({params:'type=1'})">充值</button>
+        </div>
+        <div class="mt-20" ng-if="showDuobao">
+            <img src="img/balance2.png" style="width: 30px;" alt="">
+            <span class="balance"><b>夺宝币&nbsp;&yen;&nbsp;{{duobaoMoney}}</b></span>
+            <button class="button btn-main btn-charge" ui-sref="balanceCharge({params:'type=2&purse=' + {{'balance'}}})">充值</button>
+        </div>
+    </div>
+    <div class="mtb-15">
+        <a class="item" ui-sref="balanceDetail({type:1})">
+            <span class="f-26">余额明细</span>
+            <i class="item-note c-3 f-34 ion-chevron-right"></i>
+        </a>
+        <a class="item" ui-sref="balanceDetail({type:2})" ng-if="showDuobao">
+            <span class="f-26">夺宝币明细</span>
+            <i class="item-note c-3 f-34 ion-chevron-right"></i>
+        </a>
+    </div>
+    <p class="f-24 c-9 container">如需帮助，请拨打VR数码前线在线客服热线 &nbsp;&nbsp; <a href="tel:0755-83585093" class="c-main " style="text-decoration:none;">0755-83585093</a></p>
+
+    <!-- <a class="item ptb-20 bd-lr-none f24" href="tel:0755-83585093">
+        <span class="f-26">如需帮助，请拨打VR数码前线在线客服热线</span>
+        <span class="item-note c-main f-24 mr-30 mw-65p text-overflow">
+            0755-83585093
+        </span>
+    </a> -->
+</ion-content>

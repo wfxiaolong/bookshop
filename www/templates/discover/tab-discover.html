@@ -1,0 +1,33 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <div class="title" style="font-family: 'SimHei'";>发现</div>
+</ion-header-bar>
+<div class="public-subheader bar bar-subheader clearfix" style="font-family: 'SimHei';">
+    <div class="classify fl {{(active || 0) == $index ? 'active' : ''}}" ng-repeat="v in classifyShow track by $index" ng-click="changeCategory(v,$index)">
+        <span>{{v.name}}</span>
+    </div>
+    <div class="classify fl {{active == -1 ? 'active' : ''}}" ng-click="toggleMore()">
+        <span>{{moreClassify ? "收起" : "更多"}}</span>
+    </div>
+    <div class="more-list clearfix" ng-show="moreClassify">
+        <div class="classify fl" ng-repeat="v in classifyMore" ng-click="changeCategory(v,-1)">
+            <span>{{v.name}}</span>
+        </div>
+    </div>
+</div>
+<ion-content class="page page-discover container has-subheader-me" has-bouncing="true" overflow-scroll="false">
+    <div class="discover-list">
+        <div class="discover-list-item" ng-repeat="v in articleList" ng-click="jumpDetail(v)">
+            <div class="img-wrap">
+                <img ng-src="{{v.cover}}" alt="">
+            </div>
+            <div class="text-wrap">
+                <p class="f-30 text-overflow">{{v.title}}</p>
+                <p class="text-main">{{v.content | htmlFilter}}</p>
+                <p class="clearfix f-22 c-9"><span class="fl">{{v.time * 1000 | date:"yyyy-MM-dd"}}</span><span class="fr"><i class="iconfont icon-like c-3"></i>&nbsp;{{v.likes}}</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-30 f-30 c-9" ng-if="noData">没有更多资讯啦~</div>
+    <ion-infinite-scroll  ng-if="!noData" on-infinite="loadMore()" distance="1%">
+    </ion-infinite-scroll>
+</ion-content>

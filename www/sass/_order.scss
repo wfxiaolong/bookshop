@@ -1,0 +1,253 @@
+@charset 'utf-8';
+.page-order {
+    .input-wrap-me {
+        .label {
+            width: 23%;
+            display: inline-block;
+            max-width: 100px;
+        }
+        .input {
+            width: 70%;
+            display: inline-block;
+            border: 1px solid $borderColor;
+            padding: 3px;
+        }
+    }
+    .item-avatar {
+        img {
+            max-width: 55px;
+            max-height: 55px;
+            width: 55px;
+            height: 55px;
+            top: 50%;
+            left: size(20);
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+        }
+    }
+    @at-root .order-classifys {
+        height: size(80);
+        // margin-top: size(20);
+        padding: 0;
+        @include disFlex();
+        .classify {
+            @include flex1();
+            text-align: center;
+            height: 100%;
+            line-height: size(80);
+            font-size: rem(30);
+        }
+        .active {
+            color: $mainColor;
+            border-bottom: 2px solid $mainColor;
+        }
+    }
+    .order-item {
+        .item-thumbnail-left {
+            min-height: size(240);
+            padding-left: 140px;
+            padding-bottom: 30px;
+            img {
+                width: size(200);
+                height: size(200);
+                max-width: size(200);
+                max-height: size(200);
+            }
+            .price {
+                position: absolute;
+                width: 100%;
+                bottom: 10px;
+                left: 0;
+                padding-left: 140px;
+                padding-right: size(20);
+            }
+        }
+        .btn-main {
+            width: size(160);
+            height: size(40);
+            line-height: size(40);
+            padding: 0;
+            text-align: center;
+            font-size: rem(32);
+        }
+    }
+    .logistics-item {
+        border-left: 1px solid #666;
+        margin-left: size(40);
+        padding-left: size(30);
+        padding-bottom: size(40);
+        @include disFlex();
+        @include flexPackJustify();
+        position: relative;
+        &:last-child {
+            border: none;
+        }
+        .circle-wrap {
+            position: absolute;
+            top: -2px;
+            left: -13px;
+            background-color: #f2fbff;
+            width: 16px;
+            height: 16px;
+            padding: 5px;
+            box-sizing: content-box;
+        }
+        .circle {
+            width: 100%;
+            height: 100%;
+            background-color: $mainColor;
+            border-radius: 50%;
+        }
+        .time {
+            white-space: nowrap;
+        }
+    }
+    .item-address {
+        @include disFlex();
+        @include flexAlignCenter();
+        padding: 6px 16px;
+        background-color: #fff;
+        border-bottom: 1px solid $borderColor;
+        border-top: 1px solid $borderColor;
+        color: #333;
+        font-size: rem(28);
+        text-decoration: none;
+        .text {
+            @include flex1();
+            padding-right: size(20);
+        }
+        .address {
+            @include disFlex();
+        }
+    }
+    .star-wrap {
+        width: 245px;
+        height: 35px;
+        margin-top: size(10);
+        background-image: url(../img/star-empty.png);
+        background-size: auto 100%;
+        position: relative;
+        font-size: 0;
+        .star-click {
+            display: inline-block;
+            width: 20%;
+            height: 100%;
+        }
+        .star-full {
+            position: absolute;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background-image: url(../img/star-full.png);
+            background-size: auto 100%;
+            pointer-events: none;
+        }
+        .star-1 {
+            width: 20%;
+        }
+        .star-2 {
+            width: 40%;
+        }
+        .star-3 {
+            width: 60%;
+        }
+        .star-4 {
+            width: 80%;
+        }
+        .star-5 {
+            width: 100%;
+        }
+    }
+    @at-root .return-img {
+        width: size(110);
+        height: size(110);
+        margin-right: size(20);
+        margin-top: size(10);
+        display: inline-block;
+        position: relative;
+        .success-modal {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            @include transparent(#000, .5);
+            color: #fff;
+            font-size: 12px;
+            text-align: center;
+            line-height: size(110);
+        }
+        .delete-wrap {
+            position: absolute;
+            border-radius: 50%;
+            top: -12px;
+            right: -12px;
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            .delete {
+                display: inline-block;
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                line-height: 15px;
+                color: #fff;
+                background-color: #ff0000;
+            }
+        }
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        &:last-child {
+            margin: 0;
+        }
+    }
+    .return-text {
+        @include disFlex();
+    }
+    .return-label {
+        width: size(100);
+        margin-right: size(10);
+    }
+    .return-input {
+        height: size(80);
+        border-bottom: 1px solid $borderColor;
+        border-top: 1px solid $borderColor;
+        width: 100%;
+        font-size: rem(26);
+        padding: size(20);
+    }
+    @at-root .return-wuliu {
+        @include disFlex();
+        .detail {
+            @include flex1();
+            white-space: initial;
+        }
+    }
+}
+
+.order-detail-bot {
+    position: fixed;
+    bottom: 0;
+    background-color: #fff;
+    height: size(90);
+    line-height: size(90);
+    width: 100%;
+    border-top: 1px solid $borderColor;
+    @include disFlex();
+    @include flexAlignCenter();
+    @include flexPackJustify();
+    .btn-group {
+        height: 70%;
+        @include flex1();
+        text-align: right;
+    }
+    .btn-main {
+        height: 100%;
+        margin-left: size(10);
+        width: 30%;
+        font-size: 1.5rem;
+    }
+}

@@ -1,0 +1,50 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">绑定手机</div>
+    <button class="button button-clear" ng-click="editStart()" ng-show="!phoneEmpty">修改</button>
+</ion-header-bar>
+<ion-content class="page page-user" has-bouncing="true" overflow-scroll="false">
+    <div class="container mt-20">
+        <div ng-show="!phoneEmpty">
+            <div class="item ptb-10">
+                <input type="text" class="edit-input" value="当前绑定手机：{{user.phone}}" readonly>
+            </div>
+            <div class="text-center mt-30" ng-show="editFlag">
+                <div class="item ptb-10">
+                    <input type="password" class="edit-input" placeholder="输入当前密码" ng-model="user.pwdNow">
+                </div>
+                <div class="item ptb-10 mt-30" style="position: relative;padding-right: 120px;">
+                    <input type="text" class="edit-input" placeholder="输入新手机号码" maxlength="11" ng-model="user.newPhone">
+                    <div class="send-check-code btn-main" ng-click="getCheckCode('edit_phone')">{{code.cd?code.cd+"s":code.str}}</div>
+                </div>
+                <div class="item ptb-10 mt-30" style="width: 50%;">
+                    <input type="text" class="edit-input" placeholder="输入验证码" ng-model="user.checkCode">
+                </div>
+                <div style="margin-top: 50px;"></div>
+                <button class="button btn-main mr-30" ng-click="editEnd()">取消</button>
+                <span style="margin-right: 40px;"></span>
+                <button class="button btn-main" ng-click="editPhone()">确认</button>
+            </div>
+        </div>
+        <div ng-show="phoneEmpty">
+            <div class="text-center">
+                <div class="item ptb-10" style="position: relative;padding-right: 120px;">
+                    <input type="text" class="edit-input" placeholder="输入手机号码" maxlength="11" ng-model="user.newPhone">
+                    <div class="send-check-code btn-main" ng-click="getCheckCode('bind_phone')">{{code.cd?code.cd+"s":code.str}}</div>
+                </div>
+                <div class="item ptb-10 mt-30" style="width: 50%;">
+                    <input type="text" class="edit-input" placeholder="输入验证码" ng-model="user.checkCodeEmp">
+                </div>
+                <p class="text-left mt-30">设置密码(登录用)：</p>
+                <div class="item ptb-10 mt-20">
+                    <input type="password" class="edit-input" placeholder="请输入密码(不少于6位字符)" ng-model="user.newPassword">
+                </div>
+                <div class="item ptb-10 mt-20">
+                    <input type="password" class="edit-input" placeholder="请再次输入密码" ng-model="user.newPasswordR">
+                </div>
+                <div style="margin-top: 50px;"></div>
+                <button class="button btn-main" ng-click="bindPhone()">确认</button>
+            </div>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,20 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">绑定邮箱</div>
+    <button class="button button-clear" ng-click="editStart()">修改</button>
+</ion-header-bar>
+<ion-content class="page page-user" has-bouncing="true" overflow-scroll="false">
+    <div class="container mt-20">
+        <div class="item ptb-10" ng-show="!editFlag">
+            <input type="text" class="edit-input" value="当前绑定邮箱：1231321321@qq.com" readonly>
+        </div>
+        <div class="text-center" ng-show="editFlag">
+            <div class="item ptb-10" style="position: relative;padding-right: 120px;">
+                <input type="text" class="edit-input" placeholder="输入邮箱">
+                <div class="send-check-code btn-main">发送验证邮件</div>
+            </div>
+            <p class="c-9 f-34 mt-30">请到邮箱完成验证</p>
+            <button class="button btn-main mt-30" ng-click="editEnd()">取消</button>
+        </div>
+    </div>
+</ion-content>

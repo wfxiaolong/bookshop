@@ -1,0 +1,62 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBackCustom()"></button>
+    <div class="title">支付订单</div>
+</ion-header-bar>
+<ion-content class="page page-user page-repair" has-bouncing="true" overflow-scroll="false">
+    <div class="public-pop-up page-pay mtb-15 b-top" style="position: initial;padding-top: 5px;padding-bottom: 0;">
+        <div class="title f-34">选择支付方式</div>
+        <div class="pay-way">
+            <img class="pay-icon" src="img/pay-left.png">
+            <div class="text">
+                <p class="f-34">余额支付</p>
+                <p class="f-28 c-6">余额：&yen;{{puesrMoney}}</p>
+            </div>
+            <label class="checkbox">
+                <input type="radio" name="payWay" ng-click="selectPayWay('purse')">
+            </label>
+        </div>
+        <div class="pay-way" ng-hide="isWechat">
+            <img class="pay-icon" src="img/pay-alipay.png" alt="" >
+            <div class="text">
+                <p class="f-34">支付宝支付</p>
+                <p class="f-28 c-6">需开通支付宝账号</p>
+            </div>
+            <label class="checkbox">
+                <input type="radio" name="payWay" ng-click="selectPayWay('alipay')">
+            </label>
+        </div>
+        <div class="pay-way" ng-hide="isInH5">
+            <img class="pay-icon" src="img/pay-wechat.png" alt="">
+            <div class="text">
+                <p class="f-34">微信支付</p>
+                <p class="f-28 c-6">需开通微信账号</p>
+            </div>
+            <label class="checkbox">
+                <input type="radio" name="payWay" ng-click="selectPayWay('wechat')">
+            </label>
+        </div>
+    </div>
+    <div class="text-center mt-30">
+        <button class="button btn-main-big"  ng-click="confirmPay()">确认</button>
+    </div>
+</ion-content>
+
+<div class="pop-up-wrap" ng-show="payPop">
+    <div class="bg" ng-click="hidePayPop()"></div>
+    <div class="pay-pop-up">
+        <div class="title text-center">
+            请输入支付密码
+        </div>
+        <div class="input-wrap">
+            <input type="text" id="pay_password" ng-model="pay.password" maxlength="6">
+            <div class="password-wrap">
+                <div class="password"><span ng-show="pay.password.length > 0"></span></div>
+                <div class="password"><span ng-show="pay.password.length > 1"></span></div>
+                <div class="password"><span ng-show="pay.password.length > 2"></span></div>
+                <div class="password"><span ng-show="pay.password.length > 3"></span></div>
+                <div class="password"><span ng-show="pay.password.length > 4"></span></div>
+                <div class="password"><span ng-show="pay.password.length > 5"></span></div>
+            </div>
+        </div>
+    </div>
+</div>

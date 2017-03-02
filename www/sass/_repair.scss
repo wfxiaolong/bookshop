@@ -1,0 +1,113 @@
+@charset "utf-8";
+.page-repair {
+    a {
+        text-decoration: none;
+    }
+    .brand-choose-wrap {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        @include disFlex();
+        .left-bar {
+            width: size(180);
+            height: 100%;
+            border: 1px solid $borderColor;
+            border-left: none;
+            background-color: #FFF;
+            overflow-y: auto;
+        }
+        .left-bar-item {
+            // height: size(70);
+            // line-height: size(70);
+            padding: size(20) size(10);
+            font-size: rem(34);
+            text-align: center;
+            border-bottom: 1px solid $borderColor;
+        }
+        .main {
+            @include flex1();
+            padding: size(10) size(20) size(220);
+            overflow-y: auto;
+        }
+        .sub {
+            @include disFlex();
+            @include flexPackJustify();
+            -webkit-box-lines: multiple;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+        }
+        .main-item {
+            height: size(50);
+            width: 47%;
+            max-width: size(300);
+            background-color: #fff;
+            line-height: size(50);
+            text-align: center;
+            border: 1px solid $borderColor;
+            margin-bottom: size(20);
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .main-item-label {
+            height: size(50);
+            width: 47%;
+            max-width: size(300);
+            line-height: size(50);
+            margin-bottom: size(20);
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            input[type="checkbox"] {
+                margin: 0 size(10);
+            }
+        }
+        .active {
+            color: $mainColor;
+            border-color: $mainColor;
+        }
+    }
+    .repair-input {
+        width: 100%;
+        border: 1px solid $borderColor !important;
+        padding: 0 size(10);
+    }
+    .repair-applies-list {
+        .top {
+            @include disFlex();
+        }
+        .top-item {
+            @include flex1();
+        }
+    }
+    @at-root .repair-bot {
+        position: fixed;
+        bottom: 0 ;
+        left: size(180);
+        right: size(0);
+        background-color: #fff;
+        border: 1px solid $borderColor;
+        border-bottom: none;
+        padding: size(20);
+        .service-wrap {
+            max-height: size(100);
+            overflow-y: auto;
+        }
+        .service-item {
+            display: inline-block;
+            border: 1px solid $mainColor;
+            color: $mainColor;
+            padding: size(0) size(10);
+            font-size: rem(30);
+            margin-right: size(10);
+            margin-bottom: size(10);
+            height: size(40);
+            line-height: size(40);
+            .delete {
+                padding-left: size(10);
+                padding-right: size(10);
+            }
+        }
+    }
+}

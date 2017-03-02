@@ -1,0 +1,29 @@
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-icon-top my-tab">
+
+  <!-- <ion-tab title="首页" icon-off="iconfont icon-index" icon-on="iconfont icon-index" ui-sref="tab.index"> -->
+  <ion-tab title="首页" icon-off="iconfont icon-index" icon-on="iconfont icon-index" ui-sref="tab.index">
+    <ion-nav-view name="tab-index"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="发现" icon-off="iconfont icon-discover" icon-on="iconfont icon-discover" ui-sref="tab.discover">
+    <ion-nav-view name="tab-discover"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="社区" icon-off="iconfont icon-community" icon-on="iconfont icon-community" ui-sref="tab.community">
+    <ion-nav-view name="tab-community"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="一元专区" icon-off="iconfont icon-yiyuan" icon-on="iconfont icon-yiyuan" ui-sref="tab.yiyuan" class="{{showDuobao ? '' : 'tab-hidden'}}">
+    <ion-nav-view name="tab-yiyuan"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="我的" icon-off="iconfont icon-user" icon-on="iconfont icon-user" ui-sref="tab.user">
+    <ion-nav-view name="tab-user"></ion-nav-view>
+  </ion-tab>
+
+</ion-tabs>

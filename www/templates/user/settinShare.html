@@ -1,0 +1,15 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">分享应用给好友</div>
+</ion-header-bar>
+<ion-content class="page-user page" has-bouncing="true" overflow-scroll="false">
+    <div class="item bd-lr-none mt-20">
+    	<div>分享到：</div>
+    	<div class="text-center mt-30">
+    		<img src="img/share-qq.png" alt="" class="mr-30 qq-icon" ng-click="shareWechat('qq')">
+    		<img src="img/share-qzone.png" alt="" class="mr-30 qq-icon" ng-click="shareWechat('qzone')">
+            <img src="img/share-wechat.png" alt="" class="mr-30 qq-icon" ng-click="shareWechat('wx')">
+            <img src="img/share-moment.png" alt="" class="mr-30 qq-icon" ng-click="shareWechat('wx_circle')">
+    	</div>
+    </div>
+</ion-content>

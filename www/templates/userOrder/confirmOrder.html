@@ -1,0 +1,96 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">确认订单</div>
+</ion-header-bar>
+<ion-content class="page-user page page-order" has-bouncing="true" overflow-scroll="false">
+    <a class="item-address mtb-15" ui-sref="address({fromPage:'confirmOrder'})">
+        <div class="text">
+            <div ng-if="address">
+                <p>
+                    <span class="mr-30 nowrap">收货人：{{address.name}}</span>
+                    <span class="nowrap">手机号码：{{address.mobile}}</span>
+                </p>
+                <div class="address">
+                    <span class="nowrap">收货地址：</span>
+                    <span class="flex-1">{{address.province + address.city + address.area + address.detail}}</span>
+                </div>
+            </div>
+            <p class="m-0 ptb-20" ng-if="!address">请选择地址</p>
+        </div>
+        <i class="item-note c-3 f-34 ion-chevron-right"></i>
+    </a>
+    <div class="order-item mtb-15">
+        <div class="item item-thumbnail-left " ng-repeat="v in cartList">
+            <img ng-src="{{v.cover}}">
+            <div class="f-34 text-overflow">{{v.name}}</div>
+            <div class="f-24 c-9">
+                <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">描述：{{v.abstract}}</div>
+                <div>型号：{{v.model}}</div>
+            </div>
+            <div class="price clearfix f-28">
+                <span class="c-red">&yen;{{v.price}}</span>
+                <span class="fr">x{{v.quantity}}</span>
+            </div>
+        </div>
+        <a class="item bd-lr-none" ng-click="showModal()" ng-if="hasCoupon">
+            <span class="f-28 mr-30">优惠券</span>
+            <i class="item-note c-3 f-34 ion-chevron-right fr"></i>
+            <span class="f-28 fr" style="padding-right: 20px;"> 有{{shopCoupon.length}}张优惠券可用</span>
+        </a>
+        <div class="item bd-lr-none ptb-10 f-26">
+            <p class="clearfix"><span>商品总价：</span><span class="fr">&yen;{{order.total_price}}</span></p>
+            <p class="clearfix"><span>运费：</span><span class="fr">&yen;{{order.express_fee}}</span></p>
+            <!-- <p class="clearfix"><span>优惠抵扣：</span><span class="fr">-&yen;{{coupon.discount || '0.00'}}</span></p> -->
+            <p class="clearfix"><span>优惠抵扣：</span><span class="fr">-&yen;{{(order.total_price - coupon.discount  > 0 ? coupon.discount : order.total_price - 0.01) || '0.00'}}</span></p>
+        </div>
+        <div class="mtb-15" >
+            <div class="item bd-lr-none ptb-10 f-26">
+                <div ng-show="false" class="clearfix" style="margin-left: -7px;">
+                    <label class="checkbox checkbox-small fl">
+                        <input type="checkbox" ng-model="input.invoiceCheckBox">
+                    </label>
+                    <span class="fl mt-10">开具发票</span>
+                </div>
+                <div ng-show="false">
+                    发票抬头：
+                    <input type="text" style="height:25px;display: inline-block;border: 1px solid #e8e8e8;" ng-readonly="!input.invoiceCheckBox" ng-model="input.invoice">
+                </div>
+                <p class="mt-10">给卖家留言</p>
+                <textarea class="item mt-10" style="width: 100%;resize: none;word-wrap:break-word;word-break:break-all; white-space: pre-wrap;" rows="3" ng-model="input.message"></textarea>
+                <div class="mt-10"></div>
+            </div>
+        </div>
+    </div>
+    <div class="has-bot-bar"></div>
+</ion-content>
+<div class="order-detail-bot container">
+    <span class="f-34">应付：¥ {{order.total_price - coupon.discount  > 0 ? order.total_price - coupon.discount + (order.express_fee - 0) : 0.01 + (order.express_fee - 0) | getFloatTwo}}</span>
+    <div class="btn-group">
+        <button class="button btn-main" style="width:auto" ng-click="submitOrder()">提交订单</button>
+    </div>
+</div>
+</div>
+<script id="my-modal.html" type="text/ng-template">
+    <div class="modal">
+        <ion-header-bar align-title="center" class="app-bar">
+            <div class="title">选择优惠券</div>
+            <button class="button button-icon ion-close-round c-white" ng-click="closeModal()"></button>
+        </ion-header-bar>
+        <ion-content class="page page-user" has-bouncing="true" overflow-scroll="false">
+            <a class="item ptb-10 mtb-15 bd-lr-none" ng-click="chooseCoupon(undefine)">
+                <p class="ptb-20 c-3">不使用优惠券</p>
+            </a>
+            <a class="item ptb-10 mtb-15 bd-lr-none" ng-repeat="v in shopCoupon" ng-click="chooseCoupon(v)">
+                <div class="f-24 clearfix">
+                    <div class="fl text-overflow f-34" style="width: 30%;">
+                        <b>&yen;{{v.discount}}</b>
+                    </div>
+                    <span class="fl">满{{v.limit}}可用</span>
+                </div>
+                <div class="f-24 mt-20 clearfix">
+                    <span class="fl text-overflow" style="width: 69%;">有效期：{{v.st * 1000 | date:'yyyy-MM-dd'}}至{{v.et * 1000 | date:'yyyy-MM-dd'}}</span>
+                </div>
+            </a>
+        </ion-content>
+    </div>
+</script>

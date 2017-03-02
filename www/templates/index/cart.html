@@ -1,0 +1,45 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">购物车</div>
+</ion-header-bar>
+<ion-content class="page page-index" has-bouncing="true" overflow-scroll="false">
+    <!-- <div class="text-center" ng-show="cartEmpty"> -->
+    <div class="text-center" ng-if="cartList.length == 0">
+        <p class="text-center" style="font-size: 80px;color: #fff;margin-top: 70px;"><i class="ion-ios-cart-outline" style="display: inline-block;height: 100px;width: 100px;line-height: 100px;background: #999;border-radius: 50%;"></i></p>
+        <div class="ptb-20"></div>
+        <p class="f-34">您的购物车还是空的</p>
+        <div class="ptb-20"></div>
+        <div class="ptb-10"></div>
+        <button class="button btn-main" ui-sref="tab.index">马上去购物</button>
+    </div>
+    <div class="cart-list b-top" ng-if="cartList.length != 0">
+        <div class="cart-list-item b-bot" ng-repeat="v in cartList">
+            <label class="checkbox checkbox-small" >
+                <input type="checkbox" ng-model="v.checked" ng-change="checkGood(v)">
+            </label>
+            <img ng-src="{{v.cover}}" alt="" class="img-left" ui-sref="indexProDetail({goodId:'{{v.good_id}}'})">
+            <div class="text-wrap">
+                <p class="f-34 clearfix text-overflow m-0" ui-sref="indexProDetail({goodId:'{{v.good_id}}'})">
+                    {{v.name}}
+                </p>
+                <p class="f-24 c-9 desc" ui-sref="indexProDetail({goodId:'{{v.good_id}}'})">型号：{{v.model}}</p>
+                <p class="c-red f-28">&yen;{{{price:v.price,num:v.quantity} | totalPrice}}</p>
+                <div class="clearfix" style="font-size: 0;">
+                    <div class="add-btn" ng-click="reduceNum(v)">-</div>
+                    <div class="num">{{v.quantity}}</div>
+                    <div class="add-btn" ng-click="addNum(v)">+</div>
+                    <span class="fr f-28 c-9" ng-click="deleteGood(v,$index)">删除</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="has-bot-bar"></div>
+</ion-content>
+<div class="bar bar-footer discover-footer container" ng-if="cartList.length != 0">
+    <label class="checkbox checkbox-small">
+        <input type="checkbox" ng-model="input.checkAll"  ng-change="checkAllGoods()">
+    </label>
+    <span class="f-28 mr-30">全选</span>
+    <p class="flex1 m-0 f-34">合计：<span class="c-main">&yen{{cartList | totalPriceAll}}</span></p>
+    <button class="button btn-main" style="width: 70px;" ng-click="generateOrder()">结算 <span ng-show="count > 0">({{count || 0}})</span></button>
+</div>

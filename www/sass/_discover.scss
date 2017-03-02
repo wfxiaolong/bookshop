@@ -1,0 +1,175 @@
+@charset "utf-8";
+//发现首页
+.page-discover {
+    font-family: "黑体";
+    @at-root .discover-list-item {
+        @include disFlex();
+        @include flexAlignCenter();
+        padding: size(20) 0;
+        border-bottom: 1px solid $borderColor;
+        .item-content {
+            @include disFlex();
+            @include flexAlignCenter();
+            padding: 0.25rem 1rem;
+            width: 100%;
+        }
+        .img-wrap {
+            width: size(210);
+            height: size(170);
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .text-wrap {
+            @include flex1();
+            padding-left: size(20);
+            overflow: hidden;
+            p {
+                margin-bottom: 5px;
+            }
+        }
+        .text-main {
+            @include multiTextOverflow(3);
+            font-size: rem(24);
+            color: #999;
+            min-height: size(100);
+            padding-right: 5px;
+        }
+    }
+}
+
+//资讯详情
+.page-discover-detail {
+    padding-top: size(20);
+    background-color: #fff;
+    .title {
+        font-size: rem(40);
+    }
+    .img-wrap {
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+    .comments-head {
+        font-size: rem(34);
+        border-bottom: 1px solid $borderColor;
+        border-top: 1px solid $borderColor;
+        padding: size(10) size(20);
+        .ptb-10 {
+            padding-top: size(10);
+            padding-bottom: size(10);
+        }
+    }
+    .comment {
+        border-bottom: 2px solid $borderColor;
+        margin-top: 1px;
+        .item-avatar {
+            padding-top: size(10);
+            padding-bottom: size(20);
+            min-height: initial;
+            border: none;
+        }
+        .avatar {
+            top: 5px;
+            width: size(80);
+            height: size(80);
+            max-width: size(80);
+            max-height: size(80);
+        }
+        .reward {
+            position: absolute;
+            right: size(20);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+    .sub-comments {
+        border-top: 1px dotted $borderColor;
+        padding-top: size(20);
+        padding-bottom: size(20);
+        p {
+            margin-bottom: size(5);
+        }
+    }
+}
+
+.btn-reward-wrap {
+    position: fixed;
+    bottom: size(40);
+    width: 100%;
+}
+.btn-reward {
+    padding: 0 1rem;
+    height: size(60);
+    font-size: rem(34);
+    background-color: $mainColor;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+.discover-footer {
+    height: size(90);
+    @include disFlex;
+    @include flexAlignCenter;
+    background-color: #fff;
+    padding-top: 0;
+    padding-bottom: 0;
+    .flex1 {
+        @include flex1();
+    }
+    .input {
+        height: size(65);
+        line-height: size(65);
+        color: #999;
+        border: 1px solid #ccc;
+        border-radius: size(65);
+        padding-left: size(30);
+        @include flex1();
+    }
+    .like-wrap {
+        height: 100%;
+        line-height: size(90);
+        padding: 0 size(20);
+        color: $mainColor;
+        i {
+            font-size: 30px;
+        }
+    }
+    .btn-comment {
+        height: size(65);
+        line-height: size(65);
+        color: #fff;
+        background-color: $mainColor;
+        padding: 0 size(40);
+        margin-left: size(20);
+        border-radius: size(65);
+    }
+}
+
+.share-pop-up {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: size(600);
+    background-color: #fff;
+    .title {
+        font-size: rem(34);
+        padding: size(20) 0;
+        border-bottom: 1px solid $borderColor;
+    }
+    .img-share {
+        text-align: center;
+        padding: size(20) 0;
+        img {
+            width: size(80);
+            height: size(80);
+            margin: 0 size(20);
+        }
+    }
+}

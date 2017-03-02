@@ -1,0 +1,21 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">我的关注</div>
+</ion-header-bar>
+<ion-content class="page page-user" has-bouncing="true" overflow-scroll="false">
+    <a class="item item-avatar item-avatar-user mtb-15" ng-repeat="v in follows" ng-click="checkUser(v)">
+      <img ng-src="{{v.user_img}}">
+      <div class="f-34">{{v.nickname}}</div>
+      <p class="medal-{{v.level | getMedal}} medal-big"></p>
+      <span class="cancel-follow" ng-click="cancelFollow(v,$event)">取消关注</span>
+    </a>
+    <!-- <a class="item item-avatar item-avatar-user mtb-15" href="#">
+      <img src="http://placehold.it/100x100">
+      <div class="f-34">Venkman</div>
+      <p class="medal-gold medal-big"></p>
+      <span class="cancel-follow">取消关注</span>
+    </a> -->
+    <div class="text-center mt-30 f-30 c-9" ng-if="noData">没有更多关注的人</div>
+    <ion-infinite-scroll  ng-if="!noData" on-infinite="loadMore()" distance="1%">
+    </ion-infinite-scroll>
+</ion-content>

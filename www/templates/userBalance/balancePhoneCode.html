@@ -1,0 +1,17 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">支付设置</div>
+</ion-header-bar>
+<ion-content class="page-user page" has-bouncing="true" overflow-scroll="false">
+    <div class="container mt-30">
+        <p class="f-28 mt-20" ng-show="sendFlag">已向绑定手机{{phone | hidePhone}}发送验证码，请注意查收。</p>
+        <div class="item ptb-10 mt-20" style="position: relative;padding-right: 120px;">
+            <input type="text" class="edit-input" placeholder="输入验证码" ng-model="balance.checkCode">
+            <div class="send-check-code btn-main" ng-click="sendCheckCode()">{{code.cd ? code.cd + "(s)" : "发送验证码"}}</div>
+        </div>
+        <p class="f-28 c-9 mt-20">如果您未接收到验证码，请检查手机是否设置短信拦截。</p>
+        <p class="text-center mt-30">
+            <button class="button btn-main" style="width: 100px;" ng-click="confirmCheckCode()">确定</button>
+        </p>
+    </div>
+</ion-content>

@@ -1,0 +1,25 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">我的维修申请</div>
+</ion-header-bar>
+<ion-content class="page page-user page-repair" has-bouncing="true" overflow-scroll="false">
+    <div class="mtb-15 repair-applies-list">
+        <a class="item ptb-20 list-item" ng-repeat="item in orderLists" ng-click="toOrderDetail(item.order_id)">
+            <div class="top">
+                <div class="top-item f-34">
+                    {{item.service[0].name[2]}}
+                </div>
+                <div class="top-item f-30 c-9">
+                    <p ng-repeat="v in item.service">{{v.name[4]}}</p>
+                </div>
+            </div>
+            <p class="clearfix mt-10">
+                <span class="c-9">费用：</span><span class="f-34 c-red">&yen;{{item.money}}</span>
+                <span class="c-6 fr" ng-if="item.trade_state == 2">寄件中</span>
+                <span class="c-6 fr" ng-if="item.trade_state == 3">维修中</span>
+                <span class="c-6 fr" ng-if="item.trade_state == 4">回寄中</span>
+                <span class="c-6 fr" ng-if="item.trade_state == 5">完成</span>
+            </p>
+        </a>
+    </div>
+</ion-content>

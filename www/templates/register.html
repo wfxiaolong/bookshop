@@ -1,0 +1,37 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-clear" ng-click="goBack()">返回</button>
+    <div class="title">注册</div>
+    <button class="button button-clear" ui-sref="login">登录</button>
+</ion-header-bar>
+<ion-content class="page page-login" has-bouncing="true" overflow-scroll="false">
+    <!-- <div class="input-wrap">
+        <div class="label">设置昵称</div>
+        <input class="input" type="text" placeholder="请设置昵称(非必填)" ng-model="reg.name">
+    </div> -->
+    <div class="input-wrap mt-30">
+        <div class="label">手机号码</div>
+        <input class="input" type="text" placeholder="请输入手机号码" ng-model="reg.phone">
+    </div>
+    <div class="input-wrap mt-30">
+        <div class="label">验证码</div>
+        <input class="input" type="text" placeholder="输入验证码" ng-model="reg.checkCode">
+        <div class="check-code" ng-click="getCheckCode()">{{code.cd?code.cd+"s":code.str}}</div>
+    </div>
+    <div class="input-wrap mt-30">
+        <div class="label">设置密码</div>
+        <input class="input" type="{{inputType}}" placeholder="请设置密码（不少于6位字符）" ng-model="reg.password">
+        <img src={{is_pwd_show}} width="30px" height="30px" ng-click="check_pwd()" >
+    </div>
+    <div class="input-wrap mt-30">
+        <div class="label">确认密码</div>
+        <input class="input" type="{{inputType_1}}" placeholder="请再次输入密码" ng-model="reg.passwordR">
+        <img src={{is_pwd_show_1}} width="30px" height="30px" ng-click="check_pwd_1()" >
+    </div>
+    <p class="mt-10 f-24 c-9 text-center">*如果你未接收到验证码，请检查手机是否设置短信拦截?</p>
+    <button class="button btn-login mt-20" ng-click="register()">确认</button>
+    <p class="mt-10 f-24 c-9 text-center">
+        点击“确认”即表示您同意并愿意遵守VR数码前线
+        <br>
+        <a ng-href="#/richText/用户协议" class="c-main" >用户协议</a>和<a ng-href="#/richText/隐私政策" class="c-main">隐私政策</a>
+    </p>
+</ion-content>

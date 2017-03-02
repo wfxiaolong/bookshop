@@ -1,0 +1,28 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">新增地址</div>
+</ion-header-bar>
+<ion-content class="page page-user" has-bouncing="true" overflow-scroll="false">
+    <div class="container">
+        <div class="address-input-wrap">
+            <div class="label">收货人姓名</div>
+            <input type="text" class="input" ng-model="address.name" ng-focus="hideCitySelect()">
+        </div>
+        <div class="address-input-wrap">
+            <div class="label">手机号码</div>
+            <input type="text" class="input" ng-model="address.phone" maxlength="11" ng-focus="hideCitySelect()">
+        </div>
+        <div class="address-input-wrap" ng-click="showCitySelect()">
+            <div class="label">所在地区</div>
+            <input type="text" class="input" ng-model="address.district" readonly>
+        </div>
+        <div class="address-input-wrap">
+            <div class="label">详细地址</div>
+            <textarea class="input" rows="3" ng-model="address.address" ng-focus="hideCitySelect()"></textarea>
+        </div>
+        <div class="text-center mt-30">
+            <button class="button btn-main mt-30" style="width: 80%; height: 3.5rem;" ng-click="addNewAddress()">确定</button>
+        </div>
+    </div>
+</ion-content>
+<div class="js-citySelestNode tab-nav tabs" ng-show="citySelect" style="padding:0 10px;width:100%;height:auto;background-color:#fff;"></div>

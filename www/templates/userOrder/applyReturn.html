@@ -1,0 +1,71 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">申请退货</div>
+</ion-header-bar>
+<ion-content class="page-user page-order" has-bouncing="true" overflow-scroll="false">
+    <div class="ptb-20 page">
+        <a class="item ptb-20 bd-lr-none" ng-click="showReason()">
+            <span class="f-26" ng-show="!returnReason"><span class="c-red">*</span>退货原因</span>
+            <span class="f-26" ng-show="returnReason">&nbsp;&nbsp;{{returnReason}}</span>
+            <i class="item-note c-3 f-34 ion-chevron-right"></i>
+        </a>
+        <div class="item ptb-20 bd-lr-none input-wrap-me">
+            <span class="f-26">&nbsp;&nbsp;退款金额&yen;：<input class="input" type="number" name="" ng-model="input.money"> </span>
+        </div>
+        <div class="item ptb-20 bd-lr-none">
+            <span class="f-26">&nbsp;&nbsp;是否已收到货：
+                <span class="mr-30"></span>
+            <span class="mr-30" ng-click="changeReceivedState(1)"><i class="iconfont icon-check {{receivedState == 1 ? 'c-main' : ''}}"></i>是</span>
+            <span class="mr-30"></span>
+            <span class="mr-30" ng-click="changeReceivedState(0)"><i class="iconfont icon-check {{receivedState == 0 ? 'c-main' : ''}}"></i>否</span>
+            </span>
+        </div>
+        <div class="item ptb-20 bd-lr-none">
+            <span class="f-26">&nbsp;&nbsp;选择退款方式：
+                <span class="mr-30"></span>
+            <span class="mr-30" ng-click="changeReturnWay(0)"><i class="iconfont icon-check {{returnWay == 0 ? 'c-main' : ''}}"></i>仅退款</span>
+            <span class="mr-30"></span>
+            <span class="mr-30" ng-click="changeReturnWay(1)"><i class="iconfont icon-check {{returnWay == 1 ? 'c-main' : ''}}"></i>退货退款</span>
+            </span>
+        </div>
+    </div>
+    <div class="item bd-lr-none ptb-20 f-28">
+        <p>退货说明：</p>
+        <textarea rows="10" class="feedback-wrap f-26" ng-model="input.returnContent"></textarea>
+        <div class="input-wrap-me">
+            <div class="label">
+                联系人：
+            </div>
+            <input class="input" type="text" name="" ng-model="input.contact">
+        </div>
+        <div class="input-wrap-me mt-20">
+            <div class="label">
+                联系方式：
+            </div>
+            <input class="input" type="tel" name="" ng-model="input.phone" maxlength="11">
+        </div>
+        <p class="mt-20">上传相关图片：</p>
+        <div class="mt-20" style="white-space: normal;">
+            <div class="return-img" ng-repeat="v in thumbnail track by $index">
+                <div class="success-modal" ng-show="pics.length >= ($index + 1)">上传成功</div>
+                <div class="delete-wrap" ng-click="deleteImg($index)">
+                    <div class="delete">x</div>
+                </div>
+                <img ng-src="{{v}}" alt="">
+            </div>
+            <!-- <img src="http://placehold.it/110x110" class="return-img" alt=""> -->
+            <img src="img/icon-return-add.png" class="return-img" alt="" ng-click="showPicAction()" ng-show="thumbnail.length < 10">
+        </div>
+    </div>
+    <div class="text-center mt-30">
+        <div class="f-28 c-6">
+            <p class="m-0">建议申请退货前与客服联系</p>
+            <p class="m-0">关注公众号<span class="c-main">VRsmqx</span>或</p>
+            <p class="m-0">或拨打热线电话：
+                <a class="c-main" href="tel:0755-83585093">0755-83585093</a>
+            </p>
+        </div>
+        <button class="button btn-main mt-30" ng-click="submitReturnApply()">提交退货申请</button>
+        <div class="ptb-20"></div>
+    </div>
+</ion-content>

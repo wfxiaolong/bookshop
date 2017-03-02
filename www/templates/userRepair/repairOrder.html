@@ -1,0 +1,101 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">订单信息</div>
+</ion-header-bar>
+<ion-content class="page page-user page-repair page-order" has-bouncing="true" overflow-scroll="false">
+    <div class="item ptb-20 mtb-15 bd-lr-none">
+        <div class="f-28 mt-10" style="white-space: initial;">维修收货地址：<span class="c-6">{{defaultAddress.address}}</span></div>
+        <div class="f-28 mt-10" style="white-space: initial;">收件人：<span class="c-6">{{defaultAddress.consignee}}</span></div>
+        <div class="f-28 mt-10" style="white-space: initial;">联系电话：<span class="c-6">{{defaultAddress.phone}}</span></div>
+    </div>
+    <div class="item ptb-20 mtb-15 bd-lr-none">
+        <input type="text" ng-model="params.express_company" class="repair-input mt-20" placeholder="请输入快递公司名称">
+        <input type="tel" ng-model="params.express_code" class="repair-input mt-20" maxlength="22" placeholder="输入快递单号">
+    </div>
+    <div class="mtb-15">
+        <div class="item ptb-20 bd-lr-none f-26">
+            <p class="clearfix">
+                维修内容：
+            </p>
+            <p class="clearfix" ng-repeat="v in orderList" style="padding-left:20px;">
+                <span>{{v.name}}</span>
+            </p>
+        </div>
+    </div>
+    <div class="mtb-15">
+        <a class="item ptb-20 bd-lr-none f-26" ng-click="showModal()">
+            <span class="mr-30">优惠券</span>
+            <span class="mr-30"></span>
+            <span>{{coupon.name}}</span>
+            <i class="item-note c-3 f-34 ion-chevron-right"></i>
+        </a>
+        <div class="item ptb-20 bd-lr-none f-26">
+            <div class="clearfix">
+                维修费用：
+                <span class="fr">&yen;{{repairMoney}}</span>
+            </div>
+            <div class="clearfix">
+                优惠抵扣：
+                <span class="fr">-&yen;{{coupon.discount || '0.00'}}</span>
+            </div>
+        </div>
+    </div>
+    <a class="item-address mtb-15" ui-sref="address({fromPage:'confirmOrder'})">
+        <div class="text">
+            <p>
+                <span class="mr-30 nowrap">收货人：{{address.name}}</span>
+                <span class="nowrap">手机号码：{{address.mobile}}</span>
+            </p>
+            <div class="address">
+                <span class="nowrap">收货地址：</span>
+                <span class="flex-1">{{address.province + address.city + address.area + address.detail}}</span>
+            </div>
+        </div>
+        <i class="item-note c-3 f-34 ion-chevron-right"></i>
+    </a>
+    <div class="item ptb-20 bd-lr-none f-26">
+        <div class="f-28">维修说明：</div>
+        <textarea style="border-radius: 8px;resize:none; padding:5px" class="repair-input mt-20" rows="5" placeholder="给卖家留言" ng-model="params.buyer_remark"></textarea>
+        <div class="f-28 mt-20">上传相关图片：</div>
+        <div class="mt-20" style="white-space: normal;">
+            <div class="return-img" ng-repeat="v in thumbnail track by $index">
+                <div class="success-modal" ng-show="pics.length >= ($index + 1)">上传成功</div>
+                <div class="delete-wrap" ng-click="deleteImg($index)">
+                    <div class="delete">x</div>
+                </div>
+                <img ng-src="{{v}}" alt="">
+            </div>
+            <img src="img/icon-return-add.png" class="return-img" alt="" ng-click="showPicAction()" ng-show="thumbnail.length<=10">
+        </div>
+
+    </div>
+    <div class="has-bot-bar"></div>
+</ion-content>
+<div class="repair-bot clearfix" style="width: 100%;left: initial;right: initial;">
+    <span class="mt-10 fl">应付：<span class="c-main f-34">&yen;{{repairMoney-coupon.discount | getFloatTwo}}</span></span>
+    <button class="button btn-main fr" ng-click="confirmOrder()">确认订单</button>
+</div>
+<script id="my-modal.html" type="text/ng-template">
+    <div class="modal">
+        <ion-header-bar align-title="center" class="app-bar">
+            <div class="title">选择优惠券</div>
+            <button class="button button-icon ion-close-round c-white" ng-click="closeModal()"></button>
+        </ion-header-bar>
+        <ion-content class="page page-user" has-bouncing="true" overflow-scroll="false">
+            <a class="item ptb-10 mtb-15 bd-lr-none" ng-click="chooseCoupon(undefine)">
+                <p class="ptb-20 c-3">不使用优惠券</p>
+            </a>
+            <a class="item ptb-10 mtb-15 bd-lr-none" ng-repeat="v in repairCoupon" ng-click="chooseCoupon(v)">
+                <div class="f-24 clearfix">
+                    <div class="fl text-overflow f-34" style="width: 30%;">
+                        <b>&yen;{{v.discount}}</b>
+                    </div>
+                    <span class="fl">满{{v.limit}}可用</span>
+                </div>
+                <div class="f-24 mt-20 clearfix">
+                    <span class="fl text-overflow" style="width: 69%;">有效期：{{v.st * 1000 | date:'yyyy-MM-dd'}}至{{v.et * 1000 | date:'yyyy-MM-dd'}}</span>
+                </div>
+            </a>
+        </ion-content>
+    </div>
+</script>

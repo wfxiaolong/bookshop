@@ -1,0 +1,9 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">{{title}}</div>
+</ion-header-bar>
+<ion-content class="page-user" has-bouncing="true" overflow-scroll="false">
+    <div class="page" style="height: 12px;"></div>
+    <div class="about-us-wrap rich-text" ng-bind-html="content | trustHtml">
+    </div>
+</ion-content>

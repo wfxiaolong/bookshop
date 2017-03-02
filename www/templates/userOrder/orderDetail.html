@@ -1,0 +1,82 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">订单详情</div>
+</ion-header-bar>
+<ion-content class="page-user page page-order" has-bouncing="true" overflow-scroll="false" can-swipe-back=”false”>
+    <a class="item-address mtb-15">
+        <div class="text">
+            <p>
+                <span class="mr-30 nowrap">收货人：{{order.consignee}}</span>
+                <span class="nowrap">手机号码：{{order.phone}}</span>
+            </p>
+            <div class="address">
+                <span class="nowrap">收货地址：</span>
+                <span class="flex-1">{{order.address_province + order.address_city + order.address_area + order.address_detail}}</span>
+            </div>
+        </div>
+        <!-- <i class="item-note c-3 f-34 ion-chevron-right"></i> -->
+    </a>
+    <div class="order-item mtb-15">
+        <div class="item f-22 c-6 ptb-10 clearfix">
+            订单编号：{{orderId}}
+            <span ng-if="order.refund_state != 5" class="c-main fr">{{order.trade_state | orderState}}</span>
+            <span ng-if="order.refund_state == 5" class="c-main fr">退款成功</span>
+        </div>
+        <div class="item item-thumbnail-left " ng-repeat="v in order.goods">
+            <img ng-src="{{v.good_cover}}">
+            <div class="f-34 text-overflow clearfix">{{v.good_name}}</div>
+            <div class="f-24 c-9">
+                <div>型号：{{v.good_model}}</div>
+                <div class="text-right">
+                    <span class="f-26 ptb-10 c-main" ng-if="order.trade_state == 4 && v.is_comment == 0" ng-click="commentOrder(v.order_id,v.good_id,v.is_comment)">立即评价</span>
+                    <span class="f-26 ptb-10 c-9" ng-if="order.trade_state == 4 && v.is_comment == 1">已评价</span>
+                </div>
+            </div>
+            <div class="price clearfix f-28">
+                <span class="c-red">&yen;{{v.unit_price}}</span>
+                <span class="fr">x{{v.quantity}}</span>
+            </div>
+        </div>
+        <a class="item bd-lr-none">
+            <span class="f-28 mr-30">优惠券</span>
+            <span class="f-28">{{order.shop_coupon_name}}</span>
+            <!-- <i class="item-note c-3 f-34 ion-chevron-right"></i> -->
+        </a>
+        <div class="item bd-lr-none ptb-10 f-26">
+            <p class="clearfix"><span>商品总价：</span><span class="fr">&yen;{{order.totalPrice}}</span></p>
+            <p class="clearfix"><span>运费：</span><span class="fr">&yen;{{order.express_fee}}</span></p>
+            <p class="clearfix"><span>优惠抵扣：</span><span class="fr">-&yen;{{order.discount}}</span></p>
+        </div>
+        <div class="mtb-15">
+            <div class="item bd-lr-none ptb-10 f-26">
+                <p ng-if="order.invoice_need == 1">发票抬头：{{order.invoice_title}}</p>
+                <p class="mt-10" ng-if="order.buyer_remark == ''">买家没有留言</p>
+                <div ng-if="order.buyer_remark != ''">
+                    <p class="mt-10">买家留言：</p>
+                    <div class="mt-10" style="padding:5px;min-height:90px; white-space: pre-wrap;">{{order.buyer_remark}}</div>
+                </div>
+                <!-- <textarea class="item mt-10" style="width: 100%;" rows="3"></textarea> -->
+                <div class="mt-10"></div>
+            </div>
+            <div class="item bd-lr-none ptb-10 f-34 clearfix">
+                <span class="fr">订单总额：&yen;{{order.money}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="has-bot-bar"></div>
+</ion-content>
+<div class="order-detail-bot container" ng-hide="order.trade_state == 5 || v.trade_state == 8">
+    <span></span>
+    <div class="btn-group">
+        <button class="button btn-main" ng-if="order.trade_state == 1" ng-click="cancelOrder(order.order_id)">取消订单</button>
+        <button class="button btn-main" ng-if="order.trade_state == 1" ng-click="payNow(order.order_id)">立即付款</button>
+        <button class="button btn-main" ng-if="(order.trade_state == 2 || order.trade_state == 3) && order.refund_state == 0" ng-click="jumpReturn(order)">申请退款</button>
+        <button class="button btn-main" ng-if="(order.trade_state == 2 || order.trade_state == 3) && order.refund_state != 0" ng-click="jumpReturnDetail(order)">退款详情</button>
+        <button class="button btn-main" ng-if="order.trade_state == 2" ng-click="remindOrder(order.order_id)">催单</button>
+        <button class="button btn-main" ng-if="order.trade_state == 3" ui-sref="logistics({orderId:'{{order.order_id}}'})">查看物流</button>
+        <button class="button btn-main" ng-if="order.trade_state == 3" ng-click="confirmReceipt(order.order_id)">确认收货</button>
+        <button class="f-30 button btn-main" ng-if="order.trade_state == 4 && order.refund_state == 0" ng-click="jumpReturn(order)">申请退货</button>
+        <button class="f-30 button btn-main" ng-if="order.trade_state == 4 && order.refund_state != 0" ng-click="jumpReturnDetail(order)">退款详情</button>
+        <button class="button btn-main" ng-if="order.trade_state == 7" ui-sref="repairCenter">申请维修</button>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ui-sref="tab.user"></button>
+    <div class="title">我的订单</div>
+</ion-header-bar>
+<div class="public-subheader bar bar-subheader page">
+    <div class="order-classifys item bd-lr-none">
+        <div class="classify {{(type || 1) == 1 ? 'active' : ''}}" ng-click="changeType(1)">待付款</div>
+        <div class="classify {{type == 2 ? 'active' : ''}}" ng-click="changeType(2)">待发货</div>
+        <div class="classify {{type == 3 ? 'active' : ''}}" ng-click="changeType(3)">待收货</div>
+        <div class="classify {{type == 4 ? 'active' : ''}}" ng-click="changeType(4)">待评价</div>
+        <div class="classify {{type == -1 ? 'active' : ''}}" ng-click="changeType(-1)">退款/售后</div>
+    </div>
+</div>
+<ion-content class="page-user page page-order has-subheader-me" has-bouncing="true" overflow-scroll="false" style="padding-top:48px">
+    <!-- <div class="order-classifys item bd-lr-none">
+        <div class="classify {{(type || 1) == 1 ? 'active' : ''}}" ng-click="changeType(1)">待付款</div>
+        <div class="classify {{type == 2 ? 'active' : ''}}" ng-click="changeType(2)">待发货</div>
+        <div class="classify {{type == 3 ? 'active' : ''}}" ng-click="changeType(3)">待收货</div>
+        <div class="classify {{type == 4 ? 'active' : ''}}" ng-click="changeType(4)">待评价</div>
+        <div class="classify {{type == -1 ? 'active' : ''}}" ng-click="changeType(-1)">退款/售后</div>
+    </div> -->
+    <div>
+        <div class="order-item mtb-15" ng-repeat="v in orderList" ng-show="v.trade_state != 5">
+            <div ng-click="jumpDetail(v.order_id,$event)">
+                <div class="item f-22 c-6 ptb-10 clearfix">
+                    订单编号：{{v.order_id}}
+                    <span class="c-main fr" ng-show="!(v.trade_state == 8 && v.refund_state==5)">{{v.trade_state | orderState}}</span>
+                    <span class="c-main fr" ng-show="v.trade_state == 8 && v.refund_state==5">退款成功</span>
+                </div>
+                <div class="item item-thumbnail-left " ng-repeat="v2 in v.goods">
+                    <img ng-src="{{v2.good_cover}}">
+                    <div class="f-34 text-overflow clearfix">{{v2.good_name}}</div>
+                    <div class="f-24 c-9">
+                        <div>型号：{{v2.good_model}}</div>
+                        <div class="text-right">
+                            <!-- <span class="f-26 ptb-10 c-main" ng-if="v.trade_state == 4 && v2.is_comment == 0" ng-click="commentOrder(v.order_id,v2.good_id,v2.is_comment,$event)">立即评价</span>
+ -->                            <span class="f-26 ptb-10 c-9" ng-if="v2.is_comment == 1">已评价</span>
+                        </div>
+                    </div>
+                    <div class="price clearfix f-28">
+                        <span class="c-red">&yen;{{v2.unit_price}}</span>
+                        <span class="fr">x{{v2.quantity}}</span>
+                    </div>
+                </div>
+                <div class="item f-22 c-6 ptb-10 text-center">
+                    共{{v.goods.length}}件商品&nbsp;&nbsp;&nbsp;合计 <span class="c-red">&yen;{{v.money}}</span>（含运费 <span class="c-red">&yen;{{v.express_fee}}</span>）
+                </div>
+            </div>
+            <div class="item ptb-20 clearfix" ng-hide="v.trade_state == 5 || v.trade_state == 8">
+                <div class="fr">
+                    <button class="f-30 button btn-main mr-30" ng-if="v.trade_state ==  1" ng-click="cancelOrder(v.order_id,$index)">取消订单</button>
+                    <button class="f-30 button btn-main" ng-if="v.trade_state == 1" ng-click="payNow(v.order_id)">立即付款</button>
+                    <button class="f-30 button btn-main mr-30" ng-if="(v.trade_state == 2 || v.trade_state == 3) && v.refund_state == 0" ng-click="jumpReturn(v)">申请退款</button>
+                    <button class="f-30 button btn-main mr-30" ng-if="(v.trade_state == 2 || v.trade_state == 3) && v.refund_state != 0" ng-click="jumpReturnDetail(v)">退款详情</button>
+                    <button class="f-30 button btn-main" ng-if="v.trade_state == 2" ng-click="remindOrder(v.order_id)">催单</button>
+                    <button class="f-30 button btn-main mr-30" ng-if="v.trade_state == 3" ui-sref="logistics({orderId:'{{v.order_id}}'})">查看物流</button>
+                    <button class="f-30 button btn-main" ng-if="v.trade_state == 3" ng-click="confirmReceipt(v.order_id,$index)">确认收货</button>
+                    <button ng-repeat="v2 in v.goods" class="f-30 button btn-main" ng-if="v.trade_state == 4 && v2.is_comment == 0" ng-click="commentOrder(v.order_id,v2.good_id,v2.is_comment,$event)">立即评价</button>
+                    <button class="f-30 button btn-main" ng-if="v.trade_state == 4 && v.refund_state == 0" ng-click="jumpReturn(v)">申请退货</button>
+                    <button class="f-30 button btn-main" ng-if="v.trade_state == 4 && v.refund_state != 0" ng-click="jumpReturnDetail(v)">退款详情</button>
+                    <button class="f-30 button btn-main" ng-if="v.trade_state == 7" ui-sref="repairCenter">申请维修</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-30 f-30 c-9" ng-if="noData">暂无更多订单</div>
+    <ion-infinite-scroll ng-if="!noData" on-infinite="loadMore()" distance="1%">
+    </ion-infinite-scroll>
+</ion-content>

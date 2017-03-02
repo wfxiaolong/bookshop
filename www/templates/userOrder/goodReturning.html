@@ -1,0 +1,128 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">退款详情</div>
+    <button class="button button-clear" ng-click="cancelApply()">取消申请</button>
+</ion-header-bar>
+<ion-content class="page-user  page-order" has-bouncing="true" overflow-scroll="false">
+    <div class="ptb-20 page">
+        <div class="item ptb-20 bd-lr-none">
+            <span class="f-26"><span class="c-red">&nbsp;&nbsp;</span>退货原因：{{refund.reason}}</span>
+            <!-- <i class="item-note c-3 f-34 ion-chevron-right"></i> -->
+        </div>
+        <div class="item ptb-20 bd-lr-none">
+            <span class="f-26">&nbsp;&nbsp;退款金额：<span class="c-red">&yen;{{refund.money}}</span></span>
+        </div>
+        <div class="item ptb-20 bd-lr-none">
+            <span class="f-26">&nbsp;&nbsp;是否已收到货：
+                <span class="mr-30"></span>
+            <span class="mr-30"><i class="iconfont icon-check {{refund.is_receipt == 1 ? 'c-main' : ''}}"></i>是</span>
+            <span class="mr-30"></span>
+            <span class="mr-30"><i class="iconfont icon-check {{refund.is_receipt == 0 ? 'c-main' : ''}}"></i>否</span>
+            </span>
+        </div>
+        <div class="item ptb-20 bd-lr-none">
+            <span class="f-26">&nbsp;&nbsp;退款方式：
+                <span class="mr-30"></span>
+            <span class="mr-30"><i class="iconfont icon-check {{refund.type == 0 ? 'c-main' : ''}}"></i>仅退款</span>
+            <span class="mr-30"></span>
+            <span class="mr-30"><i class="iconfont icon-check {{refund.type == 1 ? 'c-main' : ''}}"></i>退货退款</span>
+            </span>
+        </div>
+    </div>
+    <div class="item bd-lr-none ptb-20 f-28">
+        <p>退货说明：</p>
+        <div style="padding:10px;min-height:100px;white-space:initial;">
+            {{refund.content}}
+        </div>
+        <!-- <textarea rows="10" class="feedback-wrap f-26" value=""></textarea> -->
+        <p>相关图片：</p>
+        <div class="mt-20" style="white-space: normal;">
+            <img ng-src="{{v}}" class="return-img" alt="" ng-repeat="v in refund.pics" ng-click="getImg(v)">
+        </div>
+    </div>
+    <div class="mt-30 container f-26 b-bot" ng-if="state == 1">
+        <p class="text-center f-34"><b>等待商家处理</b></p>
+    </div>
+    <div ng-if="state == 2">
+        <p class="text-center f-34 mt-20"><b>商家拒绝退货</b></p>
+        <div class="mt-20 container" style="white-space: normal;">
+            <p class="f-26 ">理由：{{shopRefund.content}}</p>
+            <!-- <img src="http://placehold.it/110x110" class="return-img" alt="">
+            <img src="http://placehold.it/110x110" class="return-img" alt="">
+            <img src="img/icon-return-add.png" class="return-img" alt=""> -->
+        </div>
+    </div>
+    <div class="mt-30 container f-26 b-bot" ng-if="state == 3">
+        <p class="text-center f-34"><b>商家同意退款申请</b></p>
+        <p class="return-text">
+            <span class="return-label nowrap">回寄地址：</span>
+            <span>&nbsp;&nbsp;{{refundAddress.address}}</span>
+        </p>
+        <p class="return-text">
+            <span class="return-label nowrap">收件人：</span>
+            <span>&nbsp;&nbsp;{{refundAddress.consignee}}</span>
+        </p>
+        <p class="return-text">
+            <span class="return-label nowrap">联系方式：</span>
+            <span>&nbsp;&nbsp;{{refundAddress.phone}}</span>
+        </p>
+        <div class="">
+            <input type="text" class="return-input" placeholder="请输入快递公司名称" ng-model="express.name">
+            <input type="text" class="return-input" placeholder="请输入快递单号" ng-model="express.id">
+        </div>
+        <div class="text-center mt-30">
+            <button class="button btn-main mt-30" ng-click="submitExpressInfo()">提交快递信息</button>
+        </div>
+        <div style="height:30px"></div>
+
+    </div>
+    <div class="" ng-if="state == 4">
+        <div class="container ptb-20">
+            <p class="text-center f-34"><b>商家同意退款申请</b></p>
+            <p class="return-text">
+                <span class="return-label nowrap">回寄地址：</span>
+                <span>{{refundAddress.address}}</span>
+            </p>
+            <p class="return-text">
+                <span class="return-label nowrap">收件人：</span>
+                <span>{{refundAddress.consignee}}</span>
+            </p>
+            <p class="return-text">
+                <span class="return-label nowrap">联系方式：</span>
+                <span>{{refundAddress.phone}}</span>
+            </p>
+        </div>
+        <div class="return-input">{{express.company}}</div>
+        <div class="return-input">快递单号：{{express.code}}</div>
+        <div class="container b-bot ptb-20">
+            <p class="f-26">物流信息：</p>
+            <p class="f-24 c-6 return-wuliu" ng-repeat="v in express.data">
+                <span>●&nbsp;</span>
+                <span class="mr-30 detail">{{v.context}}</span>
+                <span class="c-9 nowrap">{{v.time}}</span>
+            </p>
+        </div>
+        <p class="text-center f-34 mt-20"><b>等待商家确认</b></p>
+    </div>
+    <div class="mt-30 container f-26 b-bot" ng-if="state == 5">
+        <p class="text-center f-34"><b>商家退款成功</b></p>
+    </div>
+    <div class="text-center">
+        <div class="f-28 c-6  mt-30">
+            <p class="m-0">建议申请退货前与客服联系</p>
+            <p class="m-0">关注公众号<span class="c-main">VRsmqx</span>或</p>
+            <p class="m-0">或拨打热线电话：
+                <a class="c-main" href="tel:0755-83585093">0755-83585093</a>
+            </p>
+        </div>
+        <div class="ptb-20"></div>
+        <!-- <div class="text-center mt-30" ng-if="state == 2">
+            <button class="button btn-main mt-30">重新申请退款</button>
+        </div> -->
+        <div style="height:50px"></div>
+    </div>
+</ion-content>
+<div class="big-img" ng-if="imgSrc" ng-click="clearImg()">
+    <img ng-src="{{imgSrc}}" ng-if="imgSrc" ng-click="clearImg()">
+    <!-- <image-scale img-src="{{imgSrc}}" ng-if="imgSrc" ng-click="clearImg()"></image-scale> -->
+</div>

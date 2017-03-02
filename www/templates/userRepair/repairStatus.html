@@ -1,0 +1,97 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">维修状态</div>
+</ion-header-bar>
+<ion-content class="page page-user page-repair" has-bouncing="true" overflow-scroll="false">
+    <div class="item ptb-20 mtb-15 bd-lr-none">
+        <div class="f-34">快递：{{express.company}}</div>
+        <div class="f-30">运单号：{{express.code}}</div>
+        <div class="f-28 mt-10">物流详情：</div>
+        <div class="f-24 c-6 return-wuliu" ng-if="express.detail.length > 0" ng-repeat="v in express.detail">
+            <span>●&nbsp;</span>
+            <span class="mr-30 detail" >{{v.context}}</span>
+            <span class="c-9 nowrap">{{v.time}}</span>
+        </div>
+        <div class="f-24 c-6" ng-if="express.detail.length == 0" >
+            <span class="mr-30 detail" >暂无数据</span>
+        </div>
+        <div class="f-24 c-6 text-center" ng-show="hasExpressCode">
+            <button class="button btn-main-big mt-30 text-align" ng-click="openModal()">添加快递单号</button>
+        </div>
+    </div>
+    <div class="item ptb-20 bd-lr-none f-26">
+        <p>维修内容：</p>
+        <p class="clearfix" ng-repeat="i in order.Ordercontent">
+            {{i.name}}
+        </p>
+        <p class="clearfix" ng-repeat="haha in orderList" style="padding-left:20px;">
+            <span>{{v.name}}</span>
+        </p>
+    </div>
+    <div class="item ptb-20 mtb-15 bd-lr-none">
+        <div class="f-34">维修说明：</div>
+
+        <div class="f-28 mt-20" style="margin-bottom: 10px;">留言：{{order.remark == "" ? "您未留言给商家" : order.remark}}</div>
+        <div class="f-28 mt-20">图片：</div>
+        <div class="mt-10" style="white-space: normal;">
+            <img ng-repeat="pics in order.buyerPics" ng-src={{pics}} class="return-img" alt="">
+        </div>
+    </div>
+
+
+    <div ng-if="order.tradeId == 2" class="item ptb-20 mtb-15 bd-lr-none text-center">
+        <div class="f-34 c-main">邮寄中，等待卖家收货</div>
+    </div>
+    <div  ng-if="order.tradeId == 3" class="item ptb-20 mtb-15 bd-lr-none text-center" ng-hide="isTimeout">
+        <div class="f-34 c-main">快递已收到，正在维修中</div>
+        <div>
+            <span>维修倒计时：</span>
+            <span class="f-34 c-main" view-countdown remain-time="{{order.remainTime}}" type="ms" timeout-callback="timeoutCallback()"></span>
+        </div>
+    </div>
+    <div  ng-if="order.tradeId == 3" class="item ptb-20 mtb-15 bd-lr-none text-center" ng-hide="!isTimeout">
+        <div class="f-34 c-main">
+        </div>
+        <div>
+            <p class="f-34">维修未完成</p>
+            <p class="f-34">维修超时！请<a ui-sref="concatService">联系客服</a>处理</p>
+        </div>
+    </div>
+    <div ng-if="order.tradeId == 4" class="item ptb-20 mtb-15 bd-lr-none">
+
+
+        <div class="f-34">快递：{{back_express.company}}</div>
+        <div class="f-30">运单号：{{back_express.code}}</div>
+        <div class="f-28 mt-10">物流详情：</div>
+        <div class="f-24 c-6 return-wuliu" ng-if="back_express.detail.length > 0" ng-repeat="v in back_express.detail">
+            <span>●&nbsp;</span>
+            <span class="mr-30 detail" >{{v.context}}</span>
+            <span class="c-9 nowrap">{{v.time}}</span>
+        </div>
+        <div class="f-24 c-6" ng-if="back_express.detail.length == 0" >
+            <span class="mr-30 detail" >暂无数据</span>
+        </div>
+
+        <div class="text-center">
+            <button class="button btn-main-big mt-30" ng-click="repairConfirm()">确认收货</button>
+        </div>
+
+    </div>
+    <div  ng-if="order.tradeId == 5" class="item ptb-20 mtb-15 bd-lr-none">        <div class="f-34 c-main">已完成</div>
+
+    </div>
+</ion-content>
+<script id="my-modal.html" type="text/ng-template">
+    <div class="modal">
+        <ion-header-bar align-title="center" class="app-bar">
+            <div class="title">添加快递信息</div>
+        </ion-header-bar>
+        <ion-content class="page page-user" has-bouncing="true" overflow-scroll="false">
+        <input type="text" ng-model="repairExpress.com" class="repair-input mt-20 ptb-20" style="width: 100%;" placeholder="请输入快递公司名称">
+        <input type="tel" style="width: 100%;" class="ptb-20 repair-input mt-20" maxlength="22" ng-model="repairExpress.code" placeholder="输入快递单号">
+            <div class="text-center">
+                <button class="button btn-main-big mt-30 text-align" ng-click="addCode()">确定</button>
+            </div>
+        </ion-content>
+    </div>
+</script>

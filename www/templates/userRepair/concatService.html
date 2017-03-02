@@ -1,0 +1,14 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">联系客服</div>
+</ion-header-bar>
+<ion-content class="page page-user page-repair" scroll="false">
+    <div class="item ptb-20 mtb-15 bd-lr-none text-center">
+        <img style="height: 150px;" ng-src="{{qrCode}}" class="mtb-75" />
+        <div class="f-34">请扫码或搜索xxxx关注我司</div>
+        <div class="f-34">微信公众号数码在线联系客服</div>
+        <div class="f-34">或拨打热线电话：
+            <a class="c-main" href="tel:0755-83585093">{{hotline}}</a>
+        </div>
+    </div>
+</ion-content>

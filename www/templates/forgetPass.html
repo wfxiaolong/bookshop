@@ -1,0 +1,30 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-clear"  ng-click="goBack()">返回</button>
+    <div class="title">找回密码</div>
+</ion-header-bar>
+<ion-content class="page page-login" has-bouncing="true" overflow-scroll="false">
+    <div ng-show="!step2">
+        <div class="input-wrap mt-30">
+            <div class="label">手机号码</div>
+            <input class="input" type="text" placeholder="请输入手机号码" ng-model="forget.phone">
+        </div>
+        <div class="input-wrap mt-30">
+            <div class="label">验证码</div>
+            <input class="input" type="text" placeholder="输入验证码" ng-model="forget.checkCode">
+            <div class="check-code" ng-click="getCheckCode()">{{code.cd?code.cd+"s":code.str}}</div>
+        </div>
+        <p class="mt-10 f-24 c-9 text-center">*如果你未接收到验证码，请检查手机是否设置短信拦截?</p>
+        <button class="button btn-login mt-20" ng-click="checkCode();">确认</button>
+    </div>
+    <div ng-show="step2">
+        <div class="input-wrap mt-30">
+            <div class="label">新密码</div>
+            <input class="input" type="password" placeholder="请输入新密码（不少于6位）" ng-model="forget.newPass">
+        </div>
+        <div class="input-wrap mt-30">
+            <div class="label">确认密码</div>
+            <input class="input" type="password" placeholder="请再次输入密码" ng-model="forget.newPassR">
+        </div>
+        <button class="button btn-login mt-30" ng-click="changePass();">确认</button>
+    </div>
+</ion-content>

@@ -1,0 +1,52 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">我的发言</div>
+</ion-header-bar>
+<ion-content class="page page-user" has-bouncing="true" overflow-scroll="false">
+    <div class="speak-top mtb-15">
+        <div class="speak-top-item {{(type || 1) == 1 ? 'active' : ''}}" ng-click="changeType(1)">
+            我的帖子
+        </div>
+        <div class="speak-top-item {{type == 2 ? 'active' : ''}}" ng-click="changeType(2)">
+            我的回帖
+        </div>
+    </div>
+    <div ng-if="(type || 1) == 1">
+        <p class="c-9 container f-24">TIPS：长按可删除帖子</p>
+        <a class="item ptb-10 mtb-15" ng-repeat="v in myArticles track by $index" ui-sref="postDetail({postId:{{v.id}}})" on-hold="deletePost(v,$index)">
+            <div class="f-34 strWithExpression" content-str="{{v.title}}"></div>
+            <div class="f-24 c-6 mt-20 clearfix">
+                <div class="fl text-overflow" style="max-width: 75%;">
+                    <span class="strWithExpression" content-str="{{v.content}}"></span>
+                </div>
+                <span class="fr">{{v.time * 1000 | date:"yyyy-MM-dd"}}</span>
+            </div>
+        </a>
+        <div class="text-center mt-30 f-30 c-9" ng-if="noData">已加载全部</div>
+        <ion-infinite-scroll  ng-if="!noData" on-infinite="loadMore()" distance="1%">
+        </ion-infinite-scroll>
+    </div>
+    <div ng-if="type == 2">
+        <a class="item ptb-10 mtb-15" ng-repeat="v in myResponse" ng-click="goto_article(v)">
+            <div class="f-34"><span class="f-24">{{v.nickname}}回复了</span><b>{{v.title}}</b></div>
+            <div class="f-24 c-6 mt-20 clearfix">
+                <div class="fl text-overflow" style="max-width: 75%;">
+                    <span class="strWithExpression" content-str="{{v.content}}"></span>
+                </div>
+                <span class="fr">{{v.time * 1000 | date:"yyyy-MM-dd"}}</span>
+            </div>
+        </a>
+        <div class="text-center mt-30 f-30 c-9" ng-if="noData2">已加载全部</div>
+        <ion-infinite-scroll  ng-if="!noData2" on-infinite="loadMore2()" distance="1%">
+        </ion-infinite-scroll>
+        <!-- <div class="item ptb-10 mtb-15">
+            <div class="f-34"><span class="f-24">张三李四回复了</span><b>发圣诞树</b></div>
+            <div class="f-24 c-6 mt-20 clearfix">
+                <div class="fl text-overflow" style="max-width: 75%;">
+                    帖子的部分内容：比如说…
+                </div>
+                <span class="fr">2016-05-15</span>
+            </div>
+        </div> -->
+    </div>
+</ion-content>

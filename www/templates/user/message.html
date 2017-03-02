@@ -1,0 +1,14 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">我的消息</div>
+</ion-header-bar>
+<ion-content class="page page-user" has-bouncing="true" overflow-scroll="false">
+    <a class="message-item item mtb-15" ng-repeat="v in messageList" ui-sref="messageDetail({messageId:v.id})">
+        <div class="f-30"><span class="{{v.is_read == 0 ? 'unread' : ''}}">{{v.title}}</span></div>
+        <div class="f-24 c-9 mt-10">{{v.desc}}</div>
+        <span class="f-22 c-9 mt-10">{{v.time * 1000 | date:"yyyy-MM-dd"}}</span>
+    </a>
+    <div class="text-center mt-30 f-30 c-9" ng-if="noData">暂无更多消息</div>
+    <ion-infinite-scroll ng-if="!noData" on-infinite="loadMore()" distance="1%">
+    </ion-infinite-scroll>
+</ion-content>

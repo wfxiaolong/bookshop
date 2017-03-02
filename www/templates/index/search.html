@@ -1,0 +1,31 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBackIndex()"></button>
+    <div class="title">搜索</div>
+</ion-header-bar>
+<ion-content class="page page-index" has-bouncing="true" overflow-scroll="false">
+    <div class="top-bar b-bot">
+        <div class="search-wrap" ui-sref="search">
+            <i class="ion-ios-search-strong icon-search pos-abs"></i>
+            <input type="text" ng-focus="inp_focus()" ng-blur="inp_blur()" ng-change="inp_change()" class="search-input" placeholder="搜索你想要的宝贝" ng-model="input.keywords" autofocus>
+        </div>
+        <button class="button btn-main" ng-click="searchResult()">搜索</button>
+    </div>
+    <ul ng-if="is_get_focus" style="width: 100%;  background-color: #fff; position: absolute;">
+        <li ng-if="search_history.length > 0" class="b-bot" style="line-height: 2.5rem;padding:0 20px;">Tips:长按可删除该条搜索历史</li>
+        <li ng-click="click_search(v)" on-hold="inp_hold(v)" class="b-bot" style="line-height: 2.5rem;padding:0 20px;" ng-repeat="v in search_history">{{v}}</li>
+    </ul>
+    <div class="index-list result text-center">
+        <div class="index-item" ng-repeat="v in goodsList" ng-click="goto_detail(v)">
+            <img ng-src="{{v.cover}}" alt="">
+            <p class="text-left f-30 text-overflow-2 min-h-40">{{v.name}}</p>
+            <p class="text-left f-24 m-0 c-6 clearfix">
+                <span class="c-red f-30">&yen;{{v.price}}</span>
+                <span class="fr c-6 f-24">月销量 {{v.sales}}笔</span>
+            </p>
+        </div>
+        <div class="index-item" style="border:none" ng-if="goodsList.length % 2 == 1"></div>
+    </div>
+    <div class="text-center mt-30 f-30 c-9" ng-if="noData">没有更多商品啦~</div>
+    <ion-infinite-scroll ng-if="!noData" on-infinite="loadMore()" distance="1%">
+    </ion-infinite-scroll>
+</ion-content>

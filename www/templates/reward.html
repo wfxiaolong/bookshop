@@ -1,0 +1,69 @@
+<ion-header-bar align-title="center" class="app-bar clearfix">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">打赏</div>
+</ion-header-bar>
+<ion-content class="page" has-bouncing="true" overflow-scroll="false">
+    <div class="page-discover-detail p-0">
+        <div class="comment" ng-repeat="v in rewardList">
+            <div class="item item-avatar">
+                <img class="avatar" ng-src="{{v.user_img}}">
+                <p class="f-28 c-6 clearfix"><span>{{v.nickname}}</span></p>
+                <p class="medal-{{v.level | getMedal}} medal-big"></p>
+                <p class="f-24 reward">打赏：<span class="f-34 c-main">&yen;{{v.money}}</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-30 f-30 c-9" ng-if="noData">已加载全部</div>
+    <ion-infinite-scroll ng-if="!noData" on-infinite="loadMore()" distance="1%">
+    </ion-infinite-scroll>
+    <div class="has-bot-bar"></div>
+</ion-content>
+<div class="text-center btn-reward-wrap">
+    <button class="btn-reward" ng-click="popShow('payPop')">我也要打赏</button>
+</div>
+<div class="pop-up-wrap" ng-show="payPop">
+    <div class="bg" ng-click="popHide('payPop')"></div>
+    <div class="public-pop-up">
+        <div class="f-34">打赏金额：
+            <div class="b-bot" style="display: inline-block;">
+                <input class="text-center" type="number" ng-model="reward.money">
+            </div>
+            &yen;
+        </div>
+        <div class="mt-30"></div>
+        <div class="title f-34">选择支付方式</div>
+        <!-- <div class="pay-way">
+            <img class="pay-icon" src="img/pay-left.png" alt="">
+            <div class="text">
+                <p class="f-34">余额支付</p>
+                <p class="f-28 c-6">余额：&yen;100.00</p>
+            </div>
+            <label class="checkbox">
+                <input type="checkbox">
+            </label>
+        </div> -->
+        <div class="pay-way" ng-hide="isWechat">
+            <img class="pay-icon" src="img/pay-alipay.png" alt="" >
+            <div class="text">
+                <p class="f-34">支付宝支付</p>
+                <p class="f-28 c-6">需开通支付宝账号</p>
+            </div>
+            <label class="checkbox">
+                <input type="radio" name="pay_way" ng-click="selectPayWay('alipay')">
+            </label>
+        </div>
+        <div class="pay-way" ng-hide="isInH5" ng-hide="isInH5">
+            <img class="pay-icon" src="img/pay-wechat.png" alt="">
+            <div class="text">
+                <p class="f-34">微信支付</p>
+                <p class="f-28 c-6">需开通微信账号</p>
+            </div>
+            <label class="checkbox">
+                <input type="radio" name="pay_way" ng-click="selectPayWay('wechat')">
+            </label>
+        </div>
+        <div class="text-center mt-30">
+            <button class="button button-positive" style="width: 80%;background-color: #009bed;" ng-click="confirmPay()">确认</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">查看物流</div>
+</ion-header-bar>
+<ion-content class="page-user page page-order" has-bouncing="true" overflow-scroll="false">
+    <!-- <div class="item item-avatar mtb-15 bd-lr-none">
+        <img src="http://placehold.it/100x100">
+        <div class="f-28">顺丰快递</div>
+        <div class="f-28 c-6">快递单号：1234567891324657987</div>
+    </div> -->
+    <div class="item mtb-15 bd-lr-none">
+        <div class="f-28">快递公司：{{express.company}}</div>
+        <div class="f-28 c-6">快递单号：{{express.code}}</div>
+    </div>
+    <div class="container mt-30">
+        <div class="logistics-item f-24 c-6" ng-repeat="v in express.data">
+            <div class="circle-wrap">
+                <div class="circle"></div>
+            </div>
+            <div class="mr-30">
+                {{v.context}}
+            </div>
+            <div class="time">
+                {{v.time}}
+            </div>
+        </div>
+    </div>
+</ion-content>

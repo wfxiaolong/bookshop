@@ -1,0 +1,37 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">我的地址</div>
+    <button class="button button-clear" ui-sref="addressNew">新增</button>
+</ion-header-bar>
+<ion-content class="page page-user" has-bouncing="true" overflow-scroll="false">
+    <div class="address-list">
+        <div class="address-item" ng-repeat="v in addressList" ng-click="chooseAddress(v)">
+            <p><span class="mr-30">收货人：{{v.name}}</span>手机号码：{{v.mobile}}</p>
+            <p>收货地址：{{v.province}}{{v.city}}{{v.area}}&nbsp;{{v.detail}}</p>
+            <div class="clearfix c-6 mt-30">
+                <div class="fl nowrap" ng-click="setDefault(v,$event)">
+                    <i class="iconfont icon-check f-34 {{v.is_default == 1 ? 'c-main' : ''}}"></i>
+                    <span class="f-24">{{v.is_default == 1 ? '' : '设为'}}默认收货地址</span>
+                </div>
+                <div class="fr f-24 nowrap">
+                    <span class="c-main pl-30" ng-click="editAddr(v,$event)">编辑</span>
+                    <span class="pl-30" ng-click="deleteAddr(v,$index,$event)">删除</span>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="address-item">
+            <p><span class="mr-30">收货人：哈哈哈</span>手机号码：13500000000</p>
+            <p>收货地址：广东省广州市天河区天河北路906号高科大厦A座2205大脉科技前台美女代收</p>
+            <div class="clearfix f-24 c-6 mt-30">
+                <div class="fl">
+                    <i class="iconfont icon-check f-34 c-main"></i>
+                    <span>默认收货地址</span>
+                </div>
+                <div class="fr">
+                    <span class="c-main mr-30">编辑</span>
+                    <span>删除</span>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</ion-content>

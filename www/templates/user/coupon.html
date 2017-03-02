@@ -1,0 +1,54 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">我的券包</div>
+</ion-header-bar>
+<ion-content class="page page-user" has-bouncing="true" overflow-scroll="false">
+    <div class="speak-top mtb-15">
+        <div class="speak-top-item {{(type || 1) == 1 ? 'active' : ''}}" ng-click="changeType(1)">
+            商城优惠券
+        </div>
+        <div class="speak-top-item {{type == 2 ? 'active' : ''}}" ng-click="changeType(2)">
+            维修优惠券
+        </div>
+    </div>
+    <div ng-show="(type || 1) == 1">
+        <a class="item ptb-10 mtb-15 {{v.state == 1 || overtime == 1 ? 'coupon-disabled' :''}}" ng-repeat="v in couponList">
+            <div class="f-24 clearfix">
+                <div class="fl text-overflow f-34" style="width: 30%;">
+                    <b>&yen;{{v.discount}}</b>
+                </div>
+                <!-- <span class="fl">无限制</span> -->
+                <span class="fl">满{{v.limit}}可用</span>
+                <!-- <i class="iconfont icon-check fr f-34 c-main"></i> -->
+            </div>
+            <div class="f-24 mt-20 clearfix">
+                <!-- <div class="fl text-overflow" style="width: 30%;">
+                    满{{v.limit}}可用
+                </div> -->
+                <span class="fl text-overflow" style="width: 69%;">有效期：{{v.st * 1000 | date:'yyyy-MM-dd'}}至{{v.et * 1000 | date:'yyyy-MM-dd'}}</span>
+            </div>
+            <img src="img/coupon-used.png" ng-if="v.state == 1" style="position: absolute;width: 60px;top: 5px;right: 15px;">
+            <img src="img/coupon-canceled.png" ng-if="v.state != 1 && v.overtime == 1" style="position: absolute;width: 60px;top: 5px;right: 15px;">
+        </a>
+    </div>
+    <div ng-show="type == 2">
+        <!-- <a class="item ptb-10 mtb-15 coupon-disabled" ng-repeat="v in repairCouponList"> -->
+        <a class="item ptb-10 mtb-15 {{v.state == 1 || overtime == 1 ? 'coupon-disabled' :''}}" ng-repeat="v in repairCouponList">
+            <div class="f-24 clearfix">
+                <div class="fl text-overflow f-34" style="width: 30%;">
+                    <b>&yen;{{v.discount}}</b>
+                </div>
+                <span class="fl">满{{v.limit}}可用</span>
+            </div>
+            <div class="f-24 mt-20 clearfix">
+                <!-- <div class="fl text-overflow" style="width: 30%;">
+                    满50可用
+                </div> -->
+                <span class="fl text-overflow" style="width: 69%;">有效期：{{v.st * 1000 | date:'yyyy-MM-dd'}}至{{v.et * 1000 | date:'yyyy-MM-dd'}}</span>
+            </div>
+        </a>
+    </div>
+    <div class="text-center mt-30 f-30 c-9" ng-if="noData">已加载全部</div>
+    <ion-infinite-scroll ng-if="!noData" on-infinite="loadMore()" distance="1%">
+    </ion-infinite-scroll>
+</ion-content>

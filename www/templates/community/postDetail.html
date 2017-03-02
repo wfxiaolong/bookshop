@@ -1,0 +1,128 @@
+<ion-header-bar align-title="center" class="app-bar clearfix" ng-if="!isSharePage">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title" style="font-family: 'SimHei';">帖子详情</div>
+    <div class="bar-right-btns">
+        <i class="ion-android-favorite{{isCollect ? ' c-red' : '-outline'}}" ng-click="collect()"></i>
+        <i class="iconfont icon-share" ng-click="sharePopShow()"></i>
+    </div>
+</ion-header-bar>
+<ion-content class="page page-community has-header" has-bouncing="true" overflow-scroll="false" style="font-family: 'SimHei'; {{isSharePage ? 'top : 0' : ''}}"><!-- style="{{isSharePage ? 'top : 0' : ''}}" -->
+    <div class="mtb-15" ng-if="!isSharePage"> <!-- ng-if="!isSharePage" -->
+        <a class="item ptb-20 bd-lr-none" ng-href="#/moduleDetail/{{post.category_id}}/{{post.category}}">
+            <span class="f-26">{{post.category}}</span>
+            <i class="item-note c-3 f-34 ion-chevron-right"></i>
+        </a>
+    </div>
+    <div class="page-discover-detail b-top">
+        <div class="comment" style="border: none">
+            <a class="item item-avatar" style="border: none" ng-click="jumpUser(post.writer_id)">
+                <img class="avatar" ng-src="{{post.writer_img}}">
+                <p class="f-28 c-6"><span class="medal-{{post.writer_level | getMedal}} medal-big">{{post.writer}}</span><span class="floor-host">楼主</span></p>
+                <p class="f-22 c-9">{{post.time * 1000 | date:"yyyy-MM-dd HH:mm:ss"}}</p>
+                <div class="like-num">
+                    <p>
+                        <i class="iconfont icon-liulancishu"></i>{{post.view}}
+                        <span style="margin-right: 10px;"></span>
+                        <i class="iconfont icon-like"></i>{{post.likes}}
+                    </p>
+                    <p><i class="iconfont icon-comment"></i>{{countComment}}</p>
+                </div>
+            </a>
+        </div>
+        <div class="container">
+            <p class="title " style="line-height: normal;" ><b class="strWithExpression" content-str="{{post.title}}"></b></p>
+            <div class="main c-9">
+                <!-- <span class="strWithExpression" style="font-size: 110%; color: #666; font-family: '微软雅黑'; " content-str="{{post.content}}"></span> -->
+                <span style="font-size: 1.7rem;color: rgb(51, 51, 51);font-family: 宋体, arial;letter-spacing: 1px;line-height: 25.2px;" ng-bind-html="post.content"></span>
+            </div>
+            <div class="img-wrap">
+                <img ng-repeat="v in post.pics" ng-src="{{v}}" alt="">
+            </div>
+        </div>
+        <!-- <div class="text-center mt-30">
+            <div class="ptb-20"></div>
+            <i class="community-icon iconfont icon-like mr-30"></i>
+            <span class="mr-30"></span>
+            <i class="community-icon iconfont icon-dashang" ng-click="popShow('payPop')"></i>
+        </div> -->
+        <div class="comments-head mt-30 clearfix"><span class="ptb-10 fl">全部回帖</span> <span class="fr f-28 c-main pl-30 ptb-10" ng-click="report()">举报</span></div>
+        <div class="comments-list mt-10">
+            <div class="comment" ng-repeat="v in commentList track by $index" ng-click="subComment(v,isSharePage)">
+                <div class="item item-avatar">
+                    <img class="avatar" ng-src="{{v.user_img}}">
+                    <p class="f-28 c-6 clearfix"><span class="medal-{{v.level | getMedal}} medal-big">{{v.nickname}}</span><span class="fr f-22 c-9">{{$index + 1}}楼</span></p>
+                    <p class="f-22 c-9">{{v.time * 1000 | date:"yyyy-MM-dd HH:mm:ss"}}</p>
+                </div>
+                <div class="container">
+                    <p class="f-24">
+                        <span class="strWithExpression" content-str="{{v.content}}"></span>
+                    </p>
+                    <div class="sub-comments f-24 c-9">
+                        <p ng-repeat="v2 in v.child">
+                            <span class="medal-{{v2.level | getMedal}}">{{v2.nickname}}</span>：
+                            <span class="strWithExpression" content-str="{{v2.content}}"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-30 f-30 c-9" ng-if="noData">暂无更多评论</div>
+    <ion-infinite-scroll ng-if="!noData" on-infinite="loadMore()" distance="1%">
+    </ion-infinite-scroll>
+    <div class="has-bot-bar"></div>
+</ion-content>
+<div class="bar bar-footer discover-footer" ng-if="!isSharePage">
+    <!-- <input type="text" class="input" placeholder="发表评论..."> -->
+    <div class="input" ng-click="popShow('commentPop')">发表评论...</div>
+    <div class="like-wrap" ng-click="like()">
+        <i class="iconfont icon-like" style='{{isLike ? "color: red" : ""}}'></i>
+    </div>
+    <div class="like-wrap" ng-click="jumpReward(post.id)">
+        <i class="iconfont icon-dashang"></i>
+    </div>
+</div>
+<div class="bar bar-footer discover-footer" ng-if="isSharePage" style="background:rgba(0,0,0,0.4);height:5.5rem;padding:0 10px;">
+    <img src="img/icon.png" style="width: 45px;height:45px" class="mr-30">
+    <div class="c-white" style="-webkit-box-flex: 1;-webkit-flex: 1;flex:1">
+        <p class="m-0">VR数码前线</p>
+        <p class="m-0 f-24">下载APP，开启全球首家C2M数码商城购物之旅</p>
+    </div>
+    <a href="http://weiyaxunda.com/?ct=index&ac=share">
+        <button class="button btn-main f-28">立刻下载</button>
+    </a>
+</div>
+<div class="pop-up-wrap" ng-show="commentPop" ng-if="!isSharePage">
+    <div class="bg" ng-click="popHide('commentPop')"></div>
+    <div class="public-pop-up">
+        <textarea class="textarea" rows="7" placeholder="抵制低俗，文明上网，和谐发帖。" style="padding:5px" ng-model="comment.commentInput" ng-click="hideExpressionPanel()"></textarea>
+        <!-- <textarea class="textarea" rows="7" ng-model="comment.commentInput" ng-focus="expressionShow = false" ></textarea> -->
+        <p></p>
+        <div class="clearfix mt-20">
+            <i class="iconfont icon-laugh c-main" style="font-size: 30px;" ng-click="showExpressionPanel()"></i>
+            <button class="button fr btn-main" ng-click="sendComment()">发送</button>
+        </div>
+        <div class="text-center mt-20" style="margin-left: -1rem;margin-right: -1rem;" ng-show="expressionShow">
+            <dmExpression class="dmExpression" dm-input="comment.commentInput"></dmExpression>
+        </div>
+    </div>
+</div>
+<div class="pop-up-wrap" ng-show="webSharePop">
+    <div class="bg" ng-click="popHide('webSharePop')">
+        <p class="c-white text-right" style="padding:10px">点击右上角<br />分享至朋友圈<br />或微信好友</p>
+    </div>
+</div>
+<div class="pop-up-wrap" ng-show="sharePop">
+    <div class="bg" ng-click="popHide('sharePop')"></div>
+    <div class="share-pop-up">
+        <div class="title text-center">
+            分享
+        </div>
+        <div class="img-share">
+            <img src="img/share-wechat.png" alt="" ng-click="shareWechat('wx')">
+            <img src="img/share-moment.png" alt="" ng-click="shareWechat('wx_circle')">
+            <img src="img/share-qzone.png" alt="" ng-click="shareWechat('qzone')">
+            <img src="img/share-qq.png" alt="" ng-click="shareWechat('qq')">
+        </div>
+    </div>
+</div>

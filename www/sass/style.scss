@@ -1,0 +1,165 @@
+@charset "utf-8";
+// @import "http://at.alicdn.com/t/font_1469589663_8614938.css";
+@import 'mixin';
+@import 'public';
+@import 'login';      //登录&注册&忘记密码
+@import 'discover';   //发现
+@import 'user';       //我的中心
+@import 'order';      //我的订单
+@import 'repair';     //维修中心
+@import 'community';  //社区
+@import 'yiyuan';     //一元云购
+@import 'index';      //首页
+
+.withSatusBar {
+    border-top: 20px solid #21b2ff;
+}
+.slider-pager .slider-pager-page {
+    color: #999;
+}
+.c-white {
+    color: #fff !important;
+}
+.c-red {
+    color: #fe0000 !important;
+}
+.c-main {
+    color: $mainColor !important;
+}
+
+.c-3 {
+    color: #333 !important;
+}
+
+.c-6 {
+    color: #666 !important;
+}
+
+.c-9 {
+    color: #999 !important;
+}
+.f-22 {
+    font-size: rem(22) !important;
+}
+.f-24 {
+    font-size: rem(24) !important;
+}
+
+.f-26 {
+    font-size: rem(26) !important;
+}
+.f-28 {
+    font-size: rem(28) !important;
+}
+.f-30 {
+    font-size: rem(30) !important;
+}
+.f-34 {
+    font-size: rem(34) !important;
+}
+.bg-white {
+    background-color: #FFF;
+}
+.m-0 {
+    margin: 0;
+}
+.p-0 {
+    padding: 0 !important;
+}
+.top-0 {
+    top: 0 !important;
+}
+.mt-10 {
+    margin-top: size(10);
+}
+
+.mt-20 {
+    margin-top: size(20);
+}
+
+.mt-30 {
+    margin-top: size(30);
+}
+
+.mr-30 {
+    margin-right: size(30);
+}
+.mb-15 {
+    margin-bottom: size(15);
+}
+.mtb-15 {
+    margin: size(15) 0;
+}
+.mtb-75 {
+    margin: size(75) 0;
+}
+.ptb-50 {
+    padding-top: size(50);
+    padding-bottom: size(50);
+}
+.ptb-20 {
+    padding-top: size(20);
+    padding-bottom: size(20);
+}
+.ptb-10 {
+    padding-top: size(10);
+    padding-bottom: size(10);
+}
+.pl-30 {
+    padding-left: size(30);
+}
+.popup-container .popup {
+    border-radius: 6px;
+}
+
+//click-prev-big-img start
+.pointer-events-none {
+    pointer-events: none;
+}
+
+//dm-date-picker start
+// .dm-date-picker-c {
+//     padding: 10px;
+//     text-align: center;
+//     background: #fff;
+//     // margin-top:dp(40);
+//     .title {
+//         width: 100%;
+//         border-bottom: 1px solid #ccc;
+//         font-weight: bold;
+//         padding: 8px 0;
+//         margin: 0;
+//     }
+//     .row-date {
+//         display: -webkit-box;
+//         width: 100%;
+//         -webkit-box-sizing: border-box;
+//         border-bottom: 1px solid #ccc;
+//     }
+//     .date-item {
+//         float: none;
+//         -webkit-box-flex: 1;
+//         width: 0;
+//         text-align: center;
+//         box-sizing: border-box;
+//         height: 50px;
+//         line-height: 50px;
+//         color: #565151;
+//         position: relative;
+//         // color:#eee;
+//     }
+//     .sign {
+//         background: #ef6149;
+//         color: #fff;
+//         // padding:5px;
+//         border-radius: 100%;
+//         width: 25px;
+//         height: 25px;
+//         text-align: center;
+//         line-height: 25px;
+//         display: inline-block;
+//     }
+//     .week {
+//         color: #211F1F;
+//     }
+// }

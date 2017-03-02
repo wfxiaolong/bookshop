@@ -1,0 +1,18 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBack()"></button>
+    <div class="title">修改名称</div>
+    <button class="button button-clear" ng-click="editStart()">修改</button>
+</ion-header-bar>
+<ion-content class="page page-user" has-bouncing="true" overflow-scroll="false">
+    <div class="container mt-20">
+        <div class="item ptb-10 {{editFlag ? '':'disabled'}}">
+            <input type="text" class="edit-input" ng-disabled="!editFlag" ng-model="user.name">
+        </div>
+        <div style="margin-top: 50px;"></div>
+        <div class="text-center" ng-show="editFlag">
+            <button class="button btn-main mr-30" ng-click="editEnd()">取消</button>
+            <span style="margin-right: 40px;"></span>
+            <button class="button btn-main" ng-click="editName()">确认</button>
+        </div>
+    </div>
+</ion-content>
