@@ -45,6 +45,27 @@ define([
                         }
                     }
                 })
+                .state('tab.cart', { //购物车
+                    url: '/cart',
+                    views: {
+                        'tab-cart': {
+                            templateUrl: "templates/cart/tab-cart.html",
+                            controller: "cartCtrl",
+                            controllerUrl: 'js/controllers/cart/cart.js'
+                        }
+                    }
+                })
+                .state('tab.agent', { //购物车
+                    url: '/agent',
+                    views: {
+                        'tab-agent': {
+                            templateUrl: "templates/agent/tab-agent.html",
+                            controller: "agentCtrl",
+                            controllerUrl: 'js/controllers/agent/agent.js'
+                        }
+                    }
+                })
+
                 .state('tab.discover', { //发现
                     url: '/discover',
                     views: {
@@ -54,31 +75,6 @@ define([
                             },
                             controller: "discoverCtrl",
                             controllerUrl: 'js/controllers/discover/discover.js'
-                        }
-                    }
-                })
-                .state('tab.community', { //社区
-                    url: '/community',
-                    views: {
-                        'tab-community': {
-                            templateUrl: function() {
-                                return "templates/community/tab-community.html";
-                            },
-                            controller: "communityCtrl",
-                            controllerUrl: 'js/controllers/community/community.js'
-                        }
-                    }
-                })
-                .state('tab.yiyuan', { // 一元夺宝
-                    url: '/yiyuan',
-                    views: {
-                        'tab-yiyuan': {
-                            templateUrl: function() {
-                                return "templates/yiyuan/tab-yiyuan.html";
-                            },
-                            controller: "yiyuanCtrl",
-                            controllerUrl: 'js/controllers/yiyuan/yiyuan.js',
-                            cache: false
                         }
                     }
                 })
@@ -119,19 +115,9 @@ define([
                     controller: "newProCtrl",
                     controllerUrl: 'js/controllers/index/newPro.js'
                 })
-                .state('cart', { //购物车
-                    url: '/cart',
-                    templateUrl: function() {
-                        return "templates/index/cart.html";
-                    },
-                    controller: "cartCtrl",
-                    controllerUrl: 'js/controllers/index/cart.js'
-                })
                 .state('indexProDetail', { //商品详情(首页)
-                    url: '/indexProDetail/:goodId/:isShare/:fromNotification',
-                    templateUrl: function() {
-                        return "templates/index/indexProDetail.html";
-                    },
+                    url: '/indexProDetail/:goodId',
+                    templateUrl: "templates/index/indexProDetail.html",
                     cache:'false',
                     controller: "indexProDetailCtrl",
                     controllerUrl: 'js/controllers/index/indexProDetail.js'
@@ -210,50 +196,6 @@ define([
                     controller: "postDetailCtrl"
                 })
 
-
-                //一元云购
-                .state('yiyuanClassify', { //分类浏览（一元云购）
-                    url: '/yiyuanClassify',
-                    templateUrl: function() {
-                        return "templates/yiyuan/yiyuanClassify.html";
-                    },
-                })
-                .state('tenRmbArea', { //十元专区
-                    url: '/tenRmbArea',
-                    templateUrl: function() {
-                        return "templates/yiyuan/tenRmbArea.html";
-                    },
-                })
-                .state('newAnnounced', { //最新揭晓
-                    url: '/newAnnounced',
-                    templateUrl: function() {
-                        return "templates/yiyuan/newAnnounced.html";
-                    },
-                })
-                .state('prizeDetail', { //奖品详情
-                    url: '/prizeDetail',
-                    templateUrl: function() {
-                        return "templates/yiyuan/prizeDetail.html";
-                    },
-                })
-                .state('productDetail', { //宝贝详情
-                    url: '/productDetail',
-                    templateUrl: function() {
-                        return "templates/yiyuan/productDetail.html";
-                    },
-                })
-                .state('yiyuanRule', { //夺宝规则
-                    url: '/yiyuanRule',
-                    templateUrl: function() {
-                        return "templates/yiyuan/yiyuanRule.html";
-                    },
-                })
-                .state('yiyuanCart', { //购物车（一元云购）
-                    url: '/yiyuanCart',
-                    templateUrl: function() {
-                        return "templates/yiyuan/yiyuanCart.html";
-                    },
-                })
                 .state('goodsDetailShare',{
                     url:'/goodsDetailShare/:activity_id/:isShare/:params',
                     templateUrl:function(){
@@ -468,14 +410,6 @@ define([
                     controllerUrl: 'js/controllers/userBalance/charge.js',
                     controller: "chargeCtrl"
                 })
-                // .state('balanceChargeHis', { //充值记录
-                //     url: '/balanceChargeHis',
-                //     templateUrl: function() {
-                //         return "templates/userBalance/chargeHistory.html";
-                //     },
-                //     // controllerUrl: 'js/controllers/login.js',
-                //     // controller: "loginCtrl"
-                // })
                 .state('balanceDetail', { //收支明细
                     url: '/balanceDetail/:type',
                     templateUrl: function() {
@@ -722,7 +656,7 @@ define([
                     controller: "iframePageCtrl"
                 });
 
-            $urlRouterProvider.otherwise("tab/index");
+            // $urlRouterProvider.otherwise("tab/index");
 
         });
     // 返迴路由參數，p父文件夾，s文件名，e路由擴展設置（json格式）可以覆蓋默認設置

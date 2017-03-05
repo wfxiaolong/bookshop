@@ -5,43 +5,43 @@
 <ion-content class="page-user page page-order" has-bouncing="true" overflow-scroll="false">
     <a class="item-address mtb-15" ui-sref="address({fromPage:'confirmOrder'})">
         <div class="text">
-            <div ng-if="address">
+            <!-- <div ng-if="address"> -->
                 <p>
-                    <span class="mr-30 nowrap">收货人：{{address.name}}</span>
-                    <span class="nowrap">手机号码：{{address.mobile}}</span>
+                    <span class="mr-30 nowrap">收货人：小智</span>
+                    <span class="nowrap">手机号码：15913159968</span>
                 </p>
                 <div class="address">
                     <span class="nowrap">收货地址：</span>
-                    <span class="flex-1">{{address.province + address.city + address.area + address.detail}}</span>
+                    <span class="flex-1">广州光线中发达大厦</span>
                 </div>
-            </div>
-            <p class="m-0 ptb-20" ng-if="!address">请选择地址</p>
+            <!-- </div>f -->
+            <!-- <p class="m-0 ptb-20" ng-if="!address">请选择地址</p> -->
         </div>
         <i class="item-note c-3 f-34 ion-chevron-right"></i>
     </a>
     <div class="order-item mtb-15">
-        <div class="item item-thumbnail-left " ng-repeat="v in cartList">
-            <img ng-src="{{v.cover}}">
-            <div class="f-34 text-overflow">{{v.name}}</div>
+        <div class="item item-thumbnail-left ">
+            <img ng-src="http://xhsdyun.com/Storage/master/product/thumbs310/310_cc94d03fb2b74850b87d04d3c7a3da78.jpg">
+            <div class="f-34 text-overflow">读者文摘</div>
             <div class="f-24 c-9">
-                <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">描述：{{v.abstract}}</div>
+                <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">描述：ISBN:9787563949687｜编者:杨晖｜出版社:北京工业大学出版社</div>
                 <div>型号：{{v.model}}</div>
             </div>
             <div class="price clearfix f-28">
-                <span class="c-red">&yen;{{v.price}}</span>
-                <span class="fr">x{{v.quantity}}</span>
+                <span class="c-red">&yen;38.00</span>
+                <span class="fr">x2</span>
             </div>
         </div>
-        <a class="item bd-lr-none" ng-click="showModal()" ng-if="hasCoupon">
+        <a class="item bd-lr-none" ng-click="showModal()">
             <span class="f-28 mr-30">优惠券</span>
             <i class="item-note c-3 f-34 ion-chevron-right fr"></i>
-            <span class="f-28 fr" style="padding-right: 20px;"> 有{{shopCoupon.length}}张优惠券可用</span>
+            <span class="f-28 fr" style="padding-right: 20px;"> 有1张优惠券可用</span>
         </a>
         <div class="item bd-lr-none ptb-10 f-26">
-            <p class="clearfix"><span>商品总价：</span><span class="fr">&yen;{{order.total_price}}</span></p>
-            <p class="clearfix"><span>运费：</span><span class="fr">&yen;{{order.express_fee}}</span></p>
+            <p class="clearfix"><span>商品总价：</span><span class="fr">&yen;48.00</span></p>
+            <p class="clearfix"><span>运费：</span><span class="fr">&yen;5.00</span></p>
             <!-- <p class="clearfix"><span>优惠抵扣：</span><span class="fr">-&yen;{{coupon.discount || '0.00'}}</span></p> -->
-            <p class="clearfix"><span>优惠抵扣：</span><span class="fr">-&yen;{{(order.total_price - coupon.discount  > 0 ? coupon.discount : order.total_price - 0.01) || '0.00'}}</span></p>
+            <p class="clearfix"><span>优惠抵扣：</span><span class="fr">-&yen;5</span></p>
         </div>
         <div class="mtb-15" >
             <div class="item bd-lr-none ptb-10 f-26">

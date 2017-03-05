@@ -15,7 +15,6 @@ define(['app', 'js/utils/tips', 'weixinJsSDK'], function(app, Tips, wx) {
                 'http://*.weishi.com',
                 'https://*.weishi.com'
             ]);
-            // var domain = 'https://weiyaxunda.com'; //上架用域名
             // var domain = 'http://c.damaiplus.com/vrsm/web';
             var isInApp = ionic.Platform.isWebView();
             var domain = 'http://weiyaxunda.com'; //上架用域名
@@ -31,10 +30,6 @@ define(['app', 'js/utils/tips', 'weixinJsSDK'], function(app, Tips, wx) {
                 is_wechat: ionic.Platform.ua.toLowerCase().match(/MicroMessenger/i) == "micromessenger",
                 isInApp: ionic.Platform.isWebView()
             };
-            // // 设置键盘跟随....
-            // if (APP.isIOS && APP.isInApp && window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-            //     cordova.plugins.Keyboard.disableScroll(false);
-            // }
         }])
         .run(['$ionicPlatform', '$ionicLoading', '$rootScope', '$ionicHistory', 'Storage', '$state', 'httpRequest', '$rootScope', '$cordovaAppVersion', '$timeout',
             function($ionicPlatform, $ionicLoading, $rootScope, $ionicHistory, Storage, $state, httpRequest, $rootScope, $cordovaAppVersion, $timeout) {
@@ -104,31 +99,6 @@ define(['app', 'js/utils/tips', 'weixinJsSDK'], function(app, Tips, wx) {
                     });
                 }
 
-
-                //初始化友盟推送
-                // if (window.DMPush && !APP.isIOS) {
-                //     DMPush.init('开始初始化友盟...', function(re) {
-                //         //获取设备号device_token（供单播使用）
-                //         DMPush.get_device_token('获取设备号失败', function(re) {
-                //             APP.device_token = re;
-                //             console.log(APP.device_token);
-                //         }, function(re) {
-                //             APP.console = 'DMPush device_token_fail:' + re;
-                //         });
-                //         // 获取推送消息以执行后续动作
-                //         DMPush.get_newest_notification("获取推送消息失败", function(re) {
-                //             APP.newest_notification = re;
-                //             console.log(APP.newest_notification);
-                //         }, function(re) {
-                //             APP.get_newest_notification_console = 'DMPush get_newest_notification:' + re;
-                //         })
-                //         console.log(APP);
-                //     }, function(re) {
-                //         APP.console = 'DMPush init:' + re;
-                //     });
-                // }
-
-
                 function getCookie(name) {
                     var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
                     if (arr = document.cookie.match(reg))
@@ -164,49 +134,6 @@ define(['app', 'js/utils/tips', 'weixinJsSDK'], function(app, Tips, wx) {
                         APP.get_newest_notification_console = 'DMPush get_newest_notification:' + re;
                     })
                     console.log(window.APP);
-                }
-
-                // 在iOS下处理推送消息
-                if (window.DMPush && APP.isIOS) {
-                    DMPush.get_newest_notification("获取推送消息失败", function(re) {
-                        APP.newest_notification_ios = re;
-                        if (Storage.get("newest_notification_id_ios") == null) { Storage.set("newest_notification_id_ios", re.d); }
-                        var old_notification_id_ios = Storage.get("newest_notification_id_ios");
-                        if (old_notification_id_ios != re.d) {
-                            Storage.set("newest_notification_id_ios", re.d);
-                            if (re.push_type == 2) { // 进入商品详情
-                                $state.go("indexProDetail", { goodId: re.id, fromNotification: 'fromnotification' });
-                            }
-                        }
-                        console.log(re);
-                    }, function(re) {
-                        APP.get_newest_notification_console = 'DMPush get_newest_notification:' + re;
-                    })
-                    console.log(window.APP);
-                }
-
-
-                //在iOS下直接获取device_token
-                // if (window.DMPush && APP.isIOS) {
-                //     DMPush.get_device_token('获取设备号失败', function(re) {
-                //         APP.device_token = re;
-                //     }, function(re) {});
-                // }
-                //如果是APP的话默认先隐藏夺宝
-                $rootScope.showDuobao = window.APP.isInApp ? false : true;
-                //隐藏夺宝
-                if (window.APP.isInApp) {
-                    $cordovaAppVersion.getVersionNumber().then(function(version) {
-                        httpRequest.post('?method=website.duobaoBtn', { version: 'V' + version }, function(re) {
-                            if (re.data.state) { //找到了相应的版本号若设置为显示的话则显示夺宝
-                                if (re.data.data.duobao_display == '1') {
-                                    $rootScope.showDuobao = true;
-                                }
-                            } else { //找不到版本号也显示夺宝
-                                $rootScope.showDuobao = true;
-                            }
-                        }, function(re) {});
-                    });
                 }
 
                 //注册loadding
@@ -363,13 +290,4 @@ define(['app', 'js/utils/tips', 'weixinJsSDK'], function(app, Tips, wx) {
                 });
             }
         ])
-        // .run(['$document', '$window', function($document, $window) {
-        //     var document = $document[0]; //unwrap the document from the jquery wrapper
-        //     // RMB HACK FOR IPAD NOT FOCUSING INPUTS INSIDE IFRAME
-        //     document.addEventListener('click', function(event) {
-        //         var hasFocus = document.hasFocus();
-        //         if (!hasFocus)
-        //             $window.focus();
-        //     });
-        // }]);
 });

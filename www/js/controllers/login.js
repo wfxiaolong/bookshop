@@ -36,27 +36,27 @@ define(['app', 'js/utils/tips'], function(app, Tips) {
                 device_token: APP.device_token ? APP.device_token : "",
                 client: APP.isInApp ? (APP.isIOS ? 2 : 1) : 0
             }
-            if (validate(phone, password)) {
-                httpRequest.postWithUI($scope, '?method=user.login', postData, function(re) {
-                    if (re.data.state) {
-                        if ($scope.fromPage == "index") {  // 如果是点击送优惠券的图片这个入口进来的则跳转到我的券包页面
-                            Tips.showTips('登录成功,立即查看优惠券!');
-                            $state.go("coupon");
-                        } else {
+            // if (validate(phone, password)) {
+            //     httpRequest.postWithUI($scope, '?method=user.login', postData, function(re) {
+            //         if (re.data.state) {
+            //             if ($scope.fromPage == "index") {  // 如果是点击送优惠券的图片这个入口进来的则跳转到我的券包页面
+            //                 Tips.showTips('登录成功,立即查看优惠券!');
+            //                 $state.go("coupon");
+            //             } else {
                             Tips.showTips('登录成功!');
-                            re.data.data.password = password;
-                            Storage.set('vrsm_auth', re.data.data);
-                            if ($state.params.fromPage == 'serviceChoose') {
-                                $ionicHistory.goBack(-1);
-                            } else {
+                            // re.data.data.password = password;
+                            Storage.set('vrsm_auth', "re.data.data");
+                            // if ($state.params.fromPage == 'serviceChoose') {
+                            //     $ionicHistory.goBack(-1);
+                            // } else {
                                 $state.go('tab.index');
-                            }
-                        }
-                    }
-                }, function(re) {
-                    Tips.showTips(re.data.msg);
-                });
-            }
+                            // }
+                //         }
+                //     }
+                // }, function(re) {
+                //     Tips.showTips(re.data.msg);
+                // });
+            // }
         };
 
         // 注册按钮

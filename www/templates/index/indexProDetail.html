@@ -8,37 +8,26 @@
 <ion-content class="page page-index" has-bouncing="true" overflow-scroll="false">
     <div style="height:20px;background:#fff" ng-if="isIOSApp"></div>
     <ion-slide-box class="swiper">
-        <ion-slide ng-repeat="v in good.pics">
-            <img ng-src="{{::v}}" alt="">
+        <ion-slide>
+            <img ng-src="http://xhsdyun.com/Storage/master/product/images/cc94d03fb2b74850b87d04d3c7a3da78.jpg" alt="">
+        </ion-slide>
+        <ion-slide>
+            <img ng-src="http://xhsdyun.com/Storage/master/product/images/cc94d03fb2b74850b87d04d3c7a3da78.jpg" alt="">
         </ion-slide>
     </ion-slide-box>
     <div class="item bd-lr-none ptb-20">
         <div class="pro-desc">
             <div class="flex1">
-                <p class="f-34" style="white-space:initial">{{::good.name}}</p>
-                <p class="f-24 c-9" style="white-space:initial">{{::good.abstract}}</p>
+                <p class="f-34" style="white-space:initial">读者文摘大全集（2016版）</p>
+                <p class="f-24 c-9" style="white-space:initial">ISBN:9787563949687｜编者:杨晖｜出版社:北京工业大学出版社</p>
             </div>
             <div class="share" ng-click="sharePopShow()">
                 <p class="text-center"><i class="iconfont icon-share"></i></p>
                 <p class="f-24">分享</p>
             </div>
         </div>
-        <p class="f-34 c-red mt-10">&yen;{{good.stock[0].price}}</p>
-        <div class="f-24 c-9 justify">
-            <span>快递：{{good.express_fee}}元</span>
-            <span>月销量 {{good.sales}}笔</span>
-            <!-- <span>广东·深圳</span> -->
-        </div>
+        <p class="f-34 c-red mt-10">&yen;38.00</p>
     </div>
-    <a class="item ptb-20 bd-lr-none mtb-15" ng-if="good.coupon.length != 0">
-        <span class="f-34 c-6">购买送优惠券：</span>
-        <p class="f-26 c-6" ng-repeat="v in good.coupon" >{{v.name}}</p>
-    </a>
-    <a class="item ptb-20 bd-lr-none mtb-15" ng-click="popShow('standardPop')">
-        <span class="f-34 c-6" ng-show="!nowStandard">选择型号：</span>
-        <span class="f-26 c-6" ng-show="nowStandard">已选择：{{nowStandard.model}} x {{goodNum}}</span>
-        <i class="item-note c-3 f-34 ion-chevron-right"></i>
-    </a>
     <div class="item ptb-20 bd-lr-none mtb-15">
         <div class="f-34">用户评价
             <a class="item fr" href="tel:0755-83585093" style="border:none; padding: 0;">
@@ -54,22 +43,35 @@
                 <div class="star-full star-{{averageStar}}"></div>
             </div>
         </div>
-        <div class="user-comment b-bot-dotted ptb-10" ng-repeat="v in commentList">
+        <div class="user-comment b-bot-dotted ptb-10">
+            <p class="f-24 c-9" style="white-space: normal;">很好实用的书籍，很好实用的书籍很好实用的书籍很好实用的书籍很好实用的书籍</p>
+            <p class="f-24 c-9">商家回复：感谢支持</p>
             <div class="justify">
                 <div class="star-wrap star-wrap-small">
                     <div class="star-full star-{{v.star}}"></div>
                 </div>
-                <p class="f-24 c-6">{{v.nickname}}<span class="mr-30"></span>{{v.time * 1000 | date:"yyyy-MM-dd"}}</p>
+                <p class="f-24 c-6">小城<span class="mr-30"></span>{{1450800000 * 1000 | date:"yyyy-MM-dd"}}</p>
             </div>
-            <p class="f-24 c-9" style="white-space: normal;">{{v.content}}</p>
-            <p class="f-24 c-9" ng-if="v.reply_status == 1">商家回复：{{v.reply}}</p>
         </div>
         <p class="text-center f-24 c-9 mt-10" ui-sref="userComments({goodId:good.id})">查看更多</p>
     </div>
     <div class="item ptb-20 bd-lr-none text-center">
         商品详情
     </div>
-    <div class="rich-text c-9" style="background:#fff;padding:10px;" ng-bind-html="good.content | trustHtml">
+    <div class="rich-text c-9" style="background:#fff;padding:10px;">
+        <div class="goods-detail bgColor-white btns-fixed-padding">
+            <div class="panel panel-default" style="display: none;">
+                <div class="panel-heading">
+                    属性
+                </div>
+                <table class="table" id="attrtable">
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+            </div>
+            <h3 style="margin: 0px; padding: 0px 0px 0px 20px; font-size: 14px; line-height: 28px; width: 99px; height: 25px; overflow: hidden; color: rgb(255, 255, 255); background: url(https://static.360buyimg.com/item/main/1.0.33/css/i/item.sprite.png) 0px -13px no-repeat;">编辑推荐</h3><p style="margin-top: 0px; margin-bottom: 0px; padding: 0px;">　　年度焦点·一世珍藏</p><p style="margin-top: 0px; margin-bottom: 0px; padding: 0px;">　　这是一本包罗万象的书，汇集了感人至深的故事</p><p style="margin-top: 0px; margin-bottom: 0px; padding: 0px;">　　浓缩了世间种种奥秘与精髓，引发了全球亿万读者的心灵共鸣。</p><p><br></p><h3 style="margin: 0px; padding: 0px 0px 0px 20px; font-size: 14px; line-height: 28px; width: 99px; height: 25px; overflow: hidden; color: rgb(255, 255, 255); background: url(https://static.360buyimg.com/item/main/1.0.33/css/i/item.sprite.png) 0px -13px no-repeat;">内容简介</h3><p style="margin-top: 0px; margin-bottom: 0px; padding: 0px;">　　本书精选了几百个感人至深的故事，这些故事曾经影响了许多人的心灵。用心去看去领悟，或许某些故事会给你以深刻的启迪。有的会让你感动落泪，有的会让你有特别的感受，有的则会让你会心一笑。你会感受本书如春风轻轻吹拂你，帮你从乏味的生活中找到一份舒畅和甜美。</p><h3 style="margin: 0px; padding: 0px 0px 0px 20px; font-size: 14px; line-height: 28px; width: 99px; height: 25px; overflow: hidden; color: rgb(255, 255, 255); background: url(https://static.360buyimg.com/item/main/1.0.33/css/i/item.sprite.png) 0px -13px no-repeat;">作者简介</h3><p style="margin-top: 0px; margin-bottom: 0px; padding: 0px;">　　杨晖，编辑，自由撰稿人，图书行业十几年丰富经验，曾策划、编著过多本畅销社科励志类图书。如《当心理学遇到博弈论》，《从优秀到卓越的11项修炼》等。</p><p><br></p>
+        </div>
     </div>
     <div class="has-bot-bar"></div>
 </ion-content>
@@ -83,27 +85,20 @@
     <div class="bg" ng-click="popHide('standardPop',true)"></div>
     <div class="public-pop-up p-0">
         <div class="cart-list-item b-bot-dotted" style="padding:0.5rem 1rem;">
-            <img ng-src="{{good.cover}}" alt="" class="img-left">
+            <img ng-src="http://xhsdyun.com/Storage/master/product/images/cc94d03fb2b74850b87d04d3c7a3da78.jpg" alt="" class="img-left">
             <div class="text-wrap">
                 <p class="f-34 clearfix text-overflow">
-                    {{good.name}}
+                    读者文摘大全集（2016版）
                 </p>
-                <p class="f-24 c-9 text-overflow-3">{{good.abstract}}</p>
-                <p class="c-red f-34">&yen;{{nowStandard.price || ''}}</p>
-                <p class="f-28 c-9">库存：{{nowStandard.stock || ''}}</p>
-            </div>
-        </div>
-        <div class="more-list container " style="border: none;">
-            <p class="f-28">型号</p>
-            <div class="classify {{standard == $index  ? 'active' : ''}}" ng-repeat="v in good.stock" ng-click="chooseStandard(v,$index)" style="width: initial;">
-                <span>{{v.model}}</span>
+                <p class="f-24 c-9 text-overflow-3">SBN:9787563949687｜编者:杨晖｜出版社:北京工业大学出版社</p>
+                <p class="c-red f-34">&yen;38.00</p>
+                <p class="f-28 c-9">库存：100</p>
             </div>
         </div>
         <div class="b-bot-dotted"></div>
         <div class="clearfix container ptb-50" style="font-size: 0;">
             <span class="f-28" style="vertical-align: super;">购买数量：</span>
             <div class="add-btn" ng-click="validate('reduce')">-</div>
-            <!-- <div class="num">{{goodNum || 1}}</div> -->
             <input class="num" type="number" style="vertical-align: top;display: inline-block;height: 3rem;line-height: 3rem;border: 1px solid #e8e8e8;width: 5rem;text-align: center;font-size: 15px;" ng-model="input.goodNum" ng-change="numCtrl()">
             <div class="add-btn" ng-click="validate('add')">+</div>
         </div>
@@ -113,16 +108,6 @@
         </div>
     </div>
 </div>
-<!-- <div class="bar bar-footer discover-footer" style="background:rgba(0,0,0,0.4);height:5.5rem;padding:0 10px;">
-    <img src="img/icon.png" style="width: 45px;height:45px" class="mr-30">
-    <div class="c-white" style="-webkit-box-flex: 1;-webkit-flex: 1;flex:1">
-        <p class="m-0">VR数码前线</p>
-        <p class="m-0 f-24">下载APP，开启全球首家C2M数码商城购物之旅</p>
-    </div>
-    <a href="http://weiyaxunda.com/?ct=index&ac=share">
-        <button class="button btn-main f-28">立刻下载</button>
-    </a>
-</div> -->
 <div class="pop-up-wrap" ng-show="webSharePop">
     <div class="bg" ng-click="popHide('webSharePop')">
         <p class="c-white text-right" style="padding:10px">点击右上角

@@ -41,28 +41,17 @@ define(['app', 'js/utils/tips','weixinJsSDK'], function(app, Tips,wx) {
                     }, function(re) {});
                 }
             });
-            //选择型号
-            $scope.chooseStandard = function(v, index) {
-                $scope.input.goodNum = 1;
-                if ($scope.standard == index) {
-                    $scope.standard = -1;
-                    $scope.nowStandard = undefined;
-                    return;
-                }
-                $scope.standard = index;
-                $scope.nowStandard = v;
-            };
             //跳转购物车
             $scope.jumpCart = function() {
-                if (!$scope.auth) {
-                    if(!APP.isInApp){
-                        $state.go('login');
-                        return
-                    }
-                    Tips.showTips('请先登录');
-                    return;
-                }
-                $state.go('cart');
+                // if (!$scope.auth) {
+                //     if(!APP.isInApp){
+                //         $state.go('login');
+                //         return
+                //     }
+                //     Tips.showTips('请先登录');
+                //     return;
+                // }
+                $state.go('tab.cart');
             };
             //收藏商品
             $scope.collect = function() {
@@ -100,14 +89,6 @@ define(['app', 'js/utils/tips','weixinJsSDK'], function(app, Tips,wx) {
             };
             //修改商品数量
             $scope.validate = function(action) {
-                if (!$scope.nowStandard) {
-                    Tips.showTips('请先选择型号');
-                    return;
-                }
-                if ($scope.nowStandard.stock == 0) {
-                    Tips.showTips('该型号已没有库存');
-                    return;
-                }
                 if (action == 'add') {
                     $scope.addNum();
                 } else {
@@ -118,8 +99,8 @@ define(['app', 'js/utils/tips','weixinJsSDK'], function(app, Tips,wx) {
                 if ($scope.input.goodNum < 1) {
                     $scope.input.goodNum = '';
                 }
-                if (Number($scope.input.goodNum) >= $scope.nowStandard.stock) {
-                    $scope.input.goodNum = Number($scope.nowStandard.stock);
+                if (Number($scope.input.goodNum) >= 100) {
+                    $scope.input.goodNum = Number(100);
                 }
             };
             $scope.reduceNum = function() {
@@ -130,7 +111,7 @@ define(['app', 'js/utils/tips','weixinJsSDK'], function(app, Tips,wx) {
                 $scope.input.goodNum--;
             };
             $scope.addNum = function() {
-                if ($scope.input.goodNum >= $scope.nowStandard.stock) {
+                if ($scope.input.goodNum >= 100) {
                     Tips.showTips('已没有更多的库存');
                     return;
                 }
@@ -140,36 +121,28 @@ define(['app', 'js/utils/tips','weixinJsSDK'], function(app, Tips,wx) {
             $scope.addCart = function() {
                 var postData = validateAndGenerate();
                 if (postData) {
-                    httpRequest.postWithAuth($scope, '?method=shop.addShopCart', postData, function(re) {
-                        if (re.data.state) {
+                //     httpRequest.postWithAuth($scope, '?method=shop.addShopCart', postData, function(re) {
+                //         if (re.data.state) {
                             Tips.showTips("添加购物车成功");
                             $scope.popHide("standardPop");
-                        }
-                    }, function(re) {
-                        Tips.showTips(re.data.msg);
-                    });
+                //         }
+                //     }, function(re) {
+                //         Tips.showTips(re.data.msg);
+                //     });
                 }
             };
             //立即购买
             $scope.buyNow = function() {
                 var postData = validateAndGenerate();
                 if (postData) {
-                    httpRequest.postWithAuthUser($scope, '?method=shop.addShopCart', postData, function(re) {
-                        if (re.data.state) {
-                            $state.go('confirmOrder', { cartIds: re.data.data.cart_id });
-                        }
-                    }, function(re) {
-                        Tips.showTips(re.data.msg);
-                    });
+                    // httpRequest.postWithAuthUser($scope, '?method=shop.addShopCart', postData, function(re) {
+                        // if (re.data.state) {
+                            $state.go('confirmOrder', { cartIds: 're.data.data.cart_id' });
+                        // }
+                    // }, function(re) {
+                        // Tips.showTips(re.data.msg);
+                    // });
                 }
-            };
-            //确认型号选择
-            $scope.confirmStandard = function() {
-                if (!$scope.nowStandard || $scope.nowStandard.stock == 0) {
-                    Tips.showTips('该型号已没有库存');
-                    return;
-                }
-                $scope.popHide('standardPop');
             };
 
             $scope.sharePopShow = function() {
@@ -184,7 +157,6 @@ define(['app', 'js/utils/tips','weixinJsSDK'], function(app, Tips,wx) {
 
             $scope.popShow = function(popName) {
                 $scope[popName] = true;
-                $scope.chooseStandard($scope.good.stock[0], 0);
             };
             $scope.popHide = function(popName) {
                 $scope[popName] = false;
@@ -201,25 +173,21 @@ define(['app', 'js/utils/tips','weixinJsSDK'], function(app, Tips,wx) {
             }
 
             function validateAndGenerate() {
-                if (!$scope.auth) {
-                    if(!APP.isInApp){
-                        $state.go('login');
-                        return
-                    }
-                    Tips.showTips('请先登录');
-                    return undefined;
-                }
-                if (!$scope.nowStandard) {
-                    if ($scope.standardPop) {
-                        Tips.showTips('请选择型号');
-                    } else {
-                        $scope.popShow('standardPop');
-                    }
-                    return undefined;
+                // if (!$scope.auth) {
+                //     if(!APP.isInApp){
+                //         $state.go('login');
+                //         return
+                //     }
+                //     Tips.showTips('请先登录');
+                //     return undefined;
+                // }
+                if (!$scope['standardPop']) {
+                    $scope.popShow('standardPop');
+                    return;
                 }
                 var postData = {
-                    good_id: $scope.goodId,
-                    stock_id: $scope.nowStandard.id,
+                    // good_id: $scope.goodId,
+                    // stock_id: $scope.nowStandard.id,
                     quantity: $scope.input.goodNum
                 }
                 return postData;

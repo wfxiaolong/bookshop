@@ -189,7 +189,7 @@ define(['app', 'js/utils/tips'], function(app, Tips) {
                             $rootScope.newMessage = re.data.data.message > 0 ? true : false;
                         }
                     }, function(re) {
-                        console.log(re.data.msg);
+                        console.log(re.data);
                     }, function(re) { checkHttpDone(); });
                 }
                 //获取商城显示的分类以及商品
@@ -204,7 +204,7 @@ define(['app', 'js/utils/tips'], function(app, Tips) {
                         $scope.articleList = re.data.data.list;
                     }
                 }, function(re) {
-                    Tips.showTips(re.data.msg);
+                    Tips.showTips(re.data);
                 }, function(re) { checkHttpDone(); });
                 //获取商城分类
                 $scope.shopCategory = [];
@@ -295,7 +295,7 @@ define(['app', 'js/utils/tips'], function(app, Tips) {
                         });
                     }
                 }, function(re) {
-                    Tips.showTips(re.data.msg);
+                    Tips.showTips(re.data);
                 });
                 is_update = true;
             };

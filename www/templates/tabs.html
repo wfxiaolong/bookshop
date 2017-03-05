@@ -10,20 +10,24 @@ navigation history that also transitions its views in and out.
     <ion-nav-view name="tab-index"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="发现" icon-off="iconfont icon-discover" icon-on="iconfont icon-discover" ui-sref="tab.discover">
+  <ion-tab title="购物车" icon-off="iconfont icon-cart" icon-on="iconfont icon-cart" ui-sref="tab.cart">
+    <ion-nav-view name="tab-cart"></ion-nav-view>
+  </ion-tab>
+
+<!--   <ion-tab title="发现" icon-off="iconfont icon-discover" icon-on="iconfont icon-discover" ui-sref="tab.discover">
     <ion-nav-view name="tab-discover"></ion-nav-view>
   </ion-tab>
 
   <ion-tab title="社区" icon-off="iconfont icon-community" icon-on="iconfont icon-community" ui-sref="tab.community">
     <ion-nav-view name="tab-community"></ion-nav-view>
-  </ion-tab>
-
-  <ion-tab title="一元专区" icon-off="iconfont icon-yiyuan" icon-on="iconfont icon-yiyuan" ui-sref="tab.yiyuan" class="{{showDuobao ? '' : 'tab-hidden'}}">
-    <ion-nav-view name="tab-yiyuan"></ion-nav-view>
-  </ion-tab>
+  </ion-tab> -->
 
   <ion-tab title="我的" icon-off="iconfont icon-user" icon-on="iconfont icon-user" ui-sref="tab.user">
     <ion-nav-view name="tab-user"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="代理" icon-off="iconfont icon-discover" icon-on="iconfont icon-discover" ui-sref="tab.agent">
+    <ion-nav-view name="tab-agent"></ion-nav-view>
   </ion-tab>
 
 </ion-tabs>

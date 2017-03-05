@@ -3,111 +3,87 @@
 </ion-header-bar> -->
 <ion-header-bar align-title="center" class="app-bar page-index p-0">
     <div class="top-bar" style="width: 100%; background-color: #21b2ff;">
-        <i class="iconfont icon-message {{newMessage ? 'new' : ''}}" style="color: #fff;" ng-click="jumpMyMessage()"></i>
         <div class="search-wrap" style="background-color: #fff;" ui-sref="search">
             <i class="ion-ios-search-strong icon-search"></i>
             <span>搜索你想要的宝贝</span>
         </div>
-        <i class="iconfont icon-cart" ng-click="jumpCart()" style="color: #fff;"></i>
+        <i class="iconfont icon-message {{newMessage ? 'new' : ''}}" style="color: #fff;" ng-click="jumpMyMessage()"></i>
+        <!-- <i class="iconfont icon-cart" ng-click="jumpCart()" style="color: #fff;"></i> -->
     </div>
 </ion-header-bar>
 <ion-content class="page page-index" has-bouncing="true" overflow-scroll="false">
     <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()">
     </ion-refresher>
-    <!--     <div class="top-bar b-bot">
-        <i class="iconfont icon-message {{newMessage ? 'new' : ''}}" ng-click="jumpMyMessage()"></i>
-        <div class="search-wrap" ui-sref="search">
-            <i class="ion-ios-search-strong icon-search"></i>
-            <span>搜索你想要的宝贝</span>
-        </div>
-        <i class="iconfont icon-cart" ng-click="jumpCart()"></i>
-    </div>
- -->
     <ion-slide-box class="swiper" delegate-handle="my-handle" auto-play="true" does-continue="true" slide-interval="3000">
-        <ion-slide ng-repeat="v in indexBanner" ng-if="!(v.url_type == 4 && !showDuobao)">
-            <a href="{{v.url}}" ng-click="jumpOtherUrl(v,$event)" ng-if="v.url_type == 0">
-                <img ng-src="{{v.pic}}" alt="{{v.title}}">
-            </a>
-            <img ng-src="{{v.pic}}" alt="{{v.title}}" ng-click="jumpInfo(v)" ng-if="v.url_type != 0">
+        <!-- <ion-slide ng-repeat="v in indexBanner"> -->
+        <ion-slide>
+            <img ng-src="http://weiyaxunda.com/uploads/1702/041349401970.jpg" alt="{{v.title}}" ng-click="jumpInfo(v)" ng-if="v.url_type != 0">
+        </ion-slide>
+        <ion-slide>
+            <img ng-src="http://weiyaxunda.com/uploads/1702/041349401970.jpg" alt="{{v.title}}" ng-click="jumpInfo(v)" ng-if="v.url_type != 0">
         </ion-slide>
     </ion-slide-box>
-    <div class="nav-list b-bot b-top ptb-10 mtb-15 clearfix" ng-show="!is_shopCategory_slide">
-        <div class="list-item w-25p fl" style="width: 20%; padding: 0;" ng-repeat="v in shopCategory" ng-click="goIndexClassify(v)">
-            <img style="height: 5.7rem; width: 5.7rem;" ng-src="{{::v.pic}}" alt="">
-            <div class="f-24 c-6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{::v.name}}</div>
+    <div style="height: 100px;" class="nav-list b-top ptb-10 mt-10 clearfix">
+        <div class="list-item w-25p fl" style="padding: 0;">
+            <img style="height: 5.7rem; width: 5.7rem;" ng-src="img/7@2x.png" alt="">
+            <div class="f-24 c-6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">缴费</div>
+        </div>
+        <div class="list-item w-25p fl" style="padding: 0;">
+            <img style="height: 5.7rem; width: 5.7rem;" ng-src="img/8@2x.png" alt="">
+            <div class="f-24 c-6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">商品</div>
+        </div>
+        <div class="list-item w-25p fl" style="padding: 0;">
+            <img style="height: 5.7rem; width: 5.7rem;" ng-src="img/9@2x.png" alt="">
+            <div class="f-24 c-6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">活动</div>
+        </div>
+        <div class="list-item w-25p fl" style="padding: 0;" ui-sref="tab.user">
+            <img style="height: 5.7rem; width: 5.7rem;" ng-src="img/10@2x.png" alt="">
+            <div class="f-24 c-6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">会员</div>
         </div>
     </div>
-    <!-- class="banner-images light-bg padding-bottom" -->
-    <ion-slide-box ng-show="is_shopCategory_slide" does-continue="false" auto-play="false" show-pager="false">
-        <ion-slide ng-repeat="item in shopCategory">
-            <div style="height: 200px;" class="nav-list b-top ptb-10 mt-10 clearfix">
-                <div class="list-item w-25p fl" style="width: 20%; padding: 0;" ng-repeat="v in item" ng-click="goIndexClassify(v)">
-                    <img style="height: 5.7rem; width: 5.7rem;" ng-src="{{::v.pic}}" alt="">
-                    <div class="f-24 c-6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{::v.name}}</div>
-                </div>
-            </div>
-        </ion-slide>
-    </ion-slide-box>
-    <div class="row text-center f-34" style="padding: 0;">
-        <div class="col index-bg-red" ui-sref="newPro">新品上新</div>
-        <div class="col index-bg-red" style="background-color: #ff6000;" ui-sref="repairCenter">维修专区</div>
+
+    <div class="index-list bg-white b-bot">
+        <div class="index-item" ui-sref="indexProDetail({goodId:v2.id})">
+            <img ng-src="http://xhsdyun.com/Storage/master/product/thumbs310/310_cc94d03fb2b74850b87d04d3c7a3da78.jpg" alt="">
+            <p class="text-left f-30 text-overflow-2">读者文摘</p>
+            <p class="text-left f-24 m-0 c-6 clearfix">
+                <span class="c-red f-30">&yen;38.00</span>
+                <span class="fr c-6 f-24">月销量 5笔</span>
+            </p>
+        </div>
+        <div class="index-item" ui-sref="indexProDetail({goodId:v2.id})">
+            <img ng-src="http://xhsdyun.com/Storage/master/product/thumbs310/310_cc94d03fb2b74850b87d04d3c7a3da78.jpg" alt="">
+            <p class="text-left f-30 text-overflow-2">读者文摘</p>
+            <p class="text-left f-24 m-0 c-6 clearfix">
+                <span class="c-red f-30">&yen;38.00</span>
+                <span class="fr c-6 f-24">月销量 5笔</span>
+            </p>
+        </div>
+        <div class="index-item" ui-sref="indexProDetail({goodId:v2.id})">
+            <img ng-src="http://xhsdyun.com/Storage/master/product/thumbs310/310_69db97e719e34085b55640f8da393b2e.jpg" alt="">
+            <p class="text-left f-30 text-overflow-2">大国医</p>
+            <p class="text-left f-24 m-0 c-6 clearfix">
+                <span class="c-red f-30">&yen;18.00</span>
+                <span class="fr c-6 f-24">月销量 10笔</span>
+            </p>
+        </div>
+        <div class="index-item" ui-sref="indexProDetail({goodId:v2.id})">
+            <img ng-src="http://xhsdyun.com/Storage/master/product/thumbs310/310_cc94d03fb2b74850b87d04d3c7a3da78.jpg" alt="">
+            <p class="text-left f-30 text-overflow-2">读者文摘</p>
+            <p class="text-left f-24 m-0 c-6 clearfix">
+                <span class="c-red f-30">&yen;38.00</span>
+                <span class="fr c-6 f-24">月销量 5笔</span>
+            </p>
+        </div>
+        <div class="index-item" ui-sref="indexProDetail({goodId:v2.id})">
+            <img ng-src="http://xhsdyun.com/Storage/master/product/thumbs310/310_cc94d03fb2b74850b87d04d3c7a3da78.jpg" alt="">
+            <p class="text-left f-30 text-overflow-2">读者文摘</p>
+            <p class="text-left f-24 m-0 c-6 clearfix">
+                <span class="c-red f-30">&yen;38.00</span>
+                <span class="fr c-6 f-24">月销量 5笔</span>
+            </p>
+        </div>
+        <div class="index-item" style="border:none" ng-if="v.goods.length % 2 == 1"></div>
     </div>
-    <!-- <div class="mtb-15">
-        <div class="item ptb-10 bd-lr-none clearfix">
-            <span class="f-34">发现</span>
-            <span class="f-24 fr c-main" ui-sref="tab.discover">更多资讯&gt;&gt;</span>
-        </div>
-        <div class="container bg-white">
-            <div class="discover-list-item" ng-repeat="v in articleList" ui-sref="infoDetail({infoId:v.id})">
-                <div class="img-wrap">
-                    <img ng-src="{{v.cover}}" alt="">
-                </div>
-                <div class="text-wrap">
-                    <p class="f-30 text-overflow">{{v.title}}</p>
-                    <p class="text-main">{{v.content | htmlFilter}}</p>
-                    <p class="clearfix f-22 c-9"><span class="fl">{{v.time * 1000 | date:"yyyy-MM-dd"}}</span><span class="fr"><i class="iconfont icon-like c-3"></i>&nbsp;{{v.likes}}</span></p>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <div>
-        <div class="item ptb-10 bd-lr-none clearfix">
-            <span class="f-34">最热活动</span>
-            <!-- <span class="f-24 fr c-main" ui-sref="hotPost" href="#/hotPost">更多&gt;&gt;</span> -->
-        </div>
-        <ion-slide-box on-slide-changed="slideHasChanged($index)" class="swiper {{dpSlides.length == 2 ? (slidePageHack ? 'two-slides-1' : 'two-slides') : ''}}" delegate-handle="hot" auto-play="true" does-continue="true" slide-interval="3000">
-            <ion-slide ng-repeat="v in dpSlides" ng-if="!(v.url_type == 4 && !showDuobao)">
-                <a href="{{v.url}}" ng-click="jumpOtherUrl(v,$event)" ng-if="v.url_type == 0">
-                    <img ng-src="{{v.pic}}" alt="{{v.title}}">
-                </a>
-                <img ng-src="{{v.pic}}" alt="{{v.title}}" ng-click="jumpInfo(v)" ng-if="v.url_type != 0">
-            </ion-slide>
-        </ion-slide-box>
-    </div>
-    <div class="mtb-15 text-center" ng-repeat="v in shopIndexGood" ng-if="v.goods.length != 0">
-        <div class="item ptb-10 bd-lr-none clearfix">
-            <span class="f-34 fl">{{v.name}}</span>
-            <span class="f-24 fr c-main" ng-click="goIndexClassify(v)">更多&gt;&gt;</span>
-        </div>
-        <div class="index-list bg-white b-bot">
-            <div class="index-item" ng-repeat="v2 in v.goods" ui-sref="indexProDetail({goodId:v2.id})">
-                <img ng-src="{{v2.cover}}" alt="">
-                <p class="text-left f-30 text-overflow-2 min-h-40">{{v2.name}}</p>
-                <p class="text-left f-24 m-0 c-6 clearfix">
-                    <span class="c-red f-30">&yen;{{v2.price}}</span>
-                    <span class="fr c-6 f-24">月销量 {{v2.sales}}笔</span>
-                </p>
-            </div>
-            <div class="index-item" style="border:none" ng-if="v.goods.length % 2 == 1"></div>
-        </div>
-    </div>
+
 </ion-content>
-<div class="pop-wp {{is_show ? 'show' : ''}}">
-    <div class="pop" style="top: 50%;">
-        <img ng-click="goto_register()" class="img" src="img/xinrenhaoli.png" alt="" />
-        <div ng-click="close_modal()" class="close">
-            <img class="img" src="img/close_xinrenhaoli.png" alt="">
-        </div>
-    </div>
-    <div class="mask"></div>
-</div>
