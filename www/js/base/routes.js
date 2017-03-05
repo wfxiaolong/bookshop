@@ -656,7 +656,7 @@ define([
                     controller: "iframePageCtrl"
                 });
 
-            // $urlRouterProvider.otherwise("tab/index");
+            $urlRouterProvider.otherwise("tab/index");
 
         });
     // 返迴路由參數，p父文件夾，s文件名，e路由擴展設置（json格式）可以覆蓋默認設置
