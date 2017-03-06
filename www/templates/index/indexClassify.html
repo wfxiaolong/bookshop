@@ -1,6 +1,6 @@
 <ion-header-bar align-title="center" class="app-bar">
     <button class="button button-icon ion-ios-arrow-left c-white" ng-click="goBackIndex()"></button>
-    <div class="title">{{name}}</div>
+    <div class="title">书籍</div>
 </ion-header-bar>
 <div class="public-subheader bar bar-subheader clearfix">
     <div class="classify w-25 {{(sortType || '0') == '0' ? 'active' : ''}}" ng-click="changeSortType(0)">
@@ -17,40 +17,30 @@
         </div>
     </div>
     <div class="classify w-25" ng-click="toggleMoreList()">
-        <span>筛选&nbsp;<i class="ion-chevron-{{moreList ? 'up' : 'down'}}"></i></span>
-    </div>
-    <div class="more-list container" ng-show="moreList">
-        <p class="f-28" ng-hide="brands.length == 0">品牌</p>
-        <div class="clearfix">
-            <div class="classify w-25 fl {{subCate == $index ? 'active' : ''}}" ng-repeat="v in brands" ng-click="chooseSubCate(v,$index)">
-                <span>{{v.name}}</span>
-            </div>
-        </div>
-        <p class="f-28 mt-20">价格区间</p>
-        <div class="text-center f-28">
-            &yen;&nbsp;
-            <input class="input" type="number" name="" ng-model="goods.minPrize" placeholder="最低价格">
-            <span class="line"></span> &yen;&nbsp;
-            <input class="input" type="number" name="" ng-model="goods.maxPrize" placeholder="最高价格">
-        </div>
-        <p class="text-center mt-30">
-            <button class="button btn-main" ng-click="mySort()">确定</button>
-        </p>
+        <span>浏览&nbsp;<i class="ion-chevron-{{moreList ? 'up' : 'down'}}"></i></span>
     </div>
 </div>
 <ion-content class="page page-index has-subheader-me" has-bouncing="true" overflow-scroll="false">
     <div class="index-list text-center">
-        <div class="index-item" ng-repeat="v in goodsList" ng-click="goto_detail(v)">
-            <img ng-src="{{v.cover}}" alt="">
-            <p class="text-left f-30 text-overflow-2 min-h-40">{{v.name}}</p>
+        <div class="index-item" ng-click="goto_detail(v)">
+            <img ng-src="http://xhsdyun.com/Storage/master/product/thumbs310/310_cc94d03fb2b74850b87d04d3c7a3da78.jpg" alt="">
+            <p class="text-left f-30 text-overflow-2">读者文摘</p>
             <p class="text-left f-24 m-0 c-6 clearfix">
-                <span class="c-red f-30">&yen;{{v.price}}</span>
-                <span class="fr c-6 f-24">月销量 {{v.sales}}笔</span>
+                <span class="c-red f-30">&yen;38.00</span>
+                <span class="fr c-6 f-24">月销量 30笔</span>
             </p>
         </div>
-        <div class="index-item" style="border:none" ng-if="goodsList.length % 2 == 1"></div>
+        <div class="index-item" ng-click="goto_detail(v)">
+            <img ng-src="http://xhsdyun.com/Storage/master/product/thumbs310/310_cc94d03fb2b74850b87d04d3c7a3da78.jpg" alt="">
+            <p class="text-left f-30 text-overflow-2">读者文摘</p>
+            <p class="text-left f-24 m-0 c-6 clearfix">
+                <span class="c-red f-30">&yen;38.00</span>
+                <span class="fr c-6 f-24">月销量 30笔</span>
+            </p>
+        </div>
+        <!-- <div class="index-item" style="border:none" ng-if="goodsList.length % 2 == 1"></div> -->
     </div>
-    <div class="text-center mt-30 f-30 c-9" ng-if="noData">没有更多商品啦~</div>
-    <ion-infinite-scroll ng-if="!noData" on-infinite="loadMore()" distance="1%">
-    </ion-infinite-scroll>
+    <div class="text-center mt-30 f-30 c-9">没有更多商品啦~</div>
+<!--     <ion-infinite-scroll ng-if="!noData" on-infinite="loadMore()" distance="1%">
+    </ion-infinite-scroll> -->
 </ion-content>

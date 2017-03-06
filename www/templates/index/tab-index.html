@@ -23,25 +23,51 @@
             <img ng-src="http://weiyaxunda.com/uploads/1702/041349401970.jpg" alt="{{v.title}}" ng-click="jumpInfo(v)" ng-if="v.url_type != 0">
         </ion-slide>
     </ion-slide-box>
-    <div style="height: 100px;" class="nav-list b-top ptb-10 mt-10 clearfix">
+    <div style="height: 86px;margin-bottom:6px;border-bottom:1px solid #e9e9e9" class="nav-list b-top ptb-10 mt-10 clearfix">
         <div class="list-item w-25p fl" style="padding: 0;">
-            <img style="height: 5.7rem; width: 5.7rem;" ng-src="img/7@2x.png" alt="">
-            <div class="f-24 c-6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">缴费</div>
+            <button ui-sref="indexClassify({id:123})" class="f-24 c-6 button button-stable" style="overflow:hidden;border:1px solid lightgray;margin:4px;height: 28px;li;line-height: 28px;border-radius: 28px;min-height: 28px;">少儿图书</button>
         </div>
         <div class="list-item w-25p fl" style="padding: 0;">
-            <img style="height: 5.7rem; width: 5.7rem;" ng-src="img/8@2x.png" alt="">
-            <div class="f-24 c-6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">商品</div>
+            <button ui-sref="indexClassify({id:123})" class="f-24 c-6 button button-stable" style="overflow:hidden;border:1px solid lightgray;margin:4px;height: 28px;li;line-height: 28px;border-radius: 28px;min-height: 28px;">科技图书</button>
         </div>
         <div class="list-item w-25p fl" style="padding: 0;">
-            <img style="height: 5.7rem; width: 5.7rem;" ng-src="img/9@2x.png" alt="">
-            <div class="f-24 c-6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">活动</div>
+            <button ui-sref="indexClassify({id:123})" class="f-24 c-6 button button-stable" style="overflow:hidden;border:1px solid lightgray;margin:4px;height: 28px;li;line-height: 28px;border-radius: 28px;min-height: 28px;">文化教育</button>
         </div>
-        <div class="list-item w-25p fl" style="padding: 0;" ui-sref="tab.user">
-            <img style="height: 5.7rem; width: 5.7rem;" ng-src="img/10@2x.png" alt="">
-            <div class="f-24 c-6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">会员</div>
+        <div class="list-item w-25p fl" style="padding: 0;">
+            <button ui-sref="indexClassify({id:123})" class="f-24 c-6 button button-stable" style="overflow:hidden;border:1px solid lightgray;margin:4px;height: 28px;li;line-height: 28px;border-radius: 28px;min-height: 28px;">社会学科</button>
+        </div>
+        <div class="list-item w-25p fl" style="padding: 0;">
+            <button ui-sref="indexClassify({id:123})" class="f-24 c-6 button button-stable" style="overflow:hidden;border:1px solid lightgray;margin:4px;height: 28px;li;line-height: 28px;border-radius: 28px;min-height: 28px;">文学图书</button>
+        </div>
+        <div class="list-item w-25p fl" style="padding: 0;">
+            <button ui-sref="indexClassify({id:123})" class="f-24 c-6 button button-stable" style="overflow:hidden;border:1px solid lightgray;margin:4px;height: 28px;li;line-height: 28px;border-radius: 28px;min-height: 28px;">生活图书</button>
+        </div>
+        <div class="list-item w-25p fl" style="padding: 0;">
+            <button ui-sref="indexClassify({id:123})" class="f-24 c-6 button button-stable" style="overflow:hidden;border:1px solid lightgray;margin:4px;height: 28px;li;line-height: 28px;border-radius: 28px;min-height: 28px;">电子产品</button>
+        </div>
+        <div class="list-item w-25p fl" style="padding: 0;">
+            <button class="f-24 c-6 button button-stable" style="overflow:hidden;border:1px solid lightgray;margin:4px;height: 28px;li;line-height: 28px;border-radius: 28px;min-height: 28px;">生活休闲</button>
         </div>
     </div>
 
+    <div class="item ptb-10 bd-lr-none clearfix">
+        <span class="f-34">活动</span>
+        <span class="f-24 fr c-main" ui-sref="tab.activity">更多&gt;&gt;</span>
+    </div>
+    <ion-slide-box class="swiper" delegate-handle="my-handle" auto-play="true" does-continue="true" slide-interval="3000" style="margin-bottom:6px;border-bottom:1px solid #e9e9e9">
+        <ion-slide>
+            <img ng-src="http://www.xhsdyun.com/Storage/template/20170210/6362231565883487878862496.jpg" alt="{{v.title}}" ng-click="jumpInfo(v)" ng-if="v.url_type != 0">
+        </ion-slide>
+        <ion-slide>
+            <img ng-src="http://www.xhsdyun.com/Storage/template/20170210/6362231565883487878862496.jpg" alt="{{v.title}}" ng-click="jumpInfo(v)" ng-if="v.url_type != 0">
+        </ion-slide>
+    </ion-slide-box>
+
+
+    <div class="item ptb-10 bd-lr-none clearfix">
+        <span class="f-34">热门书籍</span>
+        <span class="f-24 fr c-main" ui-sref="indexClassify({id:xx})">更多&gt;&gt;</span>
+    </div>
     <div class="index-list bg-white b-bot">
         <div class="index-item" ui-sref="indexProDetail({goodId:v2.id})">
             <img ng-src="http://xhsdyun.com/Storage/master/product/thumbs310/310_cc94d03fb2b74850b87d04d3c7a3da78.jpg" alt="">

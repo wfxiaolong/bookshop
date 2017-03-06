@@ -55,26 +55,23 @@ define([
                         }
                     }
                 })
-                .state('tab.agent', { //购物车
-                    url: '/agent',
+                .state('tab.fee', { //缴费
+                    url: '/fee',
                     views: {
-                        'tab-agent': {
-                            templateUrl: "templates/agent/tab-agent.html",
-                            controller: "agentCtrl",
-                            controllerUrl: 'js/controllers/agent/agent.js'
+                        'tab-fee': {
+                            templateUrl: "templates/fee/tab-fee.html",
+                            controller: "feeCtrl",
+                            controllerUrl: 'js/controllers/fee/fee.js'
                         }
                     }
                 })
-
-                .state('tab.discover', { //发现
-                    url: '/discover',
+                .state('tab.activity', { //活动
+                    url: '/activity',
                     views: {
-                        'tab-discover': {
-                            templateUrl: function() {
-                                return "templates/discover/tab-discover.html";
-                            },
-                            controller: "discoverCtrl",
-                            controllerUrl: 'js/controllers/discover/discover.js'
+                        'tab-activity': {
+                            templateUrl: "templates/activity/tab-activity.html",
+                            controller: "activityCtrl",
+                            controllerUrl: 'js/controllers/activity/activity.js'
                         }
                     }
                 })
@@ -91,7 +88,7 @@ define([
                     }
                 })
                 .state('indexClassify', { //首页分类
-                    url: '/indexClassify/:classifyId/:name/:brands/',
+                    url: '/indexClassify/:classifyId',
                     templateUrl: function() {
                         return "templates/index/indexClassify.html";
                     },
@@ -154,48 +151,6 @@ define([
                     controllerUrl: 'js/controllers/reward.js',
                     controller: "rewardCtrl"
                 })
-                .state('moduleClassify', { //版块分类
-                    url: '/moduleClassify',
-                    templateUrl: function() {
-                        return "templates/community/moduleClassify.html";
-                    },
-                    controllerUrl: 'js/controllers/community/moduleClassify.js',
-                    controller: "moduleClassifyCtrl"
-                })
-                .state('moduleDetail', { //版块详情
-                    cache: false,
-                    url: '/moduleDetail/:moduleId/:moduleName',
-                    templateUrl: function() {
-                        return "templates/community/moduleDetail.html";
-                    },
-                    controllerUrl: 'js/controllers/community/moduleDetail.js',
-                    controller: "moduleDetailCtrl"
-                })
-                .state('hotPost', { //热帖推荐
-                    url: '/hotPost',
-                    templateUrl: function() {
-                        return "templates/community/hotPost.html";
-                    },
-                    controllerUrl: 'js/controllers/community/hotPost.js',
-                    controller: "hotPostCtrl"
-                })
-                .state('writePost', { //社区发帖
-                    url: '/writePost/:moduleId',
-                    templateUrl: function() {
-                        return "templates/community/writePost.html";
-                    },
-                    controllerUrl: 'js/controllers/community/writePost.js',
-                    controller: "writePostCtrl"
-                })
-                .state('postDetail', { //帖子详情  (nomain:为了统一分享链接为/share/)
-                    url: '/postDetail/:postId/:isShare/:nomain',
-                    templateUrl: function() {
-                        return "templates/community/postDetail.html";
-                    },
-                    controllerUrl: 'js/controllers/community/postDetail.js',
-                    controller: "postDetailCtrl"
-                })
-
                 .state('goodsDetailShare',{
                     url:'/goodsDetailShare/:activity_id/:isShare/:params',
                     templateUrl:function(){
@@ -335,7 +290,7 @@ define([
                     controller: "logisticsCtrl"
                 })
                 .state('orderDetail', { //订单详情
-                    url: '/orderDetail/:orderId/:fromPage',
+                    url: '/orderDetail/:orderId',
                     templateUrl: function() {
                         return "templates/userOrder/orderDetail.html";
                     },
@@ -377,22 +332,6 @@ define([
                     },
                     controllerUrl: 'js/controllers/userOrder/goodReturning.js',
                     controller: "goodReturningCtrl"
-                })
-                .state('myCommunity', { //社区等级
-                    url: '/myCommunity',
-                    templateUrl: function() {
-                        return "templates/user/myCommunity.html";
-                    },
-                    controllerUrl: 'js/controllers/user/myCommunity.js',
-                    controller: "myCommunityCtrl"
-                })
-                .state('myCommunityInte', { //我的社区积分
-                    url: '/myCommunityInte/:point',
-                    templateUrl: function() {
-                        return "templates/user/myCommunityInte.html";
-                    },
-                    controllerUrl: 'js/controllers/user/myCommunityInte.js',
-                    controller: "myCommunityInteCtrl"
                 })
                 .state('balance', { //余额
                     url: '/balance',

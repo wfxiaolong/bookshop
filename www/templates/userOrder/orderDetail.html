@@ -68,8 +68,8 @@
 <div class="order-detail-bot container" ng-hide="order.trade_state == 5 || v.trade_state == 8">
     <span></span>
     <div class="btn-group">
-        <button class="button btn-main" ng-if="order.trade_state == 1" ng-click="cancelOrder(order.order_id)">取消订单</button>
-        <button class="button btn-main" ng-if="order.trade_state == 1" ng-click="payNow(order.order_id)">立即付款</button>
+        <button class="button btn-main" ng-click="cancelOrder(order.order_id)">取消订单</button>
+        <button class="button btn-main" ng-click="payNow(order.order_id)">立即付款</button>
         <button class="button btn-main" ng-if="(order.trade_state == 2 || order.trade_state == 3) && order.refund_state == 0" ng-click="jumpReturn(order)">申请退款</button>
         <button class="button btn-main" ng-if="(order.trade_state == 2 || order.trade_state == 3) && order.refund_state != 0" ng-click="jumpReturnDetail(order)">退款详情</button>
         <button class="button btn-main" ng-if="order.trade_state == 2" ng-click="remindOrder(order.order_id)">催单</button>
@@ -77,6 +77,5 @@
         <button class="button btn-main" ng-if="order.trade_state == 3" ng-click="confirmReceipt(order.order_id)">确认收货</button>
         <button class="f-30 button btn-main" ng-if="order.trade_state == 4 && order.refund_state == 0" ng-click="jumpReturn(order)">申请退货</button>
         <button class="f-30 button btn-main" ng-if="order.trade_state == 4 && order.refund_state != 0" ng-click="jumpReturnDetail(order)">退款详情</button>
-        <button class="button btn-main" ng-if="order.trade_state == 7" ui-sref="repairCenter">申请维修</button>
     </div>
 </div>

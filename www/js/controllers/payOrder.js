@@ -141,13 +141,6 @@ define(['app', 'js/utils/tips'], function(app, Tips) {
                 }
             }
 
-
-
-
-
-
-
-
             function getThirdPayParams(postData, callback) {
                 httpRequest.postWithAuth($scope, "?method=order.pay", postData, function(re) {
                     if (re.data.state) {
@@ -157,11 +150,6 @@ define(['app', 'js/utils/tips'], function(app, Tips) {
                     Tips.showTips(re.data.msg);
                 });
             }
-
-
-
-
-
 
             function watchPayPassword(orderId) {
                 var watchPay = $scope.$watch('pay.password', function(newValue, oldValue, scope) {
@@ -185,27 +173,23 @@ define(['app', 'js/utils/tips'], function(app, Tips) {
                     Tips.showTips("请选择支付方式");
                     return false;
                 }
-                if (payWay == 10) { //余额支付时若未设置支付密码则返回上一页面
-                    if (Storage.get('vrsm_auth').purse_status == 0 || Storage.get('vrsm_auth').purse_status == undefined) {
-                        $ionicPopup.confirm({
-                            title: '尚未设置支付密码', // String. 弹窗的标题。
-                            template: '是否立即设置支付密码？',
-                            cancelText: '否',
-                            okText: '是'
-                        }).then(function(res) {
-                            if (res) {
-                                $state.go('balanceSetting');
-                            }
-                        })
-                        return false;
-                    }
-                }
+                // if (payWay == 10) { //余额支付时若未设置支付密码则返回上一页面
+                //     if (Storage.get('vrsm_auth').purse_status == 0 || Storage.get('vrsm_auth').purse_status == undefined) {
+                //         $ionicPopup.confirm({
+                //             title: '尚未设置支付密码', // String. 弹窗的标题。
+                //             template: '是否立即设置支付密码？',
+                //             cancelText: '否',
+                //             okText: '是'
+                //         }).then(function(res) {
+                //             if (res) {
+                //                 $state.go('balanceSetting');
+                //             }
+                //         })
+                //         return false;
+                //     }
+                // }
                 return true;
             }
-
-
-
-
 
             function getQueryString(token, str) {
                 var reg = new RegExp('(^|&)' + token + '=([^&]*)(&|$)', 'i');
@@ -221,10 +205,6 @@ define(['app', 'js/utils/tips'], function(app, Tips) {
                 Tips.showTips("支付成功");
                 $scope.payType == 1 ? $state.go("repairPaySuccess") : $state.go("paySuccess", {orderId: $scope.orderId});
             }
-
-
-
-
         }
     ]);
 
