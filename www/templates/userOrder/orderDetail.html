@@ -26,7 +26,6 @@
             <img ng-src="{{v.good_cover}}">
             <div class="f-34 text-overflow clearfix">{{v.good_name}}</div>
             <div class="f-24 c-9">
-                <div>型号：{{v.good_model}}</div>
                 <div class="text-right">
                     <span class="f-26 ptb-10 c-main" ng-if="order.trade_state == 4 && v.is_comment == 0" ng-click="commentOrder(v.order_id,v.good_id,v.is_comment)">立即评价</span>
                     <span class="f-26 ptb-10 c-9" ng-if="order.trade_state == 4 && v.is_comment == 1">已评价</span>

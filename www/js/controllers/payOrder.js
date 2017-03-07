@@ -26,7 +26,7 @@ define(['app', 'js/utils/tips'], function(app, Tips) {
                     okText: '确定'
                 }).then(function(res) {
                     if (!res) return;
-                    $scope.payType == 1 ? $state.go("repairCenter") : $state.go('orderDetail',{orderId:$scope.orderId,fromPage:'payOrder'});
+                    $ionicHistory.goBack(-1);
                 });
             };
             $scope.selectPayWay = function(payWay) {
