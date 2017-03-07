@@ -301,34 +301,34 @@ define(['app', 'js/utils/tips'], function(app, Tips) {
             };
 
             function checkUpdate_iOS() {
-                // 获取服务器端版本号
-                httpRequest.postWithUI($scope, '?method=website.download', {}, function(re) {
-                    if (re.data.state) {
-                        var serverVersion = re.data.data.android_version;
-                        var androidUrl = re.data.data.android_url;
-                        $cordovaAppVersion.getVersionNumber().then(function(version) {
-                            if (hasUpdate(serverVersion, version)) {
-                                $ionicPopup.confirm({
-                                    title: '检查到新版本，是否进行更新?',
-                                    cancelText: '取消',
-                                    okText: "确定"
-                                }).then(function(res) {
-                                    if (res) {
-                                        // do something
-                                        $cordovaInAppBrowser.open("https://itunes.apple.com/us/app/vr-shu-ma-qian-xian/id1148106834?l=zh&ls=1&mt=8", '_blank', {location: "yes"})
-                                            .then(function(event) {})
-                                            .catch(function(event) {});
-                                    }
-                                });
-                            } else {
-                                // Tips.showTips("已经是最新版本啦！");
-                            }
-                        });
-                    }
-                }, function(re) {
-                    Tips.showTips(re.data.msg);
-                });
-                is_update = true;
+                // // 获取服务器端版本号
+                // httpRequest.postWithUI($scope, '?method=website.download', {}, function(re) {
+                //     if (re.data.state) {
+                //         var serverVersion = re.data.data.android_version;
+                //         var androidUrl = re.data.data.android_url;
+                //         $cordovaAppVersion.getVersionNumber().then(function(version) {
+                //             if (hasUpdate(serverVersion, version)) {
+                //                 $ionicPopup.confirm({
+                //                     title: '检查到新版本，是否进行更新?',
+                //                     cancelText: '取消',
+                //                     okText: "确定"
+                //                 }).then(function(res) {
+                //                     if (res) {
+                //                         // do something
+                //                         $cordovaInAppBrowser.open("https://itunes.apple.com/us/app/vr-shu-ma-qian-xian/id1148106834?l=zh&ls=1&mt=8", '_blank', {location: "yes"})
+                //                             .then(function(event) {})
+                //                             .catch(function(event) {});
+                //                     }
+                //                 });
+                //             } else {
+                //                 // Tips.showTips("已经是最新版本啦！");
+                //             }
+                //         });
+                //     }
+                // }, function(re) {
+                //     Tips.showTips(re.data.msg);
+                // });
+                // is_update = true;
             };
 
             function hasUpdate(serverVersion, appVersion) {

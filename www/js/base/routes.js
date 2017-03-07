@@ -65,6 +65,18 @@ define([
                         }
                     }
                 })
+                .state('studentList', { //学生列表
+                    url: '/studentList',
+                    templateUrl: "templates/fee/studentList.html",
+                    controller: "studentListCtrl",
+                    controllerUrl: 'js/controllers/fee/studentList.js'
+                })
+                .state('studentDetail', { //学生详情
+                    url: '/studentDetail',
+                    templateUrl: "templates/fee/studentDetail.html",
+                    controller: "studentDetailCtrl",
+                    controllerUrl: 'js/controllers/fee/studentDetail.js'
+                })
                 .state('tab.activity', { //活动
                     url: '/activity',
                     views: {
