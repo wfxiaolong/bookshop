@@ -1,16 +1,11 @@
-<!-- <ion-header-bar align-title="center" class="app-bar">
-    <div class="title">首页</div>
-</ion-header-bar> -->
-<ion-header-bar align-title="center" class="app-bar page-index p-0">
-    <div class="top-bar" style="width: 100%; background-color: #21b2ff;">
-        <div class="search-wrap" style="background-color: #fff;" ui-sref="search">
-            <i class="ion-ios-search-strong icon-search"></i>
-            <span>搜索你想要的宝贝</span>
-        </div>
-        <i class="iconfont icon-message {{newMessage ? 'new' : ''}}" style="color: #fff;" ng-click="jumpMyMessage()"></i>
-        <!-- <i class="iconfont icon-cart" ng-click="jumpCart()" style="color: #fff;"></i> -->
+<div style="width: 100%;position:relative;z-index:10;height:42px;">
+    <i class="iconfont ion-ios-location" style="position:absolute; font-size:24px;top:4px;left:10px;color:white;" ui-sref="position"></i>
+    <div style="position:relative;background-color: #fff;margin-left:13%;width:74%;height:28px;margin-top:6px;border-radius:28px;" ui-sref="search">
+        <i class="ion-ios-search-strong icon-search" style="font-size:24px;position:absolute;top:3px;left:5px;"></i>
+        <span style="margin-left:29px;line-height: 28px;">搜索你想要的宝贝</span>
     </div>
-</ion-header-bar>
+    <span style="color:white;font-size:12;position:absolute;right:6px;top:6px;" ui-sref="login">登录</span>
+</div>
 <ion-content class="page page-index" has-bouncing="true" overflow-scroll="false">
     <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()">
     </ion-refresher>
@@ -24,35 +19,53 @@
         </ion-slide>
     </ion-slide-box>
 
-    <div class="item ptb-10 bd-lr-none clearfix mt-10 ">
-        <span class="f-34">热门书籍</span>
+    <div style="height: 126px;background:transparent;" class="nav-list b-top ptb-10 clearfix">
+        <div class="list-item fl" style="padding: 0;">
+            <img src="https://m.360buyimg.com/mobilecms/s80x80_jfs/t3208/285/1806438443/12227/e35aa8d/57d5407cN0d6adf20.png">
+            <p ui-sref="indexClassify({id:123})" class="c-6" style="font-size:10px;line-height:10px;margin-top:-5px;">少儿图书</p>
+        </div>
+        <div class="list-item fl" style="padding: 0;">
+            <img src="https://m.360buyimg.com/mobilecms/s80x80_jfs/t3208/285/1806438443/12227/e35aa8d/57d5407cN0d6adf20.png">
+            <p ui-sref="indexClassify({id:123})" class="c-6" style="font-size:10px;line-height:10px;margin-top:-5px;">科技图书</p>
+        </div>
+        <div class="list-item fl" style="padding: 0;">
+            <img src="https://m.360buyimg.com/mobilecms/s80x80_jfs/t3208/285/1806438443/12227/e35aa8d/57d5407cN0d6adf20.png">
+            <p ui-sref="indexClassify({id:123})" class="c-6" style="font-size:10px;line-height:10px;margin-top:-5px;">文化教育</p>
+        </div>
+        <div class="list-item fl" style="padding: 0;">
+            <img src="https://m.360buyimg.com/mobilecms/s80x80_jfs/t3208/285/1806438443/12227/e35aa8d/57d5407cN0d6adf20.png">
+            <p ui-sref="indexClassify({id:123})" class="c-6" style="font-size:10px;line-height:10px;margin-top:-5px;">社会学科</p>
+        </div>
+        <div class="list-item fl" style="padding: 0;">
+            <img src="https://m.360buyimg.com/mobilecms/s80x80_jfs/t3208/285/1806438443/12227/e35aa8d/57d5407cN0d6adf20.png">
+            <p ui-sref="indexClassify({id:123})" class="c-6" style="font-size:10px;line-height:10px;margin-top:-5px;">文学图书</p>
+        </div>
+        <div class="list-item fl" style="padding: 0;">
+            <img src="https://m.360buyimg.com/mobilecms/s80x80_jfs/t3208/285/1806438443/12227/e35aa8d/57d5407cN0d6adf20.png">
+            <p ui-sref="indexClassify({id:123})" class="c-6" style="font-size:10px;line-height:10px;margin-top:-5px;">生活图书</p>
+        </div>
+        <div class="list-item fl" style="padding: 0;">
+            <img src="https://m.360buyimg.com/mobilecms/s80x80_jfs/t3208/285/1806438443/12227/e35aa8d/57d5407cN0d6adf20.png">
+            <p ui-sref="indexClassify({id:123})" class="c-6" style="font-size:10px;line-height:10px;margin-top:-5px;">电子产品</p>
+        </div>
+        <div class="list-item fl" style="padding: 0;">
+            <img src="https://m.360buyimg.com/mobilecms/s80x80_jfs/t3208/285/1806438443/12227/e35aa8d/57d5407cN0d6adf20.png">
+            <p ui-sref="indexClassify({id:123})" class="c-6" style="font-size:10px;line-height:10px;margin-top:-5px;">生活休闲</p>
+        </div>
+        <div class="list-item fl" style="padding: 0;">
+            <img src="https://m.360buyimg.com/mobilecms/s80x80_jfs/t3208/285/1806438443/12227/e35aa8d/57d5407cN0d6adf20.png">
+            <p ui-sref="indexClassify({id:123})" class="c-6" style="font-size:10px;line-height:10px;margin-top:-5px;">读者文摘</p>
+        </div>
+        <div class="list-item fl" style="padding: 0;">
+            <img src="https://m.360buyimg.com/mobilecms/s80x80_jfs/t3208/285/1806438443/12227/e35aa8d/57d5407cN0d6adf20.png">
+            <p ui-sref="indexClassify({id:123})" class="c-6" style="font-size:10px;line-height:10px;margin-top:-5px;">科技闲谈</p>
+        </div>
     </div>
-    <div style="height: 86px;border-bottom:1px solid #e9e9e9" class="nav-list b-top ptb-10 clearfix">
-        <div class="list-item w-25p fl" style="padding: 0;">
-            <button ui-sref="indexClassify({id:123})" class="f-24 c-6 button button-stable" style="overflow:hidden;border:1px solid lightgray;margin:4px;height: 28px;li;line-height: 28px;border-radius: 6px;min-height: 28px;width:88%;">少儿图书</button>
-        </div>
-        <div class="list-item w-25p fl" style="padding: 0;">
-            <button ui-sref="indexClassify({id:123})" class="f-24 c-6 button button-stable" style="overflow:hidden;border:1px solid lightgray;margin:4px;height: 28px;li;line-height: 28px;border-radius: 6px;min-height: 28px;width:88%;">科技图书</button>
-        </div>
-        <div class="list-item w-25p fl" style="padding: 0;">
-            <button ui-sref="indexClassify({id:123})" class="f-24 c-6 button button-stable" style="overflow:hidden;border:1px solid lightgray;margin:4px;height: 28px;li;line-height: 28px;border-radius: 6px;min-height: 28px;width:88%;">文化教育</button>
-        </div>
-        <div class="list-item w-25p fl" style="padding: 0;">
-            <button ui-sref="indexClassify({id:123})" class="f-24 c-6 button button-stable" style="overflow:hidden;border:1px solid lightgray;margin:4px;height: 28px;li;line-height: 28px;border-radius: 6px;min-height: 28px;width:88%;">社会学科</button>
-        </div>
-        <div class="list-item w-25p fl" style="padding: 0;">
-            <button ui-sref="indexClassify({id:123})" class="f-24 c-6 button button-stable" style="overflow:hidden;border:1px solid lightgray;margin:4px;height: 28px;li;line-height: 28px;border-radius: 6px;min-height: 28px;width:88%;">文学图书</button>
-        </div>
-        <div class="list-item w-25p fl" style="padding: 0;">
-            <button ui-sref="indexClassify({id:123})" class="f-24 c-6 button button-stable" style="overflow:hidden;border:1px solid lightgray;margin:4px;height: 28px;li;line-height: 28px;border-radius: 6px;min-height: 28px;width:88%;">生活图书</button>
-        </div>
-        <div class="list-item w-25p fl" style="padding: 0;">
-            <button ui-sref="indexClassify({id:123})" class="f-24 c-6 button button-stable" style="overflow:hidden;border:1px solid lightgray;margin:4px;height: 28px;li;line-height: 28px;border-radius: 6px;min-height: 28px;width:88%;">电子产品</button>
-        </div>
-        <div class="list-item w-25p fl" style="padding: 0;">
-            <button ui-sref="indexClassify({id:123})" class="f-24 c-6 button button-stable" style="overflow:hidden;border:1px solid lightgray;margin:4px;height: 28px;li;line-height: 28px;border-radius: 6px;min-height: 28px;width:88%;">生活休闲</button>
-        </div>
-    </div>
+
+    <div style="width:90%;margin-left:5%;height:40px;position:relative" ui-sref="tab.activity">
+        <p style="font-size:12px;background:white;padding:5px 10px 5px 10px;border-radius:5px"><span style="font-weight:bold;">新华消息：</span><span style="color:red">抢</span> 购买100减50啦!! </p>
+        <span style="position:absolute;right: 5px;top:5px;font-size: 11px;">|&nbsp;&nbsp;更多</span>
+    </div>    
 
     <div class="index-list bg-white b-bot">
         <div class="index-item" ui-sref="indexProDetail({goodId:v2.id})">

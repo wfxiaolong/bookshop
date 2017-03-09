@@ -1,19 +1,18 @@
 <ion-header-bar align-title="center" class="app-bar">
-    <div class="title">我的学生</div>
+    <div class="title">缴费</div>
 </ion-header-bar>
 <ion-content class="page page-index" has-bouncing="true" overflow-scroll="false">
-    <div class="list card" ui-sref="studentDetail">
-        <div class="item item-avatar">
-            <img src="img/portrait.png">
-            <h2>晓虹</h2>
-            <p>高三一班 (11-05-1995)</p>
+    <div class="list card">
+        <div class="item">
+            <h2>您有2个未缴费项目</h2>
         </div>
     </div>
-    <div class="list card" ui-sref="studentDetail">
-        <div class="item item-avatar">
-            <img src="img/portrait.png">
-            <h2>小明</h2>
-            <p>高三一班 (11-05-1995)</p>
+    <div class="list card">
+        <div class="item" ui-sref="feeDetail">
+            <p>紧急收费（李晓丽）</p>
+        </div>
+        <div class="item" ui-sref="feeDetail">
+            <p>紧急收费（李晓宏）</p>
         </div>
     </div>
 </ion-content>

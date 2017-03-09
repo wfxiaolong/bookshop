@@ -1,0 +1,19 @@
+<ion-header-bar align-title="center" class="app-bar">
+    <button class="button button-icon ion-ios-arrow-left c-white" ui-sref="tab.user"></button>
+    <div class="title">我的孩子</div>
+    <button class="button button-clear" ui-sref="addChild">新增</button>
+</ion-header-bar>
+<ion-content class="page page-user" has-bouncing="true" overflow-scroll="false">
+    <div class="list">
+        <div class="mtb-15" ng-if="!isIOS">
+            <a class="item ptb-20 bd-lr-none" ui-sref="studentDetail">
+                <span class="f-26">张睿智</span>
+                <i class="item-note c-3 f-34 ion-chevron-right"></i>
+            </a>
+            <a class="item ptb-20 bd-lr-none" ui-sref="studentDetail">
+                <span class="f-26">张睿智</span>
+                <i class="item-note c-3 f-34 ion-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+</ion-content>

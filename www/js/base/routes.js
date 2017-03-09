@@ -65,6 +65,30 @@ define([
                         }
                     }
                 })
+                .state('feeDetail', { //缴费详情
+                    url: '/feeDetail',
+                    templateUrl: "templates/fee/feeDetail.html",
+                    controller: "feeDetailCtrl",
+                    controllerUrl: 'js/controllers/fee/feeDetail.js'
+                })
+                .state('position', { //定位信息
+                    url: '/position',
+                    templateUrl: "templates/position.html",
+                    controller: "positionCtrl",
+                    controllerUrl: 'js/controllers/position.js'
+                })
+                .state('children', { //孩子列表信息
+                    url: '/children',
+                    templateUrl: "templates/user/children.html",
+                    controller: "childrenCtrl",
+                    controllerUrl: 'js/controllers/user/children.js'
+                })
+                .state('addChild', { //添加小孩
+                    url: '/addChild',
+                    templateUrl: "templates/user/addChild.html",
+                    controller: "addChildCtrl",
+                    controllerUrl: 'js/controllers/user/addChild.js'
+                })
                 .state('studentList', { //学生列表
                     url: '/studentList',
                     templateUrl: "templates/fee/studentList.html",
