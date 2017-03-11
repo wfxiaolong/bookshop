@@ -1,44 +1,35 @@
 <ion-header-bar align-title="center" class="app-bar">
     <div class="title">活动列表</div>
 </ion-header-bar>
-<ion-content class="page page-index" has-bouncing="true" overflow-scroll="false">
-    <div class="card">
-        <div class="item item-text-wrap">
-            <p>活动内容：满100减30</p>
-            <p>活动时间：2017年3月28～2017年4月20号</p>
-        </div>
-        <div class="item item-text-wrap">
-            <p>科技好书满100减30满200减60满300减90～开学促销活动，指定书籍。</p>
-        </div>
-        <div class="item item-text-wrap" ui-sref="indexClassify({id:xx})">
-            <span>参加活动</span>
-            <span class="f-24 fr c-main">&gt;</span>
+<ion-content class="page page-index" has-bouncing="true" overflow-scroll="false" style="background:#f3f2f3">
+
+    <div class="order-classifys item bd-lr-none">
+        <div class="classify {{(type || 1) == 1 ? 'active' : ''}}" ng-click="changeType(1)">今日活动</div>
+        <div class="classify {{type == 2 ? 'active' : ''}}" ng-click="changeType(2)">往期活动</div>
+    </div>
+
+    <div style="margin-bottom:5px;border-bottom:1px solid lightgray;" ui-sref="indexClassify({id:xx})">
+        <img src="img/activity.jpg" style="width:100%;vertical-align:bottom;">
+        <div style="width:100%;height:22px;position:relative;font-size:12px;background:white;line-height:22px;">
+            <span style="color:orange;float:right;">仅剩2天</span>
+            <span style="float:right;">件已售 |&nbsp;</span>
+            <span style="color:orange;float:right;">1333</span>
         </div>
     </div>
-    <div class="card">
-        <div class="item item-text-wrap">
-            <p>活动内容：满100减30</p>
-            <p>活动时间：2017年3月28～2017年4月20号</p>
-        </div>
-        <div class="item item-text-wrap">
-            <p>科技好书满100减30满200减60满300减90～开学促销活动，指定书籍。</p>
-        </div>
-        <div class="item item-text-wrap" ui-sref="indexClassify({id:xx})">
-            <span>参加活动</span>
-            <span class="f-24 fr c-main">&gt;</span>
+    <div style="margin-bottom:5px;border-bottom:1px solid lightgray;" ui-sref="indexClassify({id:xx})">
+        <img src="img/activity.jpg" style="width:100%;vertical-align:bottom;">
+        <div style="width:100%;height:22px;position:relative;font-size:12px;background:white;line-height:22px;">
+            <span style="color:orange;float:right;">仅剩2天</span>
+            <span style="float:right;">件已售 |&nbsp;</span>
+            <span style="color:orange;float:right;">1333</span>
         </div>
     </div>
-    <div class="card">
-        <div class="item item-text-wrap">
-            <p>活动内容：满100减30</p>
-            <p>活动时间：2017年3月28～2017年4月20号</p>
-        </div>
-        <div class="item item-text-wrap">
-            <p>科技好书满100减30满200减60满300减90～开学促销活动，指定书籍。</p>
-        </div>
-        <div class="item item-text-wrap" ui-sref="indexClassify({id:xx})">
-            <span>参加活动</span>
-            <span class="f-24 fr c-main">&gt;</span>
+    <div style="margin-bottom:5px;border-bottom:1px solid lightgray;" ui-sref="indexClassify({id:xx})">
+        <img src="img/activity.jpg" style="width:100%;vertical-align:bottom;">
+        <div style="width:100%;height:22px;position:relative;font-size:12px;background:white;line-height:22px;">
+            <span style="color:orange;float:right;">仅剩2天</span>
+            <span style="float:right;">件已售 |&nbsp;</span>
+            <span style="color:orange;float:right;">1333</span>
         </div>
     </div>
 </ion-content>

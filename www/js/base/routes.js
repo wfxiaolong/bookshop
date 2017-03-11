@@ -310,9 +310,7 @@ define([
                 })
                 .state('orders', { //我的订单
                     url: '/orders',
-                    templateUrl: function() {
-                        return "templates/userOrder/orders.html";
-                    },
+                    templateUrl: "templates/userOrder/orders.html",
                     cache: false,
                     controllerUrl: 'js/controllers/userOrder/orders.js',
                     controller: "ordersCtrl"
