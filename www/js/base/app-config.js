@@ -199,27 +199,6 @@ define(['app', 'js/utils/tips', 'weixinJsSDK'], function(app, Tips, wx) {
                         $rootScope.popup = null;
                     }
                 });
-                //微信登录、支付配置
-                // var params = {
-                //     wechatKey: "wxffbb158f276a034b",
-                //     wechatSecret: "819d8da9aeb82103113f1e867c736593",
-                //     sinaKey: "3330737535",
-                //     sinaSecret: "7484cab3d473b4eaa8e50477acc3622e",
-                //     tecentKey: "1105526408",
-                //     tecentSecret: "jQqcjOU7QKhomCGS"
-                // };
-                // 上线用参数
-                var params = {
-                    wechatKey: "wxc39d57e6c9a923c1",
-                    wechatSecret: "a2ff4f82211f9c450c53a2659549198c",
-                    sinaKey: "3330737535",
-                    sinaSecret: "7484cab3d473b4eaa8e50477acc3622e",
-                    tecentKey: "1105526100",
-                    tecentSecret: "xD5RSDqNV6KDZXzu"
-                };
-                if (ionic.Platform.isWebView()) {
-                    dmwechat.init(params, function(re) {}, function(re) {});
-                }
 
                 //注册安卓返回键
                 var t = 0,
