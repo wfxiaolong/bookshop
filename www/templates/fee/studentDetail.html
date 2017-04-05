@@ -7,15 +7,14 @@
 <ion-content class="page page-index" has-bouncing="true" overflow-scroll="false">
     <div class="card">
         <div class="item item-text-wrap">
-            <p>学生姓名：晓虹</p>
-            <p>学生学校：河溪中学</p>
-            <p>学生班级：3年级一班</p>
+            <p>学生姓名：{{student.studentName}}</p>
+            <p>学生班级：{{student.studentClassic}}</p>
         </div>
         <div class="item item-text-wrap">
-            <p>身份证：4406891995012399999</p>
+            <p>身份证：{{student.studentIDCard}}</p>
         </div>
     </div>
 
-    <button style="width:80%;margin-left:10%;background:#21b2ff;border:0;margin-top:20px;height:36px;border-radius:5px;color:white;">删除联系人</button>
+    <!-- <button style="width:80%;margin-left:10%;background:#21b2ff;border:0;margin-top:20px;height:36px;border-radius:5px;color:white;">删除联系人</button> -->
 
 </ion-content>

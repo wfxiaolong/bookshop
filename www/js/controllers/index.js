@@ -3,43 +3,8 @@ define(['app', 'js/utils/tips'], function(app, Tips) {
         function($scope, httpRequest, Storage, $state, $ionicSlideBoxDelegate, $rootScope, $anchorScroll, $location, $ionicPopup, $cordovaAppVersion, $ionicLoading, $cordovaFileTransfer, $cordovaFileOpener2, $timeout, $cordovaInAppBrowser) {
             var is_init = false; // 缓存页面，第一次初始化后再次进入不再默认初始化
             var is_update = false; // 首次进入app时检查是否有新版本并且提示用户是否更新
-            var is_iOS = APP.isIOS; // 只在安卓版本检查更新
             $scope.is_show = false; // 是否显示注册弹窗
             $scope.$on("$ionicView.beforeEnter", function() {
-                //如果微信未登录，强制登录
-                 if(APP.is_wechat&&!getCookie('uid')){
-                    $rootScope.goWechatLogin();
-                }
-                // 判断是否是第一次进入app
-                var is_first_start = Storage.get("is_first_start") == true ? false : true; // 记录用户是否第一次打开app
-                if (is_first_start&&!APP.is_wechat) {
-                    Storage.set("is_first_start", true);
-                    $scope.is_show = true;
-                    console.log($scope.is_show);
-                }
-                //根据屏幕宽度初始化swiper的高度
-                initSwiperHeight(1125 / 470, function() {
-                    // // 获取顶部banner
-                    // httpRequest.post('?method=website.bannerList', { type: 1 }, function(re) {
-                    //     if (re.data.state) {
-                    //         $scope.indexBanner = re.data.data;
-                    //         $ionicSlideBoxDelegate.$getByHandle('my-handle').update();
-                    //         $ionicSlideBoxDelegate.$getByHandle('my-handle').loop(true);
-                    //     }
-                    // }, function(re) {}, function(re) { checkHttpDone(); });
-                    // // 最热活动图片
-                    // httpRequest.post('?method=website.bannerList', { type: 2 }, function(re) {
-                    //     if (re.data.state) {
-                    //         console.log(123);
-                    //         $scope.dpSlides = re.data.data;
-                    //         // $ionicSlideBoxDelegate.update();
-                    //         // $ionicSlideBoxDelegate.loop(true);
-                    //         $ionicSlideBoxDelegate.$getByHandle('hot').update();
-                    //         $ionicSlideBoxDelegate.$getByHandle('hot').loop(true);
-                    //     }
-                    // }, function(re) {}, function(re) { checkHttpDone(); });
-                });
-
                 // 关闭显示注册弹窗
                 $scope.close_modal = function() {
                     $scope.is_show = false;
@@ -80,13 +45,9 @@ define(['app', 'js/utils/tips'], function(app, Tips) {
                     init();
                 }
             });
-            function getCookie(name) {
-                var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-                if (arr = document.cookie.match(reg))
-                    return unescape(arr[2]);
-                else
-                    return null;
-            }
+            
+            $scope.user = Storage.get('vrsm_auth');
+
             // 点击图片跳转到注册页面
             $scope.goLogin = function() {
                 $state.go("login");
@@ -241,95 +202,6 @@ define(['app', 'js/utils/tips'], function(app, Tips) {
                     $scope.$broadcast('scroll.refreshComplete');
                 }
             }
-
-            function checkUpdate_android() {
-                // 获取服务器端版本号
-                // httpRequest.postWithUI($scope, '?method=website.download', {}, function(re) {
-                //     if (re.data.state) {
-                //         var serverVersion = re.data.data.android_version;
-                //         var androidUrl = re.data.data.android_url;
-                //         $cordovaAppVersion.getVersionNumber().then(function(version) {
-                //             if (hasUpdate(serverVersion, version)) {
-                //                 $ionicPopup.confirm({
-                //                     title: '检查到新版本，是否进行更新?',
-                //                     cancelText: '取消',
-                //                     okText: "确定"
-                //                 }).then(function(res) {
-                //                     if (res) {
-                //                         $ionicLoading.show({
-                //                             template: "已经下载：0%"
-                //                         });
-                //                         var url = androidUrl; //可以从服务端获取更新APP的路径
-                //                         var trustHosts = true;
-                //                         //APP下载存放的路径，可以使用cordova file插件进行相关配置
-                //                         var targetPath = "file:///storage/sdcard0/Download/vrsm(" + serverVersion + ").apk";
-                //                         var options = {};
-                //                         $cordovaFileTransfer.download(url, targetPath, options, trustHosts).then(function(result) {
-                //                             // 打开下载下来的APP
-                //                             $cordovaFileOpener2.open(targetPath, 'application/vnd.android.package-archive').then(function() {
-                //                                 // 成功
-                //                             }, function(err) {
-                //                                 // 错误
-                //                             });
-                //                             $ionicLoading.hide();
-                //                         }, function(err) {
-                //                             Tips.showTips('下载失败');
-                //                             $ionicLoading.hide();
-                //                         }, function(progress) {
-                //                             //进度，这里使用文字显示下载百分比
-                //                             $timeout(function() {
-                //                                 var downloadProgress = (progress.loaded / progress.total) * 100;
-                //                                 $ionicLoading.show({
-                //                                     template: "已经下载：" + Math.floor(downloadProgress) + "%"
-                //                                 });
-                //                                 if (downloadProgress > 99) {
-                //                                     $ionicLoading.hide();
-                //                                 }
-                //                             })
-                //                         });
-                //                     }
-                //                 });
-                //             } else {
-                //                 // Tips.showTips("已经是最新版本啦！");
-                //             }
-                //         });
-                //     }
-                // }, function(re) {
-                //     Tips.showTips(re.data);
-                // });
-                is_update = true;
-            };
-
-            function checkUpdate_iOS() {
-                // // 获取服务器端版本号
-                // httpRequest.postWithUI($scope, '?method=website.download', {}, function(re) {
-                //     if (re.data.state) {
-                //         var serverVersion = re.data.data.android_version;
-                //         var androidUrl = re.data.data.android_url;
-                //         $cordovaAppVersion.getVersionNumber().then(function(version) {
-                //             if (hasUpdate(serverVersion, version)) {
-                //                 $ionicPopup.confirm({
-                //                     title: '检查到新版本，是否进行更新?',
-                //                     cancelText: '取消',
-                //                     okText: "确定"
-                //                 }).then(function(res) {
-                //                     if (res) {
-                //                         // do something
-                //                         $cordovaInAppBrowser.open("https://itunes.apple.com/us/app/vr-shu-ma-qian-xian/id1148106834?l=zh&ls=1&mt=8", '_blank', {location: "yes"})
-                //                             .then(function(event) {})
-                //                             .catch(function(event) {});
-                //                     }
-                //                 });
-                //             } else {
-                //                 // Tips.showTips("已经是最新版本啦！");
-                //             }
-                //         });
-                //     }
-                // }, function(re) {
-                //     Tips.showTips(re.data.msg);
-                // });
-                // is_update = true;
-            };
 
             function hasUpdate(serverVersion, appVersion) {
                 serverVersion = serverVersion.substring(1);

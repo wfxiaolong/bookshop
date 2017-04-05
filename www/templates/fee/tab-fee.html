@@ -1,18 +1,20 @@
 <ion-header-bar align-title="center" class="app-bar">
-    <div class="title">缴费</div>
+    <div class="title">教育收费</div>
 </ion-header-bar>
-<ion-content class="page page-index" has-bouncing="true" overflow-scroll="false">
-    <div class="list card">
-        <div class="item">
-            <h2>您有2个未缴费项目</h2>
-        </div>
+<div class="public-subheader bar bar-subheader page">
+    <div class="order-classifys item bd-lr-none">
+        <div class="classify {{type == 1 ? 'active' : ''}}" ng-click="changeType(1)">未支付</div>
+        <div class="classify {{type == 2 ? 'active' : ''}}" ng-click="changeType(2)">已支付</div>
+        <div class="classify {{type == 3 ? 'active' : ''}}" ng-click="changeType(3)">退费</div>
     </div>
-    <div class="list card">
-        <div class="item" ui-sref="feeDetail">
-            <p>紧急收费（李晓丽）</p>
-        </div>
-        <div class="item" ui-sref="feeDetail">
-            <p>紧急收费（李晓宏）</p>
+</div>
+<ion-content class="page page-index" has-bouncing="true" overflow-scroll="false" style="padding-top:4rem">   
+    <div class="order-item mtb-15" ng-show="v.trade_state != 5" ng-click="getOrder()">
+        <div ng-click="jumpDetail(v.order_id,$event)">
+            <div class="item">
+                <p>教科书缴费</p>
+                <span style="position:absolute;right:10px;top:16px;">&yen;120</span>
+            </div>
         </div>
     </div>
 </ion-content>

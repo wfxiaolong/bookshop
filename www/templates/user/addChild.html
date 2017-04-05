@@ -6,10 +6,23 @@
     <div class="list">
         <p style="font-weight:bold;text-align: center;margin-top: 20px;margin-bottom: 20px;">请输入您的孩子的相关信息</p>
 
-        <input placeholder="请输入孩子的身份证" style="width:100%;padding-left:20px;height:44px;background: transparent;border: 0;border-bottom: 1px solid lightgray;">
-        <input placeholder="请输入孩子的真实姓名" style="width:100%;padding-left:20px;height:44px;background: transparent;border: 0;border-bottom: 1px solid lightgray;">
+        <input placeholder="请输入孩子的身份证" ng-model="data.studentIDCardNumber" style="width:100%;padding-left:20px;height:44px;background: transparent;border: 0;border-bottom: 1px solid lightgray;">
+        <input placeholder="请输入孩子的真实姓名" ng-model="data.studentName" style="width:100%;padding-left:20px;height:44px;background: transparent;border: 0;border-bottom: 1px solid lightgray;">
 
-        <button style="width:80%;margin-left:10%;background:#21b2ff;border:0;margin-top:20px;height:36px;border-radius:5px;color:white;">提交</button>
+        <select style="width: 80%;margin-left: 10%;margin-top: 20px;height: 33px;" ng-model="school.selectedSchool" ng-change="changeSchool()">
+			<option value="">选择学校</option>
+			<option ng-repeat="item in list.schoolList" value="{{item.id}}">{{item.schoolName}}</option>
+		</select>
+        <select style="width: 80%;margin-left: 10%;margin-top: 20px;height: 33px;" ng-model="school.selectedGrade" ng-change="changeGrades()">
+			<option value="">选择年级</option>
+			<option ng-repeat="item in list.gradeList" value="{{item.id}}">{{item.gradeName}}</option>
+		</select>
+        <select style="width: 80%;margin-left: 10%;margin-top: 20px;height: 33px;" ng-model="school.selectedClass">
+			<option value="">选择班级</option>
+			<option ng-repeat="item in list.classList" value="{{item.id}}">{{item.payfeeClassicName}}</option>
+		</select>
+
+        <button ng-click="createChild()" style="width:80%;margin-left:10%;background:#21b2ff;border:0;margin-top:20px;height:36px;border-radius:5px;color:white;">提交</button>
 
         <p style="font-size:10px;color:gray;text-align: left;margin-top: 20px;margin-bottom: 20px;padding-left:20px;padding-right:20px;">为保证每一个孩子的信息安全，您必须正确填写您孩子的相关信息，验证通过后才能获取收费信息。</br>如果遇到问题，请联系班主任。</p>
     </div>

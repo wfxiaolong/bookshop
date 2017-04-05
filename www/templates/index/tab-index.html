@@ -4,7 +4,7 @@
         <i class="ion-ios-search-strong icon-search" style="font-size:24px;position:absolute;top:3px;left:5px;"></i>
         <span style="margin-left:29px;line-height: 28px;">搜索你想要的宝贝</span>
     </div>
-    <span style="color:white;font-size:12;position:absolute;right:6px;top:6px;" ui-sref="login">登录</span>
+    <span style="color:white;font-size:12;position:absolute;right:6px;top:6px;" ng-hide="user" ui-sref="login">登录</span>
 </div>
 <ion-content class="page page-index" has-bouncing="true" overflow-scroll="false">
     <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()">

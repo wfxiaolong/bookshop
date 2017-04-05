@@ -139,8 +139,10 @@ define(['app', 'js/utils/tips', 'js/utils/httpRequestBase', 'js/utils/md5'], fun
                         // 发送请求
                         $scope.$emit('loadding', 'noBackdrop', '加载中...');
                         this.post(extraUrl, data, function(re) {
-                            if (!re.data.state) $cordovaDialogs.alert(re.data.msg, "温馨提示", "确定");
                             if (onSuccess) onSuccess(re);
+                            if (!re.data.result.isSuccess) {
+                                Tips.showTips(re.data.result.errorMessage);
+                            };
                         }, function(re) {
                             if (onFailed) onFailed(re);
                         }, function(re) {
@@ -150,12 +152,9 @@ define(['app', 'js/utils/tips', 'js/utils/httpRequestBase', 'js/utils/md5'], fun
                     },
                     postWithAuth: function($scope, extraUrl, data, onSuccess, onFailed, onFinal) {
                         var auth = Storage.get('vrsm_auth');
-                        data.uid = auth.uid || '';
-                        data.token = auth.token || '';
                         // 发送请求
                         $scope.$emit('loadding', 'noBackdrop', '加载中...');
                         this.post(extraUrl, data, function(re) {
-                            if (!re.data.state) $cordovaDialogs.alert(re.data.msg, "温馨提示", "确定");
                             if (onSuccess) onSuccess(re);
                         }, function(re) {
                             if (onFailed) onFailed(re);
@@ -172,7 +171,6 @@ define(['app', 'js/utils/tips', 'js/utils/httpRequestBase', 'js/utils/md5'], fun
                         data.token = auth.token || '';
                         // 发送请求
                         this.post(extraUrl, data, function(re) {
-                            if (!re.data.state) $cordovaDialogs.alert(re.data.msg, "温馨提示", "确定");
                             if (onSuccess) onSuccess(re);
                         }, function(re) {
                             if (onFailed) onFailed(re);
@@ -183,8 +181,6 @@ define(['app', 'js/utils/tips', 'js/utils/httpRequestBase', 'js/utils/md5'], fun
                         });
                     },
                     getPostParam: function(postData) {
-                        postData.time = +new Date();
-                        postData.app_key = APP.app_key;
                         delete postData.sign;
                         var arr = [];
                         for (var i in postData) {
@@ -192,7 +188,6 @@ define(['app', 'js/utils/tips', 'js/utils/httpRequestBase', 'js/utils/md5'], fun
                         }
                         arr.sort();
                         var result = arr.join('&');
-                        postData.sign = md5Utils.md5(result);
                         delete postData.app_key;
                         return postData;
                     },

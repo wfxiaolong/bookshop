@@ -589,7 +589,7 @@ define([
                     controller: "commentDetailCtrl"
                 })
                 .state('login', { //登录
-                    url: '/login/:fromPage',
+                    url: '/login',
                     templateUrl: function() {
                         return "templates/login.html";
                     },

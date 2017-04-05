@@ -5,30 +5,11 @@ define(['app', 'js/utils/tips', 'weixinJsSDK'], function(app, Tips, wx) {
             $ionicConfigProvider.platform.android.views.maxCache(5); //安卓缓存5个view，ios默认10个
             $ionicConfigProvider.platform.android.views.swipeBackEnabled(false); // disable swipe to go back functionality on iOS devices
             $ionicConfigProvider.views.swipeBackEnabled(false); // 禁止iOS端侧滑返回，防止出现白屏
-            $sceDelegateProvider.resourceUrlWhitelist([
-                // Allow same origin resource loads.
-                'self',
-                // Allow loading from our assets domain.  Notice the difference between * and **.
-                'http://srv*.assets.example.com/**',
-                'http://*.qq.com',
-                'https://*.qq.com',
-                'http://*.weishi.com',
-                'https://*.weishi.com'
-            ]);
-            // var domain = 'http://c.damaiplus.com/vrsm/web';
             var isInApp = ionic.Platform.isWebView();
-            var domain = 'http://weiyaxunda.com'; //上架用域名
+            var domain = 'http://abc.zhiwangyun.com';
             window.APP = {
                 domain: domain,
-                baseUrl: domain + '/api/',
-                shareUrl: domain + '/wechat/www/', //用于分享时的链接
-                duobaoUrl: domain + '/1vr/apps/webapp/www/?t=' + new Date().getTime() + '&isInApp=' + isInApp +'/', //夺宝页面的链接 还要传一个是否为app的参数
-                // app_version: 'V1.0.5',
-                app_key: 'WION45908BN982NG9LZ01M59RJT9UTGH4',
-                platform: 2, //1:iOS 2:android 3:web
-                isIOS: ionic.Platform.isIOS() || ionic.Platform.isIPad(),
-                is_wechat: ionic.Platform.ua.toLowerCase().match(/MicroMessenger/i) == "micromessenger",
-                isInApp: ionic.Platform.isWebView()
+                baseUrl: domain + '/Shop/',
             };
         }])
         .run(['$ionicPlatform', '$ionicLoading', '$rootScope', '$ionicHistory', 'Storage', '$state', 'httpRequest', '$rootScope', '$cordovaAppVersion', '$timeout',
@@ -50,55 +31,6 @@ define(['app', 'js/utils/tips', 'weixinJsSDK'], function(app, Tips, wx) {
                     }
                 };
 
-                $rootScope.goWechatLogin = function(tabUrl){
-                    //传入'#/tab/yiyuan'
-                    var url = tabUrl ? tabUrl:'';
-                    var APPID = 'wxc2748067aeb1700c';
-                    var redirectUrl = encodeURIComponent(APP.domain + '/wechat/www/'+url);
-                    REDIRECT_URI = encodeURIComponent(APP.domain + '/wxAuth.php?url=' + redirectUrl);
-                    requestURL = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + REDIRECT_URI + '&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect'
-                    location.href = requestURL;
-                }
-
-                //微信版检测登录  (不是从share进入)
-                if (APP.is_wechat && !APP.isInApp && location.href.indexOf("/share/") < 0) {
-                    if (!getCookie('uid')) { //未登录的情况
-                        if(location.href.indexOf('tab/yiyuan')>0){
-                            $rootScope.goWechatLogin('#/tab/yiyuan');
-                            return;
-                        }
-                        $rootScope.goWechatLogin();
-                    } else { //已登录则从cookie读取数据写到localStorage
-                        var auth = {
-                            uid: getCookie('uid'),
-                            token: getCookie('token'),
-                            nickname: getCookie('nickname'),
-                            user_img: getCookie('user_img'),
-                        };
-                        Storage.set('vrsm_auth', auth);
-                    }
-                }
-
-
-                // 微信jsdk初始化
-                if (APP.is_wechat && !APP.isInApp) {
-                    httpRequest.post('?method=user.weChatWebSign', { url: location.href.split('#')[0] }, function(re) {
-                        if (re.data.state) {
-                            var data = re.data.data;
-                            wx.config({
-                                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                                appId: data.appId, // 必填，公众号的唯一标识
-                                timestamp: data.timestamp, // 必填，生成签名的时间戳
-                                nonceStr: data.nonceStr, // 必填，生成签名的随机串
-                                signature: data.signature, // 必填，签名，见附录1
-                                jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'chooseImage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-                            });
-                        }
-                    }, function(re) {
-                        Tips.showTips(re.msg)
-                    });
-                }
-
                 function getCookie(name) {
                     var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
                     if (arr = document.cookie.match(reg))
@@ -115,25 +47,6 @@ define(['app', 'js/utils/tips', 'weixinJsSDK'], function(app, Tips, wx) {
                     }, function(re) {
                         APP.console = 'DMPush device_token_fail:' + re;
                     });
-                }
-
-                // 安卓获取推送消息以执行后续动作
-                if (window.DMPush && !APP.isIOS) {
-                    DMPush.get_newest_notification("获取推送消息失败", function(re) {
-                        APP.newest_notification = re;
-                        if (Storage.get("newest_notification_id") == null) { Storage.set("newest_notification_id", re.msg_id); }
-                        var old_notification_id = Storage.get("newest_notification_id");
-                        if (old_notification_id != re.msg_id) {
-                            Storage.set("newest_notification_id", re.msg_id);
-                            if (re.extra.push_type == 2) { // 进入商品详情
-                                $state.go("indexProDetail", { goodId: re.extra.id, fromNotification: 'fromnotification' });
-                            }
-                        }
-                        console.log(re);
-                    }, function(re) {
-                        APP.get_newest_notification_console = 'DMPush get_newest_notification:' + re;
-                    })
-                    console.log(window.APP);
                 }
 
                 //注册loadding
@@ -161,35 +74,6 @@ define(['app', 'js/utils/tips', 'weixinJsSDK'], function(app, Tips, wx) {
                         showLoadding(false, content)
                     }
                 })
-
-                //需要登录检测
-                $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-                    var name = toState.name;
-                    var needLogin = {
-                        follow: true,
-                        myCommunity: true,
-                        repairApplies: true,
-                        balance: true,
-                        orders: true,
-                        speak: true,
-                        coupon: true,
-                        message: true,
-                        collection: true,
-                        myYiyuan: true,
-                    };
-                    if (needLogin[name] && !APP.is_wechat) {
-                        try {
-                            if (!Storage.get('vrsm_auth')) {
-                                event.preventDefault();
-                                $state.go('login');
-                                Tips.showTips('请先登录！！');
-                            } else {}
-                        } catch (e) {
-                            console.error('登录判断跳转出错' + e.name + '：' + e.message);
-                        }
-                    }
-                    $ionicLoading.hide();
-                });
 
                 var htmlEl = angular.element(document.querySelector('html'));
                 htmlEl.on("click", function(e) {

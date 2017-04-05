@@ -3,8 +3,6 @@ define(['app', 'js/utils/tips'], function(app, Tips) {
 
         $scope.$on("$ionicView.beforeEnter", function() {
             $scope.reg = {};
-            $scope.fromPage = $state.params.fromPage;
-            console.log($scope.fromPage);
         });
 
         $scope.is_pwd_show = "img/mimakejian.png";
@@ -20,8 +18,6 @@ define(['app', 'js/utils/tips'], function(app, Tips) {
             $scope.inputType_1 = $scope.inputType_1 == "password" ? "text" : "password";
             $scope.is_pwd_show_1 = $scope.inputType_1 == "password" ? "img/mimakejian.png" : "img/mimakejian_active.png";
         }
-
-
 
         // 倒计时
         $scope.code = {
@@ -63,23 +59,15 @@ define(['app', 'js/utils/tips'], function(app, Tips) {
             var passwordR = $scope.reg.passwordR;
             if (validate(phone, checkCode, password, passwordR)) {
                 var postData = {
-                    phone: phone,
-                    code: checkCode,
-                    password: password,
-                    task_id: $scope.task_id
+                    identityType: 1,
+                    identifier: phone,
+                    credential: password
                 };
-                httpRequest.postWithUI($scope, '?method=user.reg', postData, function(re) {
-                    if (re.data.state) {
-                        if ($scope.fromPage == "index") {
-                            Tips.showTips("注册成功，请立即登陆领取优惠券");
-                            $state.go("login", {fromPage: "index"});
-                        } else {
-                            Tips.showTips('注册成功!');
-                            $state.go('login');
-                        }
+                httpRequest.postWithUI($scope, '/api/services/app/platform/UserRegister', postData, function(re) {
+                    if (re.data.result.isSuccess) {
+                        Tips.showTips('注册成功!');
+                        $state.go('login');
                     }
-                }, function(re) {
-                    Tips.showTips(re.data.msg);
                 });
             }
         };
@@ -88,10 +76,10 @@ define(['app', 'js/utils/tips'], function(app, Tips) {
                 Tips.showTips("请输入正确的手机号码");
                 return false;
             }
-            if (!checkCode || checkCode == '') {
-                Tips.showTips("请输入验证码");
-                return false;
-            }
+            // if (!checkCode || checkCode == '') {
+            //     Tips.showTips("请输入验证码");
+            //     return false;
+            // }
             if (!password || password.length < 6) {
                 Tips.showTips("密码长度不能少于6位");
                 return false;
@@ -104,3 +92,5 @@ define(['app', 'js/utils/tips'], function(app, Tips) {
         };
     }]);
 });
+
+

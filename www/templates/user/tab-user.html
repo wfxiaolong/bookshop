@@ -6,7 +6,7 @@
     <div class="list">
         <a class="item item-icon-left mtb-15 ptb-50 text-overflow" ui-sref="userInfo" ng-if="!noLogin">
         	<img ng-src="img/ben.png" alt="" class="avatar">
-        	<span class="f-34 text-overflow" style="display: inline-block;max-width: 70%;margin-left: 25px;">晓红</span>
+        	<span class="f-34 text-overflow" style="display: inline-block;max-width: 70%;margin-left: 25px;">{{auth.memberPhoneNumber}}</span>
             <i class="item-note c-3 f-34 ion-chevron-right"></i>
         </a>
         <a class="item item-icon-left mtb-15 ptb-50" ng-if="noLogin" ui-sref="login">
